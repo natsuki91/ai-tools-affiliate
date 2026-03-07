@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/postbuild-rename-next.cjs",
     "start": "next start",
     "start:hostinger": "next start -p ${PORT:-3000}",
     "lint": "next lint"

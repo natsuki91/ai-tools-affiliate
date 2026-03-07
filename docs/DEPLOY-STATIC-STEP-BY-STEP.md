@@ -61,7 +61,7 @@ Wait until you see **“Generating static pages”** and then **“✓ Generatin
 2. Inside **out** you should see:
    - **index.html** (the homepage)
    - Other **.html** files (about.html, blog.html, compare.html, etc.)
-   - Folders: **_next**, **ai-tools**, **blog**, **compare**, **tools**, **category**, etc.
+   - Folders: **next** (CSS/JS assets — no leading underscore so all hosts serve it), **ai-tools**, **blog**, **compare**, **tools**, **category**, etc.
 3. You will upload **everything that is inside `out`** (all files and folders), not the **out** folder itself.
 
 **Optional — Zip for easier upload:**  
@@ -105,23 +105,23 @@ If there are already files from an old site or a Node.js app:
 2. Choose the **out.zip** you created (or create it from the **out** folder as in Step 1.6).
 3. Wait until the upload finishes.
 4. In the file list, find **out.zip**, right‑click it → **Extract** (or use an **Extract** button).
-5. Extract **into the current folder** (e.g. **public_html**), so that after extraction you see **index.html**, **_next**, **ai-tools**, **blog**, etc. **directly** in **public_html**, not inside an **out** folder.
+5. Extract **into the current folder** (e.g. **public_html**), so that after extraction you see **index.html**, **next**, **ai-tools**, **blog**, etc. **directly** in **public_html**, not inside an **out** folder.
 6. If extraction created a folder named **out** and put everything inside it: open **out**, select **all** files and folders inside it, **Cut** (or Move), go back to **public_html**, and **Paste**. Then delete the empty **out** folder.
 7. Delete **out.zip** if you don’t need it.
 
 **Option B — Upload files and folders directly**
 
-1. On your PC, open the **out** folder so you see **index.html**, **_next**, **ai-tools**, **blog**, **compare**, **tools**, **category**, etc.
+1. On your PC, open the **out** folder so you see **index.html**, **next**, **ai-tools**, **blog**, **compare**, **tools**, **category**, etc.
 2. In File Manager, click **Upload**.
 3. Drag and drop **all** of these items from **out** into the upload area (or select them all and upload). You may need to upload folders one by one; some File Managers let you select a folder.
-4. Ensure that when you’re done, **index.html** and the **_next**, **ai-tools**, **blog**, **compare**, **tools**, **category** folders are **directly** in **public_html** (or the root folder you chose in Step 2.3), not inside an extra **out** folder.
+4. Ensure that when you’re done, **index.html** and the **next**, **ai-tools**, **blog**, **compare**, **tools**, **category** folders are **directly** in **public_html** (or the root folder you chose in Step 2.3), not inside an extra **out** folder.
 
 ### Step 2.6 — Check the structure
 
 In File Manager, inside **public_html** (or your domain’s root folder), you should see at least:
 
 - **index.html**
-- **_next** (folder)
+- **next** (folder — contains CSS and JS; must be deployed)
 - **ai-tools** (folder)
 - **blog** (folder)
 - **compare** (folder)
@@ -184,7 +184,7 @@ If these load correctly, the static site is live.
    ```powershell
    npm run build
    ```
-3. Upload the **new** contents of the **out** folder to Hostinger (same folder as before), **replacing** the old files (overwrite **index.html**, **_next**, **ai-tools**, **blog**, **compare**, **tools**, **category**, etc.).  
+3. Upload the **new** contents of the **out** folder to Hostinger (same folder as before), **replacing** the old files (overwrite **index.html**, **next**, **ai-tools**, **blog**, **compare**, **tools**, **category**, etc.).  
    You can zip the new **out** contents, upload the zip, extract (into the same root folder), and overwrite when asked.
 
 ---
@@ -268,8 +268,8 @@ If something doesn’t match (e.g. no **index.html** in **out**, or domain still
 When you connect GitHub and Hostinger builds the site for you:
 
 1. **Environment variables** (e.g. GA4, Supabase) must be set in **Hostinger's** build/deploy settings, not only in `.env.local` on your PC. See **docs/GA4-SETUP.md** for `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
-2. **Deployed folder** must be the **contents of `out`** (including the **_next** folder). If the deploy only copies HTML and not **_next**, the site will load but **styles and scripts will be missing** and the page will look broken or "strange" (plain HTML, no colors, no layout).
-3. In hPanel, check where the Git/deploy output goes (e.g. "Build output directory" or "Publish directory"). It should be set so the **web root** contains **index.html** and **_next** at the same level. If you see "out" or "out/" as the publish directory, that's correct; the server must serve from inside **out**, not the repo root.
+2. **Deployed folder** must be the **contents of `out`** (including the **next** folder). If the deploy only copies HTML and not **next**, the site will load but **styles and scripts will be missing** and the page will look broken or "strange" (plain HTML, no colors, no layout).
+3. In hPanel, check where the Git/deploy output goes (e.g. "Build output directory" or "Publish directory"). It should be set so the **web root** contains **index.html** and **next** at the same level. If you see "out" or "out/" as the publish directory, that's correct; the server must serve from inside **out**, not the repo root.
 
 ---
 
@@ -277,6 +277,6 @@ When you connect GitHub and Hostinger builds the site for you:
 
 If https://toolscout.tools loads but looks wrong (no colors, no layout, or everything in one column):
 
-1. **Open the page, then press F12** (Developer Tools) → **Network** tab → refresh. Look for **red** (failed) requests. If you see **404** for URLs like `/_next/static/css/...` or `/_next/static/chunks/...`, the **_next** folder is missing or not at the right path.
-2. **Fix:** Ensure the **full** build output is deployed. That means everything inside **out**, including the **_next** folder. If you use Deploy from Git, check Hostinger's deploy settings so the **publish directory** is the folder that contains **index.html** and **_next** together. If you upload manually, upload the **contents** of **out** (including **_next**) to your web root (e.g. **public_html**).
-3. **View Page Source** on the live site and check the first few lines. You should see something like `<link rel="stylesheet" href="/_next/static/css/...">`. Open that `href` in a new tab (e.g. **https://toolscout.tools/_next/static/css/...**). If it returns 404, **_next** is not in the right place.
+1. **Open the page, then press F12** (Developer Tools) → **Network** tab → refresh. Look for **red** (failed) requests. If you see **404** for URLs like `/next/static/css/...` or `/next/static/chunks/...`, the **next** folder is missing or not at the right path.
+2. **Fix:** Ensure the **full** build output is deployed. That means everything inside **out**, including the **next** folder. If you use Deploy from Git, check Hostinger's deploy settings so the **publish directory** is the folder that contains **index.html** and **next** together. If you upload manually, upload the **contents** of **out** (including **next**) to your web root (e.g. **public_html**).
+3. **View Page Source** on the live site and check the first few lines. You should see something like `<link rel="stylesheet" href="/next/static/css/...">`. Open that `href` in a new tab (e.g. **https://toolscout.tools/next/static/css/...**). If it returns 404, **next** is not in the right place.
