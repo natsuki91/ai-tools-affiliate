@@ -12,9 +12,13 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
 const useSupabase = Boolean(supabaseUrl && supabaseAnonKey);
 
-function getSupabase() {
+function getSupabase(): ReturnType<typeof createClient<Database>> | null {
   if (!useSupabase) return null;
-  return createClient<Database>(supabaseUrl, supabaseAnonKey);
+  try {
+    return createClient<Database>(supabaseUrl, supabaseAnonKey);
+  } catch {
+    return null;
+  }
 }
 
 /** Map DB row to Tool (ensure arrays exist) */
@@ -70,52 +74,68 @@ function rowToComparison(
 
 /** All tools (featured first, then by rating) */
 export async function getTools(): Promise<Tool[]> {
-  const sb = getSupabase();
-  if (sb) {
-    const { data, error } = await sb
-      .from("tools")
-      .select("*")
-      .order("is_featured", { ascending: false })
-      .order("rating", { ascending: false, nullsFirst: false });
-    if (!error && data?.length) return data.map(rowToTool);
+  try {
+    const sb = getSupabase();
+    if (sb) {
+      const { data, error } = await sb
+        .from("tools")
+        .select("*")
+        .order("is_featured", { ascending: false })
+        .order("rating", { ascending: false, nullsFirst: false });
+      if (!error && data?.length) return data.map(rowToTool);
+    }
+  } catch {
+    // fall through to mock
   }
   return mockTools;
 }
 
 /** Tools with is_featured = true (for homepage) */
 export async function getFeaturedTools(): Promise<Tool[]> {
-  const sb = getSupabase();
-  if (sb) {
-    const { data, error } = await sb
-      .from("tools")
-      .select("*")
-      .eq("is_featured", true)
-      .order("rating", { ascending: false, nullsFirst: false });
-    if (!error && data?.length) return data.map(rowToTool);
+  try {
+    const sb = getSupabase();
+    if (sb) {
+      const { data, error } = await sb
+        .from("tools")
+        .select("*")
+        .eq("is_featured", true)
+        .order("rating", { ascending: false, nullsFirst: false });
+      if (!error && data?.length) return data.map(rowToTool);
+    }
+  } catch {
+    // fall through to mock
   }
   return mockTools.filter((t) => t.is_featured);
 }
 
 /** Single tool by slug */
 export async function getToolBySlug(slug: string): Promise<Tool | null> {
-  const sb = getSupabase();
-  if (sb) {
-    const { data, error } = await sb.from("tools").select("*").eq("slug", slug).maybeSingle();
-    if (!error && data) return rowToTool(data);
+  try {
+    const sb = getSupabase();
+    if (sb) {
+      const { data, error } = await sb.from("tools").select("*").eq("slug", slug).maybeSingle();
+      if (!error && data) return rowToTool(data);
+    }
+  } catch {
+    // fall through to mock
   }
   return mockTools.find((t) => t.slug === slug) ?? null;
 }
 
 /** Tools by category (slug) */
 export async function getToolsByCategory(categorySlug: string): Promise<Tool[]> {
-  const sb = getSupabase();
-  if (sb) {
-    const { data, error } = await sb
-      .from("tools")
-      .select("*")
-      .contains("category", [categorySlug])
-      .order("rating", { ascending: false, nullsFirst: false });
-    if (!error && data?.length) return data.map(rowToTool);
+  try {
+    const sb = getSupabase();
+    if (sb) {
+      const { data, error } = await sb
+        .from("tools")
+        .select("*")
+        .contains("category", [categorySlug])
+        .order("rating", { ascending: false, nullsFirst: false });
+      if (!error && data?.length) return data.map(rowToTool);
+    }
+  } catch {
+    // fall through to mock
   }
   return mockTools.filter((t) => t.category.includes(categorySlug));
 }
@@ -124,39 +144,47 @@ type ComparisonRow = Database["public"]["Tables"]["comparisons"]["Row"];
 
 /** All comparisons (with tool_a and tool_b populated) */
 export async function getComparisons(): Promise<Comparison[]> {
-  const sb = getSupabase();
-  if (sb) {
-    const { data: rows, error } = await sb.from("comparisons").select("*").order("created_at", { ascending: false });
-    if (!error && rows && rows.length > 0) {
-      const typedRows = rows as ComparisonRow[];
-      const tools = await getTools();
-      return typedRows.map((r) => {
-        const tool_a = tools.find((t) => t.id === r.tool_a_id);
-        const tool_b = tools.find((t) => t.id === r.tool_b_id);
-        return rowToComparison({
-          ...r,
-          tool_a: tool_a ? (tool_a as Database["public"]["Tables"]["tools"]["Row"]) : undefined,
-          tool_b: tool_b ? (tool_b as Database["public"]["Tables"]["tools"]["Row"]) : undefined,
+  try {
+    const sb = getSupabase();
+    if (sb) {
+      const { data: rows, error } = await sb.from("comparisons").select("*").order("created_at", { ascending: false });
+      if (!error && rows && rows.length > 0) {
+        const typedRows = rows as ComparisonRow[];
+        const tools = await getTools();
+        return typedRows.map((r) => {
+          const tool_a = tools.find((t) => t.id === r.tool_a_id);
+          const tool_b = tools.find((t) => t.id === r.tool_b_id);
+          return rowToComparison({
+            ...r,
+            tool_a: tool_a ? (tool_a as Database["public"]["Tables"]["tools"]["Row"]) : undefined,
+            tool_b: tool_b ? (tool_b as Database["public"]["Tables"]["tools"]["Row"]) : undefined,
+          });
         });
-      });
+      }
     }
+  } catch {
+    // fall through to mock
   }
   return mockComparisons;
 }
 
 /** Single comparison by slug with tools */
 export async function getComparisonBySlug(slug: string): Promise<Comparison | null> {
-  const sb = getSupabase();
-  if (sb) {
-    const { data, error } = await sb.from("comparisons").select("*").eq("slug", slug).maybeSingle();
-    const row = data as ComparisonRow | null;
-    if (!error && row) {
-      const { data: toolARow } = await sb.from("tools").select("*").eq("id", row.tool_a_id).maybeSingle();
-      const { data: toolBRow } = await sb.from("tools").select("*").eq("id", row.tool_b_id).maybeSingle();
-      const tool_a = toolARow ? rowToTool(toolARow) : undefined;
-      const tool_b = toolBRow ? rowToTool(toolBRow) : undefined;
-      return rowToComparison({ ...row, tool_a, tool_b });
+  try {
+    const sb = getSupabase();
+    if (sb) {
+      const { data, error } = await sb.from("comparisons").select("*").eq("slug", slug).maybeSingle();
+      const row = data as ComparisonRow | null;
+      if (!error && row) {
+        const { data: toolARow } = await sb.from("tools").select("*").eq("id", row.tool_a_id).maybeSingle();
+        const { data: toolBRow } = await sb.from("tools").select("*").eq("id", row.tool_b_id).maybeSingle();
+        const tool_a = toolARow ? rowToTool(toolARow) : undefined;
+        const tool_b = toolBRow ? rowToTool(toolBRow) : undefined;
+        return rowToComparison({ ...row, tool_a, tool_b });
+      }
     }
+  } catch {
+    // fall through to mock
   }
   const c = mockComparisons.find((x) => x.slug === slug);
   if (!c) return null;

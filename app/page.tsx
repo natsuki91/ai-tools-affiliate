@@ -9,14 +9,21 @@ import { getFeaturedTools, getComparisons } from "@/lib/data";
 import { mockBlogPosts } from "@/lib/mock-data";
 
 export default async function HubPage() {
-  const [tools, comparisons] = await Promise.all([getFeaturedTools(), getComparisons()]);
+  let tools: Awaited<ReturnType<typeof getFeaturedTools>> = [];
+  let comparisons: Awaited<ReturnType<typeof getComparisons>> = [];
+  try {
+    [tools, comparisons] = await Promise.all([getFeaturedTools(), getComparisons()]);
+  } catch {
+    // use empty arrays so page still renders
+  }
+  const posts = Array.isArray(mockBlogPosts) ? mockBlogPosts : [];
   return (
     <>
       <HubHero />
       <NicheGrid />
       <FeaturedTools tools={tools} />
       <LatestComparisons comparisons={comparisons} />
-      <LatestBlog posts={mockBlogPosts} />
+      <LatestBlog posts={posts} />
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <CTABanner title="List Your AI Tool" />

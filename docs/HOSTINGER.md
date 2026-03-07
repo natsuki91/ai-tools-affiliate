@@ -88,6 +88,17 @@ Detailed VPS steps: [Hostinger support – Node.js](https://www.hostinger.com/su
 
 ---
 
+## Troubleshooting: blank page
+
+If the site shows nothing at https://toolscout.tools:
+
+1. **Check the app is running** — Open **https://toolscout.tools/api/health**. You should see plain text: `OK`. If you get an error or timeout, the Node app didn’t start: check the **Start command** is `npm run start -- -p $PORT` and check deploy logs in hPanel.
+2. **Use HTTPS** — Always open **https://**toolscout.tools (not http). Enable **Force HTTPS** in hPanel for the domain if needed.
+3. **Redeploy** — After code changes, trigger a new deploy so the latest build is live.
+4. **Env vars** — Ensure `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set if you use Supabase; the app falls back to mock data if they’re missing or invalid.
+
+---
+
 ## Quick checklist
 
 - [ ] Plan is **Business** or **Cloud** (or you’re on VPS).
