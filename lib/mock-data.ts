@@ -246,6 +246,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 4,
     author: "Editorial Team",
   },
+  {
+    slug: "jasper-vs-copy-ai-2026",
+    title: "Jasper vs Copy.ai 2026: Which Is Better for Marketing?",
+    description: "Jasper vs Copy.ai in 2026: we compare pricing, templates, brand voice, and who each is best for—ads, blogs, or scale.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 5,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [

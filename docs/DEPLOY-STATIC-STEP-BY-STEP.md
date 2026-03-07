@@ -260,3 +260,23 @@ After a full fresh start you have: new code, a clean build, and only the new sit
 - [ ] **Part 4:** **https://toolscout.tools** and **https://toolscout.tools/ai-tools** (and a couple of other links) open correctly.
 
 If something doesn’t match (e.g. no **index.html** in **out**, or domain still on Node), go back to the step that fixes that and repeat from there.
+
+---
+
+## If you use Hostinger "Deploy from Git"
+
+When you connect GitHub and Hostinger builds the site for you:
+
+1. **Environment variables** (e.g. GA4, Supabase) must be set in **Hostinger's** build/deploy settings, not only in `.env.local` on your PC. See **docs/GA4-SETUP.md** for `NEXT_PUBLIC_GA_MEASUREMENT_ID`.
+2. **Deployed folder** must be the **contents of `out`** (including the **_next** folder). If the deploy only copies HTML and not **_next**, the site will load but **styles and scripts will be missing** and the page will look broken or "strange" (plain HTML, no colors, no layout).
+3. In hPanel, check where the Git/deploy output goes (e.g. "Build output directory" or "Publish directory"). It should be set so the **web root** contains **index.html** and **_next** at the same level. If you see "out" or "out/" as the publish directory, that's correct; the server must serve from inside **out**, not the repo root.
+
+---
+
+## Site looks strange or unstyled?
+
+If https://toolscout.tools loads but looks wrong (no colors, no layout, or everything in one column):
+
+1. **Open the page, then press F12** (Developer Tools) → **Network** tab → refresh. Look for **red** (failed) requests. If you see **404** for URLs like `/_next/static/css/...` or `/_next/static/chunks/...`, the **_next** folder is missing or not at the right path.
+2. **Fix:** Ensure the **full** build output is deployed. That means everything inside **out**, including the **_next** folder. If you use Deploy from Git, check Hostinger's deploy settings so the **publish directory** is the folder that contains **index.html** and **_next** together. If you upload manually, upload the **contents** of **out** (including **_next**) to your web root (e.g. **public_html**).
+3. **View Page Source** on the live site and check the first few lines. You should see something like `<link rel="stylesheet" href="/_next/static/css/...">`. Open that `href` in a new tab (e.g. **https://toolscout.tools/_next/static/css/...**). If it returns 404, **_next** is not in the right place.

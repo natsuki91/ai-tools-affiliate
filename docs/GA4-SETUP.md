@@ -14,7 +14,24 @@ Add GA4 to your static site so you can see traffic and behavior on https://tools
 
 ---
 
-## 2. Add the ID to your project
+## 2. Add the ID so the build includes GA4
+
+The GA4 script is in the app; it only runs when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set **at build time**. So the place you set it depends on how you deploy.
+
+### If you use Hostinger “Deploy from Git”
+
+The build runs on **Hostinger’s side**. Set the variable there so their build includes the script:
+
+1. In **hPanel**, open your site → **Advanced** → **Git** (or your app’s **Deployments** / **Settings**).
+2. Find **Environment variables** (or **Build / Deploy settings**).
+3. Add:
+   - **Name:** `NEXT_PUBLIC_GA_MEASUREMENT_ID`
+   - **Value:** `G-Q97DNWL4VV` (or your Measurement ID).
+4. Save and **Redeploy** (or click **Deploy** again) so a new build runs with the variable.
+
+If you don’t set it in Hostinger, the built site will not contain the GA4 script, even if you have it in `.env.local` locally.
+
+### If you build locally and upload
 
 1. In your project folder, open **`.env.local`** (create it from `.env.local.example` if needed).
 2. Add or edit:
@@ -22,20 +39,11 @@ Add GA4 to your static site so you can see traffic and behavior on https://tools
    NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
    ```
    (Use your real Measurement ID.)
-3. Save the file.
+3. Run **`npm run build`**, then upload the **out** folder to Hostinger (replace the existing files).
 
 ---
 
-## 3. Rebuild and re-upload
-
-1. Run **`npm run build`**.
-2. Upload the new **out** folder to Hostinger (replace the existing files).
-
-The GA4 script is already in the app; it only runs when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set. After this build, your static pages will include the gtag script and start sending data to GA4.
-
----
-
-## 4. Check that it works
+## 3. Check that it works
 
 1. In GA4, open **Reports** → **Realtime**.
 2. Visit **https://toolscout.tools** in another tab (or on your phone).
@@ -43,7 +51,7 @@ The GA4 script is already in the app; it only runs when `NEXT_PUBLIC_GA_MEASUREM
 
 ---
 
-**Note:** `.env.local` is not committed to Git. If you build on another machine or in CI, set `NEXT_PUBLIC_GA_MEASUREMENT_ID` there too before building.
+**Note:** `.env.local` is not committed to Git. When you use Deploy from Git, the build runs on Hostinger, so you must set `NEXT_PUBLIC_GA_MEASUREMENT_ID` in Hostinger’s environment variables and redeploy.
 
 ---
 
@@ -61,5 +69,5 @@ The GA4 script is already in the app; it only runs when `NEXT_PUBLIC_GA_MEASUREM
 4. **Ad blockers and privacy**  
    Try from an **incognito/private** window with **extensions disabled**. Ad blockers or privacy tools can block gtag.
 
-5. **Rebuild and re-upload**  
-   After adding the ID or changing it, run **`npm run build`** and upload the new **out** folder again so the live site includes the GA4 script.
+5. **Rebuild with the ID set**  
+   If you use **Deploy from Git**: add `NEXT_PUBLIC_GA_MEASUREMENT_ID` in Hostinger’s env vars, then **Redeploy**. If you build locally: set it in `.env.local`, run **`npm run build`**, then upload the **out** folder again.

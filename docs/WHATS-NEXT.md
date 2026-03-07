@@ -20,12 +20,12 @@ Details and program links: [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md).
 
 ---
 
-## 2. Google Analytics (GA4)
+## 2. Google Analytics (GA4) ✓
 
 See traffic and behavior.
 
 - Create a GA4 property and get your **Measurement ID** (e.g. `G-XXXXXXXXXX`).
-- Set **`NEXT_PUBLIC_GA_MEASUREMENT_ID`** in **`.env.local`**, then run **`npm run build`** and re-upload the **out** folder. The existing `GoogleAnalytics` component will include the script in the static build.
+- For **Deploy from Git:** set **`NEXT_PUBLIC_GA_MEASUREMENT_ID`** in Hostinger’s build/deploy environment variables, then redeploy.
 - **Step-by-step:** [GA4-SETUP.md](GA4-SETUP.md).
 
 ---
@@ -50,7 +50,7 @@ The hub already has placeholders for Web Hosting, VPN, eCommerce, etc. To activa
 ## Quick checklist
 
 - [x] Hostinger + Shopify affiliate links (footer)
+- [x] GA4 set up (Hostinger env var + redeploy) — [GA4-SETUP.md](GA4-SETUP.md)
 - [ ] Add AI tool affiliate URLs when approved (`.env.local` or Supabase)
-- [ ] Add GA4 when ready ([GA4-SETUP.md](GA4-SETUP.md))
 - [ ] Add more blog posts or tools as you go
 - [ ] (Later) Activate a second niche if you want to expand
