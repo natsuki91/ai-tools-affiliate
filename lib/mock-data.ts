@@ -192,6 +192,21 @@ export const mockComparisons: Comparison[] = [
     tool_a: mockTools[0],
     tool_b: mockTools[1],
   },
+  {
+    id: "c4",
+    slug: "claude-vs-jasper",
+    tool_a_id: "2",
+    tool_b_id: "3",
+    title: "Claude vs Jasper: Which Is Better for Writing in 2026?",
+    meta_desc: "Compare Claude and Jasper for long-form writing, marketing copy, and brand content.",
+    verdict: "Claude for nuanced long-form; Jasper for marketing workflows and templates.",
+    content: null,
+    views: 0,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    tool_a: mockTools[1],
+    tool_b: mockTools[2],
+  },
 ];
 
 export const mockBlogPosts: BlogPost[] = [
@@ -217,6 +232,15 @@ export const mockBlogPosts: BlogPost[] = [
     slug: "is-chatgpt-worth-it-2026",
     title: "Is ChatGPT Worth It in 2026? Honest Review",
     description: "Is ChatGPT worth paying for in 2026? We break down the free vs paid tiers, limits, and who should upgrade.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 4,
+    author: "Editorial Team",
+  },
+  {
+    slug: "best-free-ai-writing-tools-2026",
+    title: "Best Free AI Writing Tools for 2026",
+    description: "The best free AI writing tools in 2026—ChatGPT, Claude, Copy.ai, and more. Compare limits and quality.",
     content: "",
     date: "2026-03-07",
     readingTime: 4,
