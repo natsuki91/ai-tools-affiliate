@@ -7,7 +7,7 @@ interface SEOMetaProps {
   image?: string;
 }
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
 
 /**
  * Helper to build page metadata. Use in generateMetadata or export metadata.

@@ -1,6 +1,7 @@
 import type { Tool } from "@/types/tool";
 import { ToolCard } from "@/components/tools/ToolCard";
 import Link from "next/link";
+import { ACTIVE_NICHE_SLUG } from "@/lib/niches";
 
 interface FeaturedToolsProps {
   tools: Tool[];
@@ -13,7 +14,7 @@ export function FeaturedTools({ tools }: FeaturedToolsProps) {
         <div className="flex items-end justify-between">
           <h2 className="text-2xl font-bold text-text-primary">Featured Tools</h2>
           <Link
-            href="/tools"
+            href={`/${ACTIVE_NICHE_SLUG}/tools`}
             className="text-sm font-medium text-primary hover:underline"
           >
             View all →

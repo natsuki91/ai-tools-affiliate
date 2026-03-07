@@ -1,6 +1,7 @@
 import type { BlogPost } from "@/types/blog";
 import { BlogCard } from "@/components/blog/BlogCard";
 import Link from "next/link";
+import { ACTIVE_NICHE_SLUG } from "@/lib/niches";
 
 interface LatestBlogProps {
   posts: BlogPost[];
@@ -13,7 +14,7 @@ export function LatestBlog({ posts }: LatestBlogProps) {
         <div className="flex items-end justify-between">
           <h2 className="text-2xl font-bold text-text-primary">Latest from the Blog</h2>
           <Link
-            href="/blog"
+            href={`/${ACTIVE_NICHE_SLUG}/blog`}
             className="text-sm font-medium text-primary hover:underline"
           >
             View all →

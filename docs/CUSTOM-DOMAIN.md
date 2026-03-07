@@ -1,6 +1,6 @@
 # Connect Your Custom Domain (Hostinger)
 
-When you're ready to use your own domain (e.g. `aitools.com`) instead of the Hostinger default URL:
+This project uses **toolscout.tools**. When you connect your own domain (or if you've already connected it):
 
 ## 1. In Hostinger
 
@@ -13,10 +13,10 @@ When you're ready to use your own domain (e.g. `aitools.com`) instead of the Hos
 So the site knows its real address (for SEO, sitemap, Open Graph):
 
 **Hostinger:** Node.js app → **Environment variables** → add or edit:
-- `NEXT_PUBLIC_SITE_URL` = `https://yourdomain.com` (no trailing slash)
+- `NEXT_PUBLIC_SITE_URL` = `https://toolscout.tools` (no trailing slash)
 
 **Local:** In `.env.local`:
-- `NEXT_PUBLIC_SITE_URL` = `https://yourdomain.com`
+- `NEXT_PUBLIC_SITE_URL` = `https://toolscout.tools`
 
 ## 3. Redeploy
 
@@ -28,8 +28,8 @@ Hostinger usually provisions SSL (HTTPS) for the connected domain. If not, enabl
 
 ## Checklist
 
-- [ ] Domain connected in Hostinger
-- [ ] `NEXT_PUBLIC_SITE_URL` set to `https://yourdomain.com`
+- [x] Domain connected in Hostinger (toolscout.tools)
+- [ ] `NEXT_PUBLIC_SITE_URL` set to `https://toolscout.tools` in Hostinger env vars
 - [ ] Redeploy completed
-- [ ] Visit `https://yourdomain.com` and check homepage, /blog, /compare
-- [ ] Check `/sitemap.xml` — URLs should use your domain
+- [ ] Visit https://toolscout.tools and check homepage, /blog, /compare
+- [ ] Check https://toolscout.tools/sitemap.xml — URLs should use toolscout.tools

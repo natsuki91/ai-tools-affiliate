@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ACTIVE_NICHE_SLUG } from "@/lib/niches";
 
 const categories = [
   { slug: "writing", name: "Writing", count: 12, icon: "✍️" },
@@ -18,7 +19,7 @@ export function Categories() {
           {categories.map((cat) => (
             <Link
               key={cat.slug}
-              href={`/category/${cat.slug}`}
+              href={`/${ACTIVE_NICHE_SLUG}/category/${cat.slug}`}
               className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition hover:border-primary/30 hover:bg-card/80"
             >
               <span className="text-2xl" aria-hidden>{cat.icon}</span>

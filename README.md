@@ -2,6 +2,8 @@
 
 Next.js 14 site for comparing AI tools, publishing reviews, and monetizing via affiliate links and sponsored listings.
 
+**Live:** [https://toolscout.tools](https://toolscout.tools)
+
 ## Stack
 
 - **Next.js 14** (App Router), **TypeScript**, **Tailwind CSS**

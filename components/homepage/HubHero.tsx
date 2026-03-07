@@ -21,7 +21,7 @@ export function HubHero() {
             AI Tools
           </Link>
           <Link
-            href="/compare"
+            href="/ai-tools/compare"
             className="inline-flex rounded-full border-2 border-border bg-transparent px-8 py-4 text-base font-semibold text-text-primary transition hover:bg-card hover:border-primary/50"
           >
             Compare Tools

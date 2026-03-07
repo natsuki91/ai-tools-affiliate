@@ -63,3 +63,6 @@ export function getNicheBySlug(slug: string) {
 export function getActiveNiches() {
   return NICHES.filter((n) => n.active);
 }
+
+/** First active niche slug; use for building links (e.g. /ai-tools/compare) until multi-niche context exists. */
+export const ACTIVE_NICHE_SLUG: string = NICHES.find((n) => n.active)?.slug ?? "ai-tools";

@@ -37,7 +37,7 @@ git push -u origin main
 6. Add **environment variables** in hPanel (Node.js app → Environment Variables):
    - `NEXT_PUBLIC_SUPABASE_URL` (when you use Supabase)
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `NEXT_PUBLIC_SITE_URL` = `https://yourdomain.com`
+   - `NEXT_PUBLIC_SITE_URL` = `https://toolscout.tools`
 7. Click **Deploy**.
 
 After the build finishes, the site will be live on the domain you attached to that website.
@@ -60,7 +60,7 @@ If you don’t use GitHub:
 
 | Variable | Description |
 |--------|-------------|
-| `NEXT_PUBLIC_SITE_URL` | Full site URL, e.g. `https://yourdomain.com` (for SEO/canonical) |
+| `NEXT_PUBLIC_SITE_URL` | Full site URL, e.g. `https://toolscout.tools` (for SEO/canonical) |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL (when you connect Supabase) |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon key |
 

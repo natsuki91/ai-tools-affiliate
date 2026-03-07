@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const nav = [
   { href: "/ai-tools", label: "AI Tools" },
-  { href: "/compare", label: "Compare" },
-  { href: "/tools", label: "Tools" },
-  { href: "/blog", label: "Blog" },
+  { href: "/ai-tools/compare", label: "Compare" },
+  { href: "/ai-tools/tools", label: "Tools" },
+  { href: "/ai-tools/blog", label: "Blog" },
   { href: "/sponsor", label: "Sponsor" },
 ];
 

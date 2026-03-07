@@ -3,13 +3,16 @@ import Image from "next/image";
 import type { Tool } from "@/types/tool";
 import { formatPrice } from "@/lib/utils";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
+import { ACTIVE_NICHE_SLUG } from "@/lib/niches";
 
 interface ToolCardProps {
   tool: Tool;
   showCta?: boolean;
+  /** When set, links go to /[niche]/tools/[slug]. */
+  nicheSlug?: string;
 }
 
-export function ToolCard({ tool, showCta = true }: ToolCardProps) {
+export function ToolCard({ tool, showCta = true, nicheSlug = ACTIVE_NICHE_SLUG }: ToolCardProps) {
   return (
     <article
       className={`rounded-2xl border bg-card p-6 backdrop-blur transition hover:border-primary/30 ${
@@ -34,7 +37,7 @@ export function ToolCard({ tool, showCta = true }: ToolCardProps) {
           <div className="ml-4 min-w-0">
             <div className="flex items-center gap-2">
               <Link
-                href={`/tools/${tool.slug}`}
+                href={`/${nicheSlug}/tools/${tool.slug}`}
                 className="font-semibold text-text-primary hover:text-primary transition truncate"
               >
                 {tool.name}
