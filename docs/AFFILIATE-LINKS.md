@@ -18,25 +18,28 @@ The site will use this URL on tool cards, tool review pages, and comparison page
 
 ---
 
-## 2. Config file (fallback)
+## 2. Config file and env (AI tools)
 
 When a tool has no `affiliate_url` in Supabase, the site looks up the URL in **`lib/affiliate.ts`**.
 
-**How to add:**
-1. Open **`lib/affiliate.ts`**
-2. In the `AFFILIATE_URLS` object, add or edit entries. Use the **tool slug** as the key (e.g. `chatgpt`, `claude`, `copy-ai`).
-3. For tools with a hyphen in the slug (e.g. `copy-ai`), add the same URL under the slug; the code maps it correctly.
+**Preferred: use .env.local (keeps links out of the repo)**  
+Add optional vars to **`.env.local`** (see `.env.local.example`). At build time these override the defaults:
+
+- `AFFILIATE_URL_CHATGPT`
+- `AFFILIATE_URL_CLAUDE`
+- `AFFILIATE_URL_JASPER`
+- `AFFILIATE_URL_COPY_AI`
+- `AFFILIATE_URL_WRITESONIC`
+- `AFFILIATE_URL_GRAMMARLY`
+- `AFFILIATE_URL_NOTION`
 
 Example:
-```ts
-const AFFILIATE_URLS: Record<string, string> = {
-  chatgpt: "https://chat.openai.com/?ref=YOUR_ID",
-  claude: "https://claude.ai/ref/YOUR_ID",
-  jasper: "https://www.jasper.ai/?fp_ref=YOUR_ID",
-  "copy-ai": "https://www.copy.ai/your-affiliate-link",
-  // ...
-};
+```bash
+AFFILIATE_URL_JASPER=https://www.jasper.ai/?fp_ref=YOUR_ID
+AFFILIATE_URL_COPY_AI=https://www.copy.ai/your-affiliate-link
 ```
+
+**Alternatively:** edit **`lib/affiliate.ts`** and change the defaults in `DEFAULT_AFFILIATE_URLS` for each tool. Rebuild and re-upload after changes.
 
 All links get **UTM params** added automatically (`utm_source=toolscout`, `utm_medium=content`, `utm_campaign=slug`).
 

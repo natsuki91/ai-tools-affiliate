@@ -24,9 +24,9 @@ Details and program links: [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md).
 
 See traffic and behavior.
 
-1. Create a GA4 property and get your **Measurement ID** (e.g. `G-XXXXXXXXXX`).
-2. For **static export:** you’d need to add the gtag script to the built HTML or switch to a host that runs Node so the existing `GoogleAnalytics` component works.  
-   For now the component is in the app; when you have a Measurement ID, set **`NEXT_PUBLIC_GA_MEASUREMENT_ID`** in `.env.local` before building (or in Hostinger env if you ever use Node again).
+- Create a GA4 property and get your **Measurement ID** (e.g. `G-XXXXXXXXXX`).
+- Set **`NEXT_PUBLIC_GA_MEASUREMENT_ID`** in **`.env.local`**, then run **`npm run build`** and re-upload the **out** folder. The existing `GoogleAnalytics` component will include the script in the static build.
+- **Step-by-step:** [GA4-SETUP.md](GA4-SETUP.md).
 
 ---
 
@@ -49,7 +49,8 @@ The hub already has placeholders for Web Hosting, VPN, eCommerce, etc. To activa
 
 ## Quick checklist
 
-- [ ] Add real affiliate URLs (Supabase and/or `lib/affiliate.ts`)
-- [ ] Add GA4 when ready (or when you have a way to inject the script in static build)
+- [x] Hostinger + Shopify affiliate links (footer)
+- [ ] Add AI tool affiliate URLs when approved (`.env.local` or Supabase)
+- [ ] Add GA4 when ready ([GA4-SETUP.md](GA4-SETUP.md))
 - [ ] Add more blog posts or tools as you go
 - [ ] (Later) Activate a second niche if you want to expand

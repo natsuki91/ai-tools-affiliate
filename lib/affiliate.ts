@@ -1,10 +1,11 @@
 /**
  * Central affiliate link config. Never hardcode URLs in components.
- * Add your affiliate URLs here and reference by tool slug/name.
- * Replace placeholder URLs with your real affiliate links from each program.
+ * AI tools: set AFFILIATE_URL_* in .env.local (optional) or replace defaults below.
+ * Partners (Hostinger, Shopify) are in config; use env for AI tools to keep links out of the repo.
  */
-const AFFILIATE_URLS: Record<string, string> = {
-  // AI tools (tool pages, comparisons)
+const AI_TOOL_SLUGS = ["chatgpt", "claude", "jasper", "copy.ai", "writesonic", "grammarly", "notion"] as const;
+
+const DEFAULT_AFFILIATE_URLS: Record<string, string> = {
   chatgpt: "https://chat.openai.com/",
   claude: "https://claude.ai/",
   jasper: "https://www.jasper.ai/",
@@ -12,10 +13,27 @@ const AFFILIATE_URLS: Record<string, string> = {
   writesonic: "https://writesonic.com/",
   grammarly: "https://www.grammarly.com/",
   notion: "https://www.notion.so/",
-  // Partners (Hostinger, Shopify — replace with your affiliate links)
   hostinger: "https://www.hostinger.com/?REFERRALCODE=VCTPEZZAARTQ",
   shopify: "https://shopify.pxf.io/n4LZn9",
 };
+
+function getEnvAffiliateUrl(slug: string): string | undefined {
+  const envKey = "AFFILIATE_URL_" + slug.replace(/\./g, "_").replace(/-/g, "_").toUpperCase();
+  return process.env[envKey]?.trim() || undefined;
+}
+
+function buildAffiliateUrls(): Record<string, string> {
+  const out: Record<string, string> = { ...DEFAULT_AFFILIATE_URLS };
+  for (const slug of AI_TOOL_SLUGS) {
+    const fromEnv = getEnvAffiliateUrl(slug);
+    if (fromEnv) out[slug] = fromEnv;
+  }
+  if (process.env.AFFILIATE_URL_HOSTINGER?.trim()) out.hostinger = process.env.AFFILIATE_URL_HOSTINGER.trim();
+  if (process.env.AFFILIATE_URL_SHOPIFY?.trim()) out.shopify = process.env.AFFILIATE_URL_SHOPIFY.trim();
+  return out;
+}
+
+const AFFILIATE_URLS = buildAffiliateUrls();
 
 const SLUG_ALIASES: Record<string, string> = { "copy-ai": "copy.ai", copyai: "copy.ai" };
 
