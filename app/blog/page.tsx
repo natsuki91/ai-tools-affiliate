@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { BlogCard } from "@/components/blog/BlogCard";
 import { mockBlogPosts } from "@/lib/mock-data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";

@@ -11,11 +11,11 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-/** Load post from content/blog or mock */
+/** Load post from mock first, then try content/blog (safe on hosts without content/) */
 function getPost(slug: string): { title: string; description: string; date: string; readingTime?: number; author?: string } | null {
-  const mock = mockBlogPosts.find((p) => p.slug === slug);
-  if (mock) return mock;
   try {
+    const mock = mockBlogPosts.find((p) => p.slug === slug);
+    if (mock) return mock;
     const filePath = path.join(process.cwd(), "content", "blog", `${slug}.md`);
     const raw = fs.readFileSync(filePath, "utf-8");
     const match = raw.match(/---\n([\s\S]*?)\n---/);
@@ -26,19 +26,18 @@ function getPost(slug: string): { title: string; description: string; date: stri
     const date = front.match(/date:\s*(\S+)/)?.[1] ?? new Date().toISOString().slice(0, 10);
     return { title, description, date, author: "Editorial Team" };
   } catch {
-    return null;
+    const mock = mockBlogPosts.find((p) => p.slug === slug);
+    return mock ?? null;
   }
 }
 
 function getMarkdownBody(slug: string): string | null {
   try {
-    // Try project root (local and most hosts)
     const filePath = path.join(process.cwd(), "content", "blog", `${slug}.md`);
     const raw = fs.readFileSync(filePath, "utf-8");
     const end = raw.indexOf("---", 4);
     return end > 0 ? raw.slice(end + 4).trim() : raw;
   } catch {
-    // Fallback: some hosts don't deploy content/ — use mock content or empty
     const post = mockBlogPosts.find((p) => p.slug === slug);
     return post?.content ?? null;
   }
@@ -60,7 +59,13 @@ export default async function BlogSlugPage({ params }: PageProps) {
   const post = getPost(slug);
   if (!post) notFound();
 
-  const body = getMarkdownBody(slug);
+  let body: string | null = null;
+  try {
+    body = getMarkdownBody(slug);
+  } catch {
+    body = null;
+  }
+  const bodySafe = typeof body === "string" ? body : "";
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
@@ -76,7 +81,7 @@ export default async function BlogSlugPage({ params }: PageProps) {
         </div>
       </header>
       <div className="prose prose-invert mt-8 max-w-none prose-headings:text-text-primary prose-p:text-text-secondary prose-a:text-primary prose-li:text-text-secondary">
-        {body ? (
+        {bodySafe ? (
           <ReactMarkdown
             components={{
               h2: ({ children }) => <h2 className="mt-10 text-xl font-semibold text-text-primary">{children}</h2>,
@@ -90,7 +95,7 @@ export default async function BlogSlugPage({ params }: PageProps) {
               ),
             }}
           >
-            {body}
+            {bodySafe}
           </ReactMarkdown>
         ) : (
           <p className="text-text-secondary">Content for this post is not yet loaded.</p>
