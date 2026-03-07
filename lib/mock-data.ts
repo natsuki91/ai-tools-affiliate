@@ -255,6 +255,24 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 5,
     author: "Editorial Team",
   },
+  {
+    slug: "copy-ai-review-2026",
+    title: "Copy.ai Review 2026: Is It Worth It?",
+    description: "Copy.ai in 2026: we review pricing, short-form quality, free tier, and who it's best for—ads, social, and emails.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 5,
+    author: "Editorial Team",
+  },
+  {
+    slug: "grammarly-vs-chatgpt-2026",
+    title: "Grammarly vs ChatGPT 2026: Which Is Better for Writing?",
+    description: "Grammarly vs ChatGPT in 2026: we compare grammar checking, style, long-form writing, and who each tool is best for.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 5,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [
