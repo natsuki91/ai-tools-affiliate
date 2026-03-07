@@ -213,6 +213,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 5,
     author: "Editorial Team",
   },
+  {
+    slug: "is-chatgpt-worth-it-2026",
+    title: "Is ChatGPT Worth It in 2026? Honest Review",
+    description: "Is ChatGPT worth paying for in 2026? We break down the free vs paid tiers, limits, and who should upgrade.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 4,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [
