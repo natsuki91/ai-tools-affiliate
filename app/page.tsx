@@ -1,6 +1,6 @@
-import { Hero } from "@/components/homepage/Hero";
+import { HubHero } from "@/components/homepage/HubHero";
+import { NicheGrid } from "@/components/homepage/NicheGrid";
 import { FeaturedTools } from "@/components/homepage/FeaturedTools";
-import { Categories } from "@/components/homepage/Categories";
 import { LatestComparisons } from "@/components/homepage/LatestComparisons";
 import { LatestBlog } from "@/components/homepage/LatestBlog";
 import { CTABanner } from "@/components/shared/CTABanner";
@@ -8,13 +8,13 @@ import { StatsBar } from "@/components/homepage/StatsBar";
 import { getFeaturedTools, getComparisons } from "@/lib/data";
 import { mockBlogPosts } from "@/lib/mock-data";
 
-export default async function HomePage() {
+export default async function HubPage() {
   const [tools, comparisons] = await Promise.all([getFeaturedTools(), getComparisons()]);
   return (
     <>
-      <Hero />
+      <HubHero />
+      <NicheGrid />
       <FeaturedTools tools={tools} />
-      <Categories />
       <LatestComparisons comparisons={comparisons} />
       <LatestBlog posts={mockBlogPosts} />
       <section className="px-4 py-12 sm:px-6 lg:px-8">

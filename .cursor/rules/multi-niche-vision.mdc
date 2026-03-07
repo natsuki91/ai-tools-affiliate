@@ -1,0 +1,21 @@
+---
+description: Multi-niche expansion — hub & spoke, 6 niches, follow when adding niches
+alwaysApply: false
+globs: docs/CURSOR_RULES_MULTI_NICHE.md
+---
+
+# Multi-Niche Vision (Phase 2)
+
+When the user asks to **expand to multiple niches**, **add a new niche**, or **follow the hub & spoke plan**, use **docs/CURSOR_RULES_MULTI_NICHE.md** and the full spec in **cursorrules (1)**.
+
+**Current site:** Single-niche AI tools — flat routes (/compare, /tools, /blog).
+
+**Target:** Hub & spoke — `/[niche]/...` with 6 niches:
+1. AI Tools (`/ai-tools/`)
+2. Web Hosting (`/web-hosting/`)
+3. VPN (`/vpn/`)
+4. eCommerce Tools (`/ecommerce-tools/`)
+5. Marketing Tools (`/marketing-tools/`)
+6. Online Courses (`/online-courses/`)
+
+**Implement in this order:** Finish AI Tools as first niche, then add niches table and migrate routes to `/[niche]/compare`, `/[niche]/tools`, etc. Use config (niches.config.ts, affiliate.config.ts) — never hardcode niche data.

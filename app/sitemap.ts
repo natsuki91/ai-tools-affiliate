@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { mockBlogPosts } from "@/lib/mock-data";
+import { NICHES } from "@/lib/niches";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mediumspringgreen-alpaca-299379.hostingersite.com";
 
@@ -9,6 +10,12 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mediumspringgreen-
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
+    ...NICHES.map((n) => ({
+      url: `${BASE_URL}/${n.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: n.active ? 0.9 : 0.4,
+    })),
     { url: `${BASE_URL}/compare`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/tools`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },

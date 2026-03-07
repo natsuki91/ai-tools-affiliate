@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const nav = [
+  { href: "/ai-tools", label: "AI Tools" },
   { href: "/compare", label: "Compare" },
   { href: "/tools", label: "Tools" },
   { href: "/blog", label: "Blog" },
@@ -16,7 +17,7 @@ export function Header() {
           className="text-xl font-bold tracking-tight text-text-primary transition hover:opacity-90"
         >
           <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-            AI Tools
+            Tool Compare
           </span>
         </Link>
         <nav className="flex items-center gap-6" aria-label="Main">
