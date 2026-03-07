@@ -1,8 +1,10 @@
 /**
  * Central affiliate link config. Never hardcode URLs in components.
  * Add your affiliate URLs here and reference by tool slug/name.
+ * Replace placeholder URLs with your real affiliate links from each program.
  */
 const AFFILIATE_URLS: Record<string, string> = {
+  // AI tools (tool pages, comparisons)
   chatgpt: "https://chat.openai.com/",
   claude: "https://claude.ai/",
   jasper: "https://www.jasper.ai/",
@@ -10,11 +12,14 @@ const AFFILIATE_URLS: Record<string, string> = {
   writesonic: "https://writesonic.com/",
   grammarly: "https://www.grammarly.com/",
   notion: "https://www.notion.so/",
+  // Partners (Hostinger, Shopify — replace with your affiliate links)
+  hostinger: "https://www.hostinger.com/?REFERRALCODE=VCTPEZZAARTQ",
+  shopify: "https://shopify.pxf.io/n4LZn9",
 };
 
 const SLUG_ALIASES: Record<string, string> = { "copy-ai": "copy.ai", copyai: "copy.ai" };
 
-const UTM_SOURCE = "ai-tools-affiliate";
+const UTM_SOURCE = "toolscout";
 const UTM_MEDIUM = "content";
 
 /**
@@ -52,3 +57,9 @@ export const AFFILIATE_LINK_ATTRS = {
   rel: "nofollow sponsored",
   target: "_blank",
 } as const;
+
+/** Partner programs (e.g. Hostinger, Shopify) for footer or recommended sections. */
+export const PARTNER_AFFILIATES = [
+  { slug: "hostinger", name: "Hostinger", description: "Web hosting" },
+  { slug: "shopify", name: "Shopify", description: "E‑commerce" },
+] as const;

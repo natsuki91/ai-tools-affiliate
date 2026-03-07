@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { getAffiliateUrl, PARTNER_AFFILIATES, AFFILIATE_LINK_ATTRS } from "@/lib/affiliate";
+import { ACTIVE_NICHE_SLUG } from "@/lib/niches";
 
 const footerLinks = {
   product: [
-    { href: "/compare", label: "Compare Tools" },
-    { href: "/tools", label: "All Tools" },
-    { href: "/blog", label: "Blog" },
+    { href: `/${ACTIVE_NICHE_SLUG}/compare`, label: "Compare Tools" },
+    { href: `/${ACTIVE_NICHE_SLUG}/tools`, label: "All Tools" },
+    { href: `/${ACTIVE_NICHE_SLUG}/blog`, label: "Blog" },
   ],
   company: [
     { href: "/sponsor", label: "Sponsor" },
@@ -20,7 +22,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-surface mt-auto">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           <div>
             <Link
               href="/"
@@ -73,6 +75,22 @@ export function Footer() {
                   >
                     {label}
                   </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold text-text-primary">Recommended</h3>
+            <ul className="mt-3 space-y-2">
+              {PARTNER_AFFILIATES.map(({ slug, name, description }) => (
+                <li key={slug}>
+                  <a
+                    href={getAffiliateUrl(slug)}
+                    className="text-sm text-text-secondary hover:text-text-primary transition"
+                    {...AFFILIATE_LINK_ATTRS}
+                  >
+                    {name} <span className="text-text-muted">— {description}</span>
+                  </a>
                 </li>
               ))}
             </ul>

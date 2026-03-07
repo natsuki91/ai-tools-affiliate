@@ -2,7 +2,9 @@
 
 Next.js 14 site for comparing AI tools, publishing reviews, and monetizing via affiliate links and sponsored listings.
 
-**Live:** [https://toolscout.tools](https://toolscout.tools)
+**Live:** [https://www.toolscout.tools](https://www.toolscout.tools)
+
+**What’s next:** [docs/WHATS-NEXT.md](docs/WHATS-NEXT.md) — affiliate links, GA4, more content.
 
 ## Stack
 
@@ -53,7 +55,8 @@ If Node.js hosting isn’t working, you can build a **static site** and upload i
 npm run build
 ```
 
-Then upload the contents of the **`out`** folder to your web root (e.g. Hostinger File Manager → public_html). See [docs/STATIC-EXPORT.md](docs/STATIC-EXPORT.md).
+Then upload the contents of the **`out`** folder to your web root (e.g. Hostinger File Manager → public_html).  
+**Detailed steps:** [docs/DEPLOY-STATIC-STEP-BY-STEP.md](docs/DEPLOY-STATIC-STEP-BY-STEP.md) · **Overview:** [docs/STATIC-EXPORT.md](docs/STATIC-EXPORT.md).
 
 ## Project layout
 

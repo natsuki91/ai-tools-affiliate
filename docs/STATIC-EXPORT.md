@@ -1,5 +1,7 @@
 # Static export — host without Node.js
 
+**→ For a detailed step-by-step (build + upload to Hostinger): [DEPLOY-STATIC-STEP-BY-STEP.md](DEPLOY-STATIC-STEP-BY-STEP.md)**
+
 The site is **currently configured for static export** (`output: "export"` in `next.config.mjs`). Each `npm run build` produces an **`out`** folder you can upload to any static host. No Node.js or server required. To use Node.js (e.g. `next start`) again later, remove the `output: "export"` line from `next.config.mjs` and rebuild.
 
 ---

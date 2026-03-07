@@ -38,7 +38,7 @@ const AFFILIATE_URLS: Record<string, string> = {
 };
 ```
 
-All links get **UTM params** added automatically (`utm_source=ai-tools-affiliate`, `utm_medium=content`, `utm_campaign=slug`).
+All links get **UTM params** added automatically (`utm_source=toolscout`, `utm_medium=content`, `utm_campaign=slug`).
 
 ---
 
@@ -55,3 +55,19 @@ All links get **UTM params** added automatically (`utm_source=ai-tools-affiliate
 | Notion    | [Notion Affiliates](https://www.notion.so/affiliates). |
 
 Replace placeholder URLs in `lib/affiliate.ts` with your actual affiliate links when you’re approved. Use **Supabase** for tools you manage in the database so you can change links without redeploying.
+
+---
+
+## 3. Partner affiliates (Hostinger, Shopify)
+
+Hostinger and Shopify are in **`lib/affiliate.ts`** under the keys **`hostinger`** and **`shopify`**. They appear in the footer under **Recommended** (Web hosting, E‑commerce).
+
+**How to add your links:**
+1. Open **`lib/affiliate.ts`**.
+2. Replace the placeholder URLs for `hostinger` and `shopify` with your **actual affiliate links** from the Hostinger and Shopify partner dashboards.
+3. Rebuild (`npm run build`) and re-upload the **out** folder so the live site uses your links.
+
+| Partner   | Where to get your link |
+|-----------|-------------------------|
+| Hostinger | [Hostinger Affiliate](https://www.hostinger.com/affiliate-program) or your partner dashboard. |
+| Shopify   | [Shopify Partners](https://www.shopify.com/partners) — get your referral link from the dashboard. |
