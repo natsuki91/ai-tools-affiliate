@@ -1,0 +1,121 @@
+---
+description: AI tools site — full spec: structure, schema, design, pages, affiliate, SEO
+alwaysApply: true
+---
+
+# AI Tools Website — Complete Spec
+
+**Role:** Expert full-stack developer, UI/UX designer, SEO strategist, affiliate specialist. Solo project: AI tools comparison + affiliate + blog. Stack: Next.js 14 (App Router), TypeScript, Tailwind, Supabase, Sanity, Vercel. Monetization: affiliate (primary), sponsored listings, display ads.
+
+**Sections:** Homepage | Compare Pages | Tool Reviews | Blog | Sponsored Listings
+
+---
+
+## PROJECT STRUCTURE
+
+```
+/app
+  /page.tsx                    → Homepage
+  /compare/page.tsx            → All comparisons
+  /compare/[slug]/page.tsx     → Individual compare page
+  /tools/page.tsx              → All tools directory
+  /tools/[slug]/page.tsx       → Individual tool review
+  /blog/page.tsx               → Blog listing
+  /blog/[slug]/page.tsx        → Individual blog post
+  /category/[slug]/page.tsx    → Category pages
+  /sponsor/page.tsx            → Sponsored listing info
+  /api/tools/route.ts, /api/compare/route.ts, /api/sponsor/route.ts
+
+/components
+  /ui, /layout, /homepage, /compare, /tools, /blog, /shared
+  (CTABanner, AffiliateButton, SEOMeta in shared)
+
+/lib   → supabase.ts, sanity.ts, utils.ts, affiliate.ts
+/types → tool.ts, blog.ts, compare.ts
+```
+
+---
+
+## DATABASE SCHEMA (Supabase)
+
+**tools:** id, name, slug, tagline, description, logo_url, website_url, affiliate_url, category[], pricing_type, starting_price, rating, is_featured, is_sponsored, sponsored_tier, features (jsonb), pros[], cons[], best_for[], created_at, updated_at
+
+**comparisons:** id, slug, tool_a_id, tool_b_id, title, meta_desc, verdict, content, views, created_at, updated_at
+
+**sponsored_listings:** id, tool_id, tier (basic|pro|premium), start_date, end_date, stripe_id, is_active, created_at
+
+**blog_views:** id, slug, views, created_at
+
+---
+
+## DESIGN SYSTEM
+
+**Colors:** Primary #6366F1, Secondary #8B5CF6, Accent #06B6D4, Background #0F0F0F, Surface #1A1A2E, Card #16213E, Text #F8FAFC / #94A3B8, Border #2D2D44, Success #10B981, Warning #F59E0B, Error #EF4444
+
+**Typography:** Inter; headings bold/tight; body 16px, 1.6 line-height
+
+**Style:** Dark theme; glass morphism cards (backdrop-blur); gradient accents on CTAs/headings; rounded-xl/2xl for cards; rounded-full for primary CTAs; hover transitions; gradient text for hero; sponsored = subtle gold border + "Sponsored" badge
+
+---
+
+## PAGE REQUIREMENTS
+
+**Homepage:** Hero (headline + subheadline + search + CTA), Featured Tools (6, mix sponsored + top rated), Top Categories grid, Latest Comparisons (3–4), Latest Blog (3), CTA Banner ("Submit Your Tool"), Stats bar
+
+**Compare (/compare/[slug]):** SEO title + meta, Quick Verdict box, side-by-side table, Tool A/B deep dives, feature-by-feature (4–6), pricing table, Who should choose A/B, Final verdict + affiliate CTAs, FAQ (4–5), Related comparisons (3)
+
+**Tool Review (/tools/[slug]):** Summary box (Rating, Best For, Pricing, Affiliate CTA), What is [Tool], Key Features, Pros & Cons, Pricing table, Who best for, How it compares (2–3 alternatives), Verdict /10, Sticky affiliate CTA sidebar, Related tools (3)
+
+**Blog (/blog/[slug]):** Keyword in title, meta 150–160 chars, reading time, TOC (sticky), Author "Editorial Team", related posts (3), affiliate CTAs in content, FAQ at end
+
+**Sponsor (/sponsor):** Value prop, 3-tier pricing (Basic/Pro/Premium), Stripe checkout, contact form
+
+---
+
+## AFFILIATE RULES
+
+- All affiliate links: `rel="nofollow sponsored" target="_blank"`
+- Central config in `/lib/affiliate.ts` — never hardcode URLs in components
+- UTM on all affiliate links; use `<AffiliateButton />` component
+- Sponsored tools: "Sponsored" badge + clear disclosure
+- FTC disclosure at top of any page with affiliate links
+
+**AffiliateButton props:** toolName, affiliateUrl, label?, variant?, size?, showDisclosure?
+
+---
+
+## SEO RULES
+
+Every page: unique title (50–60 chars), meta description (150–160), OG + Twitter Card, canonical, JSON-LD (Tool review → SoftwareApplication; Blog → Article; Compare → Article + ItemList; Homepage → WebSite + Organization). Primary keyword in H1, first 100 words, last paragraph; H2/H3 with secondary keywords; short paragraphs; ≥3 internal links; image alt text; FAQ for featured snippets.
+
+**Keyword priority:** 1) [Tool A] vs [Tool B], 2) Best AI tools for [use case], 3) [Tool] review [year], 4) How to use [Tool], 5) Is [Tool] worth it, 6) Free AI tools for [task]
+
+---
+
+## CONTENT PLACEHOLDERS
+
+- [AFFILIATE: tool name]
+- [INTERNAL LINK: /path]
+- [IMAGE: description]
+- [TABLE: type]
+- [REVIEW DATE: month year]
+
+Voice: helpful, honest, direct; tables for comparisons/pricing; bullets for features; bold key terms; TL;DR/summary box on long posts.
+
+---
+
+## SPONSORED TIERS
+
+Basic $99/mo: Directory + Sponsored badge. Pro $199/mo: + Homepage + Category featured + Gold border. Premium $399/mo: + Dedicated review + Newsletter feature + Priority in compare + Gold border.
+
+---
+
+## PERFORMANCE & CODE
+
+next/image only; lazy load below fold; RSC default; 'use client' only when needed; ISR revalidate 3600; Suspense for dynamic; Lighthouse >90. TypeScript strict; no any; interfaces in /types; error boundaries; loading/error states; env for secrets; JSDoc on utils. Solo shortcuts: prefer Supabase/Sanity built-ins, shadcn/ui, MVP first, automate with scripts.
+
+---
+
+## GENERAL (ALWAYS)
+
+1. SEO first 2. Conversion/CTA on every page 3. Honesty about tools 4. Mobile first 5. Speed 6. Disclose affiliate/sponsor 7. Design system consistency 8. Simplicity (≤3 clicks) 9. Internal linking 10. "[Updated: Month Year]" on reviews

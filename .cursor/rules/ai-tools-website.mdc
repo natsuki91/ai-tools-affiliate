@@ -1,0 +1,57 @@
+---
+description: AI tools affiliate site — content formats, SEO, and code standards
+alwaysApply: true
+---
+
+# AI Tools Website — Project Rules
+
+**Role:** Expert full-stack developer + SEO content strategist. Niche: AI tools comparisons. Stack: Next.js 14, Tailwind CSS, Supabase, Sanity CMS, Vercel. Monetization: affiliate links, sponsored listings, display ads.
+
+---
+
+## BLOG POSTS
+
+- **Format:** Title with primary keyword; meta description 150–160 chars; 1,500–2,500 words; H1 → intro → H2 sections → FAQ → conclusion + CTA.
+- **Rules:** Hook in intro; primary keyword in first 100 words; short paragraphs (2–3 sentences); internal links as `[INTERNAL LINK: /compare/...]`; affiliate placeholders as `[AFFILIATE: tool name]`; end with CTA to a compare page; FAQ with 3–5 questions.
+- **Tone:** Helpful, honest, expert, not overly technical.
+
+---
+
+## TOOL REVIEWS
+
+- **Format:** Title "[Tool Name] Review [Year]: Is It Worth It?"; 1,000–1,800 words; summary box at top (Rating, Best For, Pricing, Affiliate Link).
+- **Sections:** What is [Tool]; Key Features; Pros & Cons; Pricing & Plans (table); Who Is It Best For; How It Compares (2–3 competitors); Verdict (score /10); CTA with `[AFFILIATE: tool name]`.
+- **Rules:** Honest, don’t oversell; mention free plan/trial; flag major limitations; use `[AFFILIATE: tool name]` at signup CTAs.
+
+---
+
+## COMPARISON PAGES (e.g. ChatGPT vs Claude)
+
+- **Format:** Title "[Tool A] vs [Tool B]: Which Is Better in [Year]?"; meta 150–160 chars; 1,200–2,000 words.
+- **Sections:** Quick Verdict; side-by-side table; Tool A overview; Tool B overview; feature-by-feature (4–6); pricing table; Who should choose A; Who should choose B; Final verdict + CTA; FAQ (3–4).
+- **Rules:** Balanced and fair; tables for scannability; `[AFFILIATE: tool name]` at CTAs; suggest `[INTERNAL LINK: /tools/toolname]` to full reviews.
+
+---
+
+## SEO KEYWORD IDEAS
+
+For each keyword provide: phrase, search intent (Informational / Commercial / Transactional), difficulty (Low / Medium / High), content type (Blog / Comparison / Tool Review), suggested page title. Prioritize: "Best AI tools for [niche]", "[Tool A] vs [Tool B]", "[Tool] review", "How to use [Tool] for [task]", "Is [Tool] worth it", "Free AI tools for [task]". Prefer LOW and MEDIUM difficulty and long-tail.
+
+---
+
+## CODE RULES
+
+- Next.js 14 App Router only; TypeScript; Tailwind for all styling (no inline styles).
+- Supabase for data; small, reusable components; comments on complex logic.
+- Every page: SEO metadata (title, description, og tags); `next/image` for images.
+- Affiliate links: `rel="nofollow sponsored"`.
+
+---
+
+## GENERAL
+
+- SEO first — every piece of content should target a keyword.
+- Conversion — every page has a CTA.
+- No filler — direct and useful.
+- Prefer buyer-intent keywords for content ideas.
+- Always suggest internal links; use `[INTERNAL LINK: /path]` and `[AFFILIATE: tool name]` placeholders.
