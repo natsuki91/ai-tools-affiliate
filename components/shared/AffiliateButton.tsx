@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { getAffiliateUrl, AFFILIATE_LINK_ATTRS } from "@/lib/affiliate";
+import { getAffiliateUrl, addUtmParams, AFFILIATE_LINK_ATTRS } from "@/lib/affiliate";
 import { cn } from "@/lib/utils";
 
 export interface AffiliateButtonProps {
   toolName: string;
-  affiliateUrl?: string;
+  /** When set (e.g. from Supabase tool.affiliate_url), this is used and UTM is added. */
+  affiliateUrl?: string | null;
   label?: string;
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
@@ -36,7 +37,10 @@ export function AffiliateButton({
   showDisclosure = false,
   className,
 }: AffiliateButtonProps) {
-  const href = affiliateUrl ?? getAffiliateUrl(toolName);
+  const href =
+    affiliateUrl && affiliateUrl !== "#"
+      ? addUtmParams(affiliateUrl, toolName.toLowerCase().replace(/\s+/g, "-"))
+      : getAffiliateUrl(toolName);
   const text = label ?? `Try ${toolName} Free`;
 
   return (

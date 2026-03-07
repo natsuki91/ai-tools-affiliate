@@ -18,18 +18,31 @@ const UTM_SOURCE = "ai-tools-affiliate";
 const UTM_MEDIUM = "content";
 
 /**
- * Get affiliate URL for a tool. Adds UTM params for tracking.
+ * Add UTM params to any URL for tracking. Use for links from Supabase or config.
+ */
+export function addUtmParams(url: string, campaign?: string): string {
+  if (!url || url === "#") return "#";
+  try {
+    const u = new URL(url.startsWith("http") ? url : `https://${url}`);
+    u.searchParams.set("utm_source", UTM_SOURCE);
+    u.searchParams.set("utm_medium", UTM_MEDIUM);
+    if (campaign) u.searchParams.set("utm_campaign", campaign);
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
+
+/**
+ * Get affiliate URL for a tool. Uses config lookup and adds UTM params.
+ * When you set affiliate_url on a tool in Supabase, pass it to AffiliateButton instead.
  */
 export function getAffiliateUrl(toolSlugOrName: string): string {
   const normalized = toolSlugOrName.toLowerCase().replace(/\s+/g, " ").replace(/-/g, ".");
   const key = SLUG_ALIASES[normalized] ?? normalized;
   const base = AFFILIATE_URLS[key] ?? AFFILIATE_URLS[toolSlugOrName.toLowerCase()];
   if (!base) return "#";
-  const url = new URL(base);
-  url.searchParams.set("utm_source", UTM_SOURCE);
-  url.searchParams.set("utm_medium", UTM_MEDIUM);
-  url.searchParams.set("utm_campaign", normalized);
-  return url.toString();
+  return addUtmParams(base, normalized);
 }
 
 /**

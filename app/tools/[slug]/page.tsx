@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { mockTools } from "@/lib/mock-data";
+import { getToolBySlug } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
 import { formatPrice } from "@/lib/utils";
@@ -10,13 +10,9 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-function getTool(slug: string) {
-  return mockTools.find((t) => t.slug === slug);
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const tool = getTool(slug);
+  const tool = await getToolBySlug(slug);
   if (!tool) return {};
   return buildSEOMeta({
     title: `${tool.name} Review: Is It Worth It?`,
@@ -27,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ToolSlugPage({ params }: PageProps) {
   const { slug } = await params;
-  const tool = getTool(slug);
+  const tool = await getToolBySlug(slug);
   if (!tool) notFound();
 
   return (
@@ -58,7 +54,7 @@ export default async function ToolSlugPage({ params }: PageProps) {
               Best for: {tool.best_for?.join(", ") ?? "—"}
             </p>
             <div className="mt-4">
-              <AffiliateButton toolName={tool.name} />
+              <AffiliateButton toolName={tool.name} affiliateUrl={tool.affiliate_url} />
             </div>
           </div>
 

@@ -62,7 +62,7 @@ export function ToolCard({ tool, showCta = true }: ToolCardProps) {
           {formatPrice(tool.starting_price)}
         </span>
         {showCta && (
-          <AffiliateButton toolName={tool.name} size="sm" variant="secondary" />
+          <AffiliateButton toolName={tool.name} affiliateUrl={tool.affiliate_url} size="sm" variant="secondary" />
         )}
       </div>
     </article>

@@ -5,15 +5,17 @@ import { LatestComparisons } from "@/components/homepage/LatestComparisons";
 import { LatestBlog } from "@/components/homepage/LatestBlog";
 import { CTABanner } from "@/components/shared/CTABanner";
 import { StatsBar } from "@/components/homepage/StatsBar";
-import { mockTools, mockComparisons, mockBlogPosts } from "@/lib/mock-data";
+import { getFeaturedTools, getComparisons } from "@/lib/data";
+import { mockBlogPosts } from "@/lib/mock-data";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const [tools, comparisons] = await Promise.all([getFeaturedTools(), getComparisons()]);
   return (
     <>
       <Hero />
-      <FeaturedTools tools={mockTools} />
+      <FeaturedTools tools={tools} />
       <Categories />
-      <LatestComparisons comparisons={mockComparisons} />
+      <LatestComparisons comparisons={comparisons} />
       <LatestBlog posts={mockBlogPosts} />
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">

@@ -32,11 +32,13 @@ function getPost(slug: string): { title: string; description: string; date: stri
 
 function getMarkdownBody(slug: string): string | null {
   try {
+    // Try project root (local and most hosts)
     const filePath = path.join(process.cwd(), "content", "blog", `${slug}.md`);
     const raw = fs.readFileSync(filePath, "utf-8");
     const end = raw.indexOf("---", 4);
     return end > 0 ? raw.slice(end + 4).trim() : raw;
   } catch {
+    // Fallback: some hosts don't deploy content/ — use mock content or empty
     const post = mockBlogPosts.find((p) => p.slug === slug);
     return post?.content ?? null;
   }

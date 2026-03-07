@@ -204,6 +204,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 8,
     author: "Editorial Team",
   },
+  {
+    slug: "chatgpt-vs-claude-2026",
+    title: "ChatGPT vs Claude 2026: Which AI Is Better for You?",
+    description: "ChatGPT vs Claude in 2026: we compare pricing, writing quality, coding, and speed so you can choose the right AI assistant.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 5,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [

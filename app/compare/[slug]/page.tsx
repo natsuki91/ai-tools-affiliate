@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { mockComparisons, mockTools } from "@/lib/mock-data";
+import { getComparisonBySlug } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
 import { formatPrice } from "@/lib/utils";
@@ -10,17 +10,9 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-function getComparison(slug: string) {
-  const c = mockComparisons.find((x) => x.slug === slug);
-  if (!c) return null;
-  const toolA = mockTools.find((t) => t.id === c.tool_a_id) ?? c.tool_a;
-  const toolB = mockTools.find((t) => t.id === c.tool_b_id) ?? c.tool_b;
-  return { ...c, tool_a: toolA, tool_b: toolB };
-}
-
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const comp = getComparison(slug);
+  const comp = await getComparisonBySlug(slug);
   if (!comp) return {};
   return buildSEOMeta({
     title: comp.title,
@@ -31,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CompareSlugPage({ params }: PageProps) {
   const { slug } = await params;
-  const comp = getComparison(slug);
+  const comp = await getComparisonBySlug(slug);
   if (!comp || !comp.tool_a || !comp.tool_b) notFound();
 
   const a = comp.tool_a;
@@ -89,14 +81,14 @@ export default async function CompareSlugPage({ params }: PageProps) {
           <h2 className="font-semibold text-text-primary">Who should choose {a.name}?</h2>
           <p className="mt-2 text-sm text-text-secondary">{a.tagline ?? a.description}</p>
           <div className="mt-4">
-            <AffiliateButton toolName={a.name} />
+            <AffiliateButton toolName={a.name} affiliateUrl={a.affiliate_url} />
           </div>
         </div>
         <div className="rounded-2xl border border-border bg-card p-6">
           <h2 className="font-semibold text-text-primary">Who should choose {b.name}?</h2>
           <p className="mt-2 text-sm text-text-secondary">{b.tagline ?? b.description}</p>
           <div className="mt-4">
-            <AffiliateButton toolName={b.name} />
+            <AffiliateButton toolName={b.name} affiliateUrl={b.affiliate_url} />
           </div>
         </div>
       </div>

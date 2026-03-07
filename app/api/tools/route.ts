@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
-import { mockTools } from "@/lib/mock-data";
+import { getTools } from "@/lib/data";
 
 /**
- * GET /api/tools — list tools (for future Supabase swap)
+ * GET /api/tools — list tools (from Supabase or mock)
  */
 export async function GET() {
   try {
-    return NextResponse.json(mockTools);
+    const tools = await getTools();
+    return NextResponse.json(tools);
   } catch (e) {
     return NextResponse.json({ error: "Failed to fetch tools" }, { status: 500 });
   }

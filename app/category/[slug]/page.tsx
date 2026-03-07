@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ToolCard } from "@/components/tools/ToolCard";
-import { mockTools } from "@/lib/mock-data";
+import { getToolsByCategory } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 
 const categoryNames: Record<string, string> = {
@@ -32,7 +32,7 @@ export default async function CategoryPage({ params }: PageProps) {
   const name = categoryNames[slug];
   if (!name) notFound();
 
-  const tools = mockTools.filter((t) => t.category.includes(slug));
+  const tools = await getToolsByCategory(slug);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
