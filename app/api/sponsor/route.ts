@@ -1,8 +1,13 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
 
 /**
- * POST /api/sponsor — sponsor inquiry. Accepts name, email, tier, message.
- * Wire to Resend (or another provider) to send an email to your inbox.
+ * POST /api/sponsor — sponsor inquiry. Sends email via Resend when configured.
+ * Env: RESEND_API_KEY, SPONSOR_INQUIRY_EMAIL (to), optional SPONSOR_FROM_EMAIL (from; default onboarding@resend.dev for testing).
  */
 export async function POST(request: Request) {
   try {
@@ -19,8 +24,28 @@ export async function POST(request: Request) {
       );
     }
 
-    // TODO: send email via Resend or your provider, e.g.:
-    // await resend.emails.send({ from: "...", to: "you@domain.com", subject: `Sponsor: ${name}`, html: `...` });
+    const apiKey = process.env.RESEND_API_KEY;
+    const toEmail = process.env.SPONSOR_INQUIRY_EMAIL;
+    const fromEmail = process.env.SPONSOR_FROM_EMAIL ?? "onboarding@resend.dev";
+
+    if (apiKey && toEmail) {
+      const resend = new Resend(apiKey);
+      const { error } = await resend.emails.send({
+        from: fromEmail,
+        to: toEmail,
+        reply_to: email,
+        subject: `Sponsor inquiry from ${name}${tier ? ` (${tier})` : ""}`,
+        html: [
+          `<p><strong>From:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p>`,
+          tier ? `<p><strong>Interested in:</strong> ${escapeHtml(tier)}</p>` : "",
+          `<p><strong>Message:</strong></p><p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
+        ].join(""),
+      });
+      if (error) {
+        return NextResponse.json({ error: "Failed to send email" }, { status: 500 });
+      }
+    }
+
     return NextResponse.json({ ok: true, message: "Inquiry received" });
   } catch {
     return NextResponse.json({ error: "Failed to submit" }, { status: 500 });
