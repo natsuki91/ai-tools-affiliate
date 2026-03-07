@@ -8,8 +8,8 @@ Reference for your Hostinger setup. Keep this for yourself; don’t commit real 
 
 | Purpose | URL |
 |--------|-----|
-| **Main site** | https://toolscout.tools |
-| **With www** | https://www.toolscout.tools |
+| **Canonical (sitemap, SEO)** | https://toolscout.tools |
+| **With www** | https://www.toolscout.tools (both work) |
 | **Preview / staging** | https://yellow-dog-499662.hostingersite.com |
 
 ## Server
@@ -22,9 +22,9 @@ Reference for your Hostinger setup. Keep this for yourself; don’t commit real 
 
 ## What to use where
 
-- **Canonical / SEO:** Use **https://toolscout.tools** (no www) as the main address. The sitemap and `NEXT_PUBLIC_SITE_URL` in the project already use this.
-- **Testing:** You can upload the **out** folder to the preview host (**yellow-dog-499662.hostingersite.com**) first to check the static site, then switch to **toolscout.tools** when ready.
-- **www:** In Hostinger you can set a redirect so **www.toolscout.tools** → **toolscout.tools** (or the other way around). One canonical URL is enough for SEO.
+- **Canonical / SEO:** The project uses **https://toolscout.tools** (no www) in sitemap, Open Graph, and `NEXT_PUBLIC_SITE_URL`. Both **https://toolscout.tools** and **https://www.toolscout.tools** work; the app defaults to non-www for canonical.
+- **Testing:** You can upload the **out** folder to the preview host (**yellow-dog-499662.hostingersite.com**) first to check the static site, then use **toolscout.tools** when ready.
+- **Optional:** In Hostinger, set a redirect (e.g. www → non-www) so search engines see one canonical URL.
 
 ---
 

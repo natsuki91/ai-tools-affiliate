@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { GoogleAnalytics } from "@/components/shared/GoogleAnalytics";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 export const metadata: Metadata = {
   title: {
@@ -23,8 +24,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Google tag (gtag.js) — set NEXT_PUBLIC_GA_MEASUREMENT_ID in .env.local (e.g. G-Q97DNWL4VV) */}
+        {GA_ID && (
+          <>
+            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${GA_ID}');
+                `.trim(),
+              }}
+            />
+          </>
+        )}
+      </head>
       <body className="min-h-screen flex flex-col bg-background text-text-primary antialiased" style={{ fontFamily: "system-ui, sans-serif" }}>
-        <GoogleAnalytics />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

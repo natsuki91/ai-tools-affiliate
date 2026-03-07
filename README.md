@@ -2,7 +2,7 @@
 
 Next.js 14 site for comparing AI tools, publishing reviews, and monetizing via affiliate links and sponsored listings.
 
-**Live:** [https://www.toolscout.tools](https://www.toolscout.tools)
+**Live:** [https://toolscout.tools](https://toolscout.tools) (https://www.toolscout.tools works too)
 
 **What’s next:** [docs/WHATS-NEXT.md](docs/WHATS-NEXT.md) — affiliate links, GA4, more content.
 

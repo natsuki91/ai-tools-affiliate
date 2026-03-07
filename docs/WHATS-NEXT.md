@@ -1,6 +1,6 @@
 # What’s next — plan after launch
 
-Site is live at **https://www.toolscout.tools**. Here’s the suggested order for what to do next.
+Site is live at **https://toolscout.tools** (and **https://www.toolscout.tools**). Sitemap and canonical URLs use **https://toolscout.tools**. Here’s the suggested order for what to do next.
 
 ---
 
