@@ -6,11 +6,16 @@ import { mockBlogPosts } from "@/lib/mock-data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { getNicheBySlug } from "@/lib/niches";
 import { NicheComingSoon } from "@/components/niche/NicheComingSoon";
+import { nicheBlogSlugParams } from "@/lib/static-params";
 import fs from "fs";
 import path from "path";
 
 interface PageProps {
   params: Promise<{ niche: string; slug: string }>;
+}
+
+export function generateStaticParams() {
+  return nicheBlogSlugParams();
 }
 
 function getPost(slug: string): { title: string; description: string; date: string; readingTime?: number; author?: string } | null {

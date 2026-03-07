@@ -4,11 +4,16 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { mockBlogPosts } from "@/lib/mock-data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
+import { blogSlugParams } from "@/lib/static-params";
 import fs from "fs";
 import path from "path";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export function generateStaticParams() {
+  return blogSlugParams();
 }
 
 /** Load post from mock first, then try content/blog (safe on hosts without content/) */

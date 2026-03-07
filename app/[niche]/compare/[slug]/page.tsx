@@ -7,9 +7,14 @@ import { formatPrice } from "@/lib/utils";
 import { getNicheBySlug } from "@/lib/niches";
 import Link from "next/link";
 import { NicheComingSoon } from "@/components/niche/NicheComingSoon";
+import { nicheCompareSlugParams } from "@/lib/static-params";
 
 interface PageProps {
   params: Promise<{ niche: string; slug: string }>;
+}
+
+export function generateStaticParams() {
+  return nicheCompareSlugParams();
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

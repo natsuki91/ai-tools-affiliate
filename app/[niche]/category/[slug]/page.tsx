@@ -5,6 +5,7 @@ import { getToolsByCategory } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { getNicheBySlug } from "@/lib/niches";
 import { NicheComingSoon } from "@/components/niche/NicheComingSoon";
+import { nicheCategorySlugParams } from "@/lib/static-params";
 
 const categoryNames: Record<string, string> = {
   writing: "Writing",
@@ -17,6 +18,10 @@ const categoryNames: Record<string, string> = {
 
 interface PageProps {
   params: Promise<{ niche: string; slug: string }>;
+}
+
+export function generateStaticParams() {
+  return nicheCategorySlugParams();
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

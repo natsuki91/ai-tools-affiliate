@@ -7,9 +7,14 @@ import { AffiliateButton } from "@/components/shared/AffiliateButton";
 import { formatPrice } from "@/lib/utils";
 import { getNicheBySlug } from "@/lib/niches";
 import { NicheComingSoon } from "@/components/niche/NicheComingSoon";
+import { nicheToolSlugParams } from "@/lib/static-params";
 
 interface PageProps {
   params: Promise<{ niche: string; slug: string }>;
+}
+
+export function generateStaticParams() {
+  return nicheToolSlugParams();
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

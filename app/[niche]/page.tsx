@@ -10,10 +10,15 @@ import { StatsBar } from "@/components/homepage/StatsBar";
 import { getNicheBySlug } from "@/lib/niches";
 import { getFeaturedTools, getComparisons } from "@/lib/data";
 import { mockBlogPosts } from "@/lib/mock-data";
+import { nicheParams } from "@/lib/static-params";
 import Link from "next/link";
 
 interface NichePageProps {
   params: Promise<{ niche: string }>;
+}
+
+export function generateStaticParams() {
+  return nicheParams();
 }
 
 export async function generateMetadata({ params }: NichePageProps): Promise<Metadata> {

@@ -4,10 +4,15 @@ import { getComparisonBySlug } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
 import { formatPrice } from "@/lib/utils";
+import { comparisonSlugParams } from "@/lib/static-params";
 import Link from "next/link";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export function generateStaticParams() {
+  return comparisonSlugParams();
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

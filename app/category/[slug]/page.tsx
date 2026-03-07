@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ToolCard } from "@/components/tools/ToolCard";
 import { getToolsByCategory } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
+import { categorySlugParams } from "@/lib/static-params";
 
 const categoryNames: Record<string, string> = {
   writing: "Writing",
@@ -15,6 +16,10 @@ const categoryNames: Record<string, string> = {
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export function generateStaticParams() {
+  return categorySlugParams();
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

@@ -45,6 +45,16 @@ Without Supabase vars, the site uses mock data. Without Resend vars, the sponsor
 
 See [docs/HOSTINGER.md](docs/HOSTINGER.md) and [docs/SUPABASE-SETUP.md](docs/SUPABASE-SETUP.md).
 
+## Static export (no Node.js)
+
+If Node.js hosting isn’t working, you can build a **static site** and upload it to any web host (including Hostinger’s regular file hosting):
+
+```bash
+npm run build
+```
+
+Then upload the contents of the **`out`** folder to your web root (e.g. Hostinger File Manager → public_html). See [docs/STATIC-EXPORT.md](docs/STATIC-EXPORT.md).
+
 ## Project layout
 
 - `app/` — routes (home, compare, tools, blog, sponsor, disclosure, etc.)
