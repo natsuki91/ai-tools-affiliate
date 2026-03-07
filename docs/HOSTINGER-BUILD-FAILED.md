@@ -40,12 +40,22 @@ If the log says **JavaScript heap out of memory** or **FATAL ERROR: Reached heap
 
 ---
 
-## 4. Postbuild script failed (“out/_next not found” or ENOENT)
+## 4. “No output directory found after build” or “out/_next not found”
 
-If the error mentions **postbuild-rename-next** or **out/_next**:
+Hostinger looks for the **Output directory** folder after the build. You must use the same path where `next build` writes.
 
-- The build might be running from a different directory. Ensure **Root directory** is `/` or empty.
-- Redeploy. If it still fails, we can switch to a build that doesn’t rely on the rename (and adjust the config).
+**Do this:**
+
+1. **Root directory:** leave **empty** or set to **`/`** (so the build runs from the repo root).
+2. **Output directory:** set to exactly **`out`** (no slash: `out`, not `/out` or `./out`).
+3. Redeploy.
+
+If you still see **“No output directory found”**:
+
+- The build may be running from a **subdirectory** (e.g. Hostinger cloned the repo into a folder). Check Hostinger’s deploy log: it often shows the working directory. If it says something like “Building in /home/xxx/source”, then try **Output directory:** **`source/out`** (or whatever that folder name is + `/out`).
+- Or in **Root directory** enter the folder that contains `package.json` (e.g. if the repo is in `my-repo`, set Root to `my-repo`). Then **Output directory** stays **`out`** (relative to that root).
+
+**“out/_next not found”** means the postbuild script didn’t find `out/_next` (often because the script ran in a different directory). The next deploy will log the actual path and contents so we can fix it. The **out** folder should still exist for Hostinger; if Hostinger then says “No output directory found”, the problem is Hostinger’s **Output directory** setting not matching where `out` actually is.
 
 ---
 

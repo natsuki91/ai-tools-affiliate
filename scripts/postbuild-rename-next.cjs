@@ -3,13 +3,24 @@ const fs = require("fs");
 const path = require("path");
 
 try {
-  const outDir = path.join(process.cwd(), "out");
+  const cwd = process.cwd();
+  const outDir = path.join(cwd, "out");
   const srcDir = path.join(outDir, "_next");
   const nextDir = path.join(outDir, "next");
   const targetDir = path.join(nextDir, "_next");
 
   if (!fs.existsSync(srcDir)) {
-    console.warn("postbuild-rename-next: out/_next not found (cwd: " + process.cwd() + "), skipping");
+    console.warn("postbuild-rename-next: out/_next not found.");
+    console.warn("  cwd: " + cwd);
+    console.warn("  out exists: " + fs.existsSync(outDir));
+    if (fs.existsSync(outDir)) {
+      try {
+        const entries = fs.readdirSync(outDir);
+        console.warn("  contents of out: " + entries.slice(0, 20).join(", "));
+      } catch (e) {
+        console.warn("  (could not list out)");
+      }
+    }
     process.exit(0);
   }
 
