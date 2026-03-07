@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import Link from "next/link";
+import { SponsorContactForm } from "@/components/sponsor/SponsorContactForm";
 
 export const metadata: Metadata = buildSEOMeta({
   title: "Sponsor — List Your AI Tool",
@@ -88,9 +89,9 @@ export default function SponsorPage() {
       <section id="contact" className="mt-16 rounded-2xl border border-border bg-card p-8">
         <h2 className="text-xl font-semibold text-text-primary">Contact for custom deals</h2>
         <p className="mt-2 text-text-secondary">
-          Need a custom plan or have questions? Email us at sponsor@example.com (replace with your
-          Resend/contact endpoint when ready).
+          Need a custom plan or have questions? Send us a message and we&apos;ll get back to you.
         </p>
+        <SponsorContactForm />
       </section>
     </div>
   );
