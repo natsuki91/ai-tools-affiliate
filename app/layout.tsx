@@ -25,6 +25,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Critical CSS inline so the page is never blank if external CSS/JS fail to load */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            body{background:#0F0F0F;color:#F8FAFC;font-family:system-ui,sans-serif;font-size:16px;line-height:1.6;margin:0;min-height:100vh;display:flex;flex-direction:column;}
+            main{flex:1;}
+            a{color:#06B6D4;}
+            a:hover{color:#8B5CF6;}
+          `.replace(/\s+/g, " ").trim()
+        }} />
+        {/* eslint-disable-next-line @next/next/no-css-tags */}
+        <link href="/styles.css" rel="stylesheet" />
         {/* Google tag (gtag.js) — set NEXT_PUBLIC_GA_MEASUREMENT_ID in .env.local (e.g. G-Q97DNWL4VV) */}
         {GA_ID && (
           <>

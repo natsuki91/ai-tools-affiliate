@@ -2,37 +2,25 @@
 const fs = require("fs");
 const path = require("path");
 
+// After static export: copy main CSS to root so /styles.css works even if /_next/ fails on server.
 try {
   const cwd = process.cwd();
   const outDir = path.join(cwd, "out");
-  const srcDir = path.join(outDir, "_next");
-  const nextDir = path.join(outDir, "next");
-  const targetDir = path.join(nextDir, "_next");
+  const nextStatic = path.join(outDir, "_next", "static", "css");
 
-  if (!fs.existsSync(srcDir)) {
-    console.warn("postbuild-rename-next: out/_next not found.");
-    console.warn("  cwd: " + cwd);
-    console.warn("  out exists: " + fs.existsSync(outDir));
-    if (fs.existsSync(outDir)) {
-      try {
-        const entries = fs.readdirSync(outDir);
-        console.warn("  contents of out: " + entries.slice(0, 20).join(", "));
-      } catch (e) {
-        console.warn("  (could not list out)");
-      }
-    }
+  if (!fs.existsSync(nextStatic)) {
+    console.warn("postbuild: _next/static/css not found, skipping styles.css copy");
     process.exit(0);
   }
 
-  if (!fs.existsSync(nextDir)) {
-    fs.mkdirSync(nextDir, { recursive: true });
+  const files = fs.readdirSync(nextStatic).filter((f) => f.endsWith(".css"));
+  if (files.length > 0) {
+    const mainCss = path.join(nextStatic, files[0]);
+    const outCss = path.join(outDir, "styles.css");
+    fs.copyFileSync(mainCss, outCss);
+    console.log("postbuild: copied main CSS to out/styles.css");
   }
-  if (fs.existsSync(targetDir)) {
-    fs.rmSync(targetDir, { recursive: true });
-  }
-  fs.renameSync(srcDir, targetDir);
-  console.log("postbuild-rename-next: moved out/_next -> out/next/_next (assetPrefix /next/)");
 } catch (err) {
-  console.error("postbuild-rename-next failed:", err.message);
+  console.error("postbuild failed:", err.message);
   process.exit(1);
 }

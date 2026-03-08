@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  assetPrefix: "/next/",
+  // No assetPrefix: assets at /_next/ so FTP deploy has one less nested folder to upload
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "**" },

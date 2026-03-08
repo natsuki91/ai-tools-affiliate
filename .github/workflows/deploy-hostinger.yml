@@ -26,6 +26,17 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Verify build output (assets + fallback CSS)
+        run: |
+          echo "Contents of out/:"
+          ls -la out/
+          echo "Root fallback CSS:"
+          ls -la out/styles.css 2>/dev/null || true
+          echo "Contents of out/_next/static:"
+          ls -la out/_next/static/ 2>/dev/null || true
+          echo "CSS files:"
+          find out -name "*.css" 2>/dev/null | head -20
+
       - name: Deploy to Hostinger (FTP)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -33,5 +44,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
-          server-dir: /public_html/
+          # Target folder on server (no leading slash often works better). Override with FTP_SERVER_DIR secret if needed.
+          server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html' }}
           dangerous-clean-slate: true

@@ -44,6 +44,8 @@ The workflow file is already in the repo (`.github/workflows/deploy-hostinger.ym
 2. GitHub **runs the workflow**: installs dependencies → `npm run build` → uploads the **out** folder to Hostinger **public_html** (and clears old files there).
 3. In 2–5 minutes, **https://toolscout.tools** is updated.
 
+The build includes **`public/.htaccess`**, which is copied to the server so that Apache serves the right pages: links like `/ai-tools`, `/ai-tools/blog`, `/compare/chatgpt-vs-claude` work instead of 403 Forbidden or 404.
+
 No need to run `npm run build` on your PC or use File Manager to upload.
 
 ---
@@ -80,6 +82,29 @@ If it still fails, your host may allow only **SFTP** (not FTP). In that case we�
 1. On GitHub open your repo → **Actions**.
 2. You should see **Deploy to Hostinger** (or the workflow name).
 3. Click the latest run to see the log. If it’s green, the deploy worked. If it’s red, open the log and fix the step that failed (often FTP_SERVER, FTP_USERNAME, or FTP_PASSWORD).
+
+---
+
+## CSS / styles not loading after deploy
+
+If the site loads but looks unstyled (no CSS):
+
+1. **Confirm the build has the assets**  
+   In the same Actions run, open the **“Verify build output (assets + fallback CSS)”** step. You should see `out/styles.css` and `out/_next/static/` with `.css` files. If that step fails, the problem is the build/postbuild.
+
+2. **Confirm the files are on the server**  
+   In **Hostinger** → **Files** → **File Manager** → open **public_html**:
+   - There should be **styles.css** at the root (fallback so the site always has CSS).
+   - There should be a folder **_next** → **static** → **css** (and **chunks**), with `.css` and `.js` files.
+   - If both are missing, the FTP upload didn’t put the built files there; we may need to change how we upload or deploy without “clean slate”.
+
+3. **If the files are there but CSS still doesn’t load**  
+   Check the browser’s Network tab (F12) for the CSS request (`/styles.css` or `/_next/static/css/...`). If it’s 404, the path may not match. If it’s 200 but the content is wrong, try a hard refresh or another device.
+
+4. **If “nothing changed” after deploy**  
+   - The layout now includes **inline critical CSS** (dark background, light text) so the page is never completely blank even if external CSS fails.  
+   - The workflow uses **server-dir: public_html** by default (no leading slash). If your Hostinger FTP user’s home is already `public_html`, add a secret **FTP_SERVER_DIR** with value **`.`** (or **`/`**) so files go to the right place.  
+   - In **File Manager**, confirm that **public_html** contains **index.html**, **styles.css**, and **_next** after a deploy. If not, the upload path may be wrong (try **FTP_SERVER_DIR** = **`/public_html/`** with a leading slash).
 
 ---
 
