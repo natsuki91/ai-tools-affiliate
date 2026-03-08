@@ -32,6 +32,8 @@ When you **push to the `main` branch**, GitHub runs a workflow that builds the s
 
 4. Save each one. Do **not** share these or commit them to the repo.
 
+**Optional — affiliate links:** To use your AI tool affiliate URLs on the live site, add secrets with the same names as in `.env.local.example` (e.g. `AFFILIATE_URL_JASPER`, `AFFILIATE_URL_COPY_AI`). See [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md).
+
 ### 3. Push the workflow to GitHub
 
 The workflow file is already in the repo (`.github/workflows/deploy-hostinger.yml`). If you just pulled or we pushed it, you’re done. If not, push your latest code so that the workflow file is on GitHub.
@@ -43,6 +45,8 @@ The workflow file is already in the repo (`.github/workflows/deploy-hostinger.ym
 1. You (or we) change the site and **push to `main`** (e.g. `git push origin main`).
 2. GitHub **runs the workflow**: installs dependencies → `npm run build` → uploads the **out** folder to Hostinger **public_html** (and clears old files there).
 3. In 2–5 minutes, **https://toolscout.tools** is updated.
+
+**If the site looks wrong or unstyled after a deploy**, try a hard refresh (Ctrl+Shift+R or Cmd+Shift+R) or clear your browser cache — sometimes the old version is cached.
 
 The build includes **`public/.htaccess`**, which is copied to the server so that Apache serves the right pages: links like `/ai-tools`, `/ai-tools/blog`, `/compare/chatgpt-vs-claude` work instead of 403 Forbidden or 404.
 

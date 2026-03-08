@@ -41,6 +41,8 @@ AFFILIATE_URL_COPY_AI=https://www.copy.ai/your-affiliate-link
 
 **Alternatively:** edit **`lib/affiliate.ts`** and change the defaults in `DEFAULT_AFFILIATE_URLS` for each tool. Rebuild and re-upload after changes.
 
+**Auto-deploy (GitHub Actions):** To use affiliate links on the live site when deploying via push, add the same variables as **GitHub repo secrets** (Settings → Secrets and variables → Actions). Use the same names: `AFFILIATE_URL_JASPER`, `AFFILIATE_URL_COPY_AI`, etc. The workflow passes them into the build so the exported site includes your links. Leave a secret unset to keep the default (non-affiliate) URL for that tool.
+
 All links get **UTM params** added automatically (`utm_source=toolscout`, `utm_medium=content`, `utm_campaign=slug`).
 
 ---

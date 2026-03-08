@@ -10,6 +10,17 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      # Optional: add these as repo secrets to use your affiliate links in the built site
+      AFFILIATE_URL_CHATGPT: ${{ secrets.AFFILIATE_URL_CHATGPT }}
+      AFFILIATE_URL_CLAUDE: ${{ secrets.AFFILIATE_URL_CLAUDE }}
+      AFFILIATE_URL_JASPER: ${{ secrets.AFFILIATE_URL_JASPER }}
+      AFFILIATE_URL_COPY_AI: ${{ secrets.AFFILIATE_URL_COPY_AI }}
+      AFFILIATE_URL_WRITESONIC: ${{ secrets.AFFILIATE_URL_WRITESONIC }}
+      AFFILIATE_URL_GRAMMARLY: ${{ secrets.AFFILIATE_URL_GRAMMARLY }}
+      AFFILIATE_URL_NOTION: ${{ secrets.AFFILIATE_URL_NOTION }}
+      AFFILIATE_URL_HOSTINGER: ${{ secrets.AFFILIATE_URL_HOSTINGER }}
+      AFFILIATE_URL_SHOPIFY: ${{ secrets.AFFILIATE_URL_SHOPIFY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
