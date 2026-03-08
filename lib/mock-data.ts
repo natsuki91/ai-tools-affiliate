@@ -410,6 +410,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 4,
     author: "Editorial Team",
   },
+  {
+    slug: "best-ai-coding-tools-2026",
+    title: "Best AI Coding Tools for Developers in 2026",
+    description: "Top AI coding tools in 2026: GitHub Copilot, Cursor, Tabnine, and more. Compare features, price, and best use cases for developers.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 4,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [

@@ -71,9 +71,23 @@ export default async function BlogSlugPage({ params }: PageProps) {
     body = null;
   }
   const bodySafe = typeof body === "string" ? body : "";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description ?? undefined,
+    url: `${siteUrl}/blog/${slug}`,
+    datePublished: post.date,
+    author: post.author ? { "@type": "Organization", name: post.author } : undefined,
+  };
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header>
         <h1 className="text-3xl font-bold text-text-primary">{post.title}</h1>
         {post.description && (

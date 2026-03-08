@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAffiliateUrl, PARTNER_AFFILIATES, AFFILIATE_LINK_ATTRS } from "@/lib/affiliate";
 import { ACTIVE_NICHE_SLUG } from "@/lib/niches";
+import { CookieSettingsLink } from "@/components/layout/CookieSettingsLink";
 
 const footerLinks = {
   product: [
@@ -77,6 +78,9 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <CookieSettingsLink />
+              </li>
             </ul>
           </div>
           <div>

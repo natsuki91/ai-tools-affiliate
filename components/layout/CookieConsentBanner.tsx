@@ -38,6 +38,12 @@ export function CookieConsentBanner() {
     if (consent === "true" && GA_ID) loadGA(GA_ID);
   }, [mounted]);
 
+  useEffect(() => {
+    const handler = () => setShow(true);
+    window.addEventListener("cookie-consent-reset", handler);
+    return () => window.removeEventListener("cookie-consent-reset", handler);
+  }, []);
+
   const accept = () => {
     localStorage.setItem(CONSENT_KEY, "true");
     setShow(false);
