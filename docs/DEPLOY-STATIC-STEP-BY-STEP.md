@@ -4,6 +4,19 @@ This guide gets **https://toolscout.tools** live by building the site on your co
 
 ---
 
+## If GitHub FTP deploy doesn’t work — deploy by hand
+
+1. In the project folder, open PowerShell and run: **`npm run build`** then **`npm run deploy:zip`** (this creates **out.zip**).
+2. In **Hostinger hPanel** → **File Manager** → open **public_html**.
+3. Delete everything inside **public_html** (or move it aside).
+4. Click **Upload**, choose **out.zip**, wait for the upload to finish.
+5. Right‑click **out.zip** → **Extract** (or **Unzip**) → extract **into the current folder** (public_html).
+6. You must see **index.html** and **_next** directly inside **public_html**. If you see a folder **out** with those inside, open **out**, select all, **Cut**, go back to **public_html**, **Paste**, then delete the empty **out** folder.
+7. In hPanel → **Domains** → **toolscout.tools** → set **Document root** to **public_html** if it isn’t already. Save.
+8. Open **https://toolscout.tools** — the site should load.
+
+---
+
 ## Part 1 — Build the site on your computer
 
 ### Step 1.1 — Open the project folder
