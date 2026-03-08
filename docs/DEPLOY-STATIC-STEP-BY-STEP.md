@@ -181,6 +181,15 @@ If **index.html** is missing or everything is inside an **out** folder, fix it a
 3. **Domain document root**
    - In hPanel → **Domains** or **Websites** → **toolscout.tools** → check **Document root** (or **Website root**). It must be the folder that **contains** **index.html** (e.g. **public_html**). If it points to a Node.js app or another path, change it to **public_html** (or the folder where **index.html** is) and save.
 
+**403 Forbidden**
+
+1. **Deploy by hand first** — Use **manual upload** (see top of this doc): `npm run build`, `npm run deploy:zip`, upload **out.zip** to **public_html**, extract so **index.html** and **_next** are directly in **public_html**. This avoids FTP/SFTP issues and confirms the files are correct.
+2. **Use the minimal .htaccess** — The repo’s **public/.htaccess** is now minimal (only `DirectoryIndex index.html`) to reduce 403 on Hostinger. Rebuild and re-upload so **public_html/.htaccess** is that minimal version. If the homepage then loads, the 403 was likely caused by rewrite or other rules. To get clean URLs back later, copy **public/.htaccess.full** to **.htaccess** in public_html (or add the rewrites back bit by bit).
+3. **Set default document in hPanel** — In hPanel go to **Advanced** (or **Files**) and look for **Default document** or **Directory index**. Set it to **index.html** so the server doesn’t rely only on .htaccess.
+4. **File permissions** — In File Manager, **index.html** and files should be **644**, folders (e.g. **_next**) **755**. Right‑click → Permissions / CHMOD and fix if needed.
+5. **ModSecurity / Security** — In hPanel check **Security** or **ModSecurity**. Temporarily disable it for your domain and test. If 403 goes away, add an exception or leave it off (or ask Hostinger support).
+6. **Ask Hostinger** — If 403 persists, contact support and say: “Static HTML site in public_html returns 403. Index is index.html, .htaccess only has DirectoryIndex index.html. Can you check permissions and ModSecurity for toolscout.tools?”
+
 ---
 
 ## Part 3 — Make sure the domain uses this folder

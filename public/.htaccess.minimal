@@ -1,0 +1,4 @@
+# Minimal .htaccess — use this if you get 403 Forbidden with the full .htaccess.
+# Copy this over .htaccess in public_html (or rename to .htaccess and upload).
+# Clean URLs like /ai-tools may not work; use /ai-tools.html if needed.
+DirectoryIndex index.html
