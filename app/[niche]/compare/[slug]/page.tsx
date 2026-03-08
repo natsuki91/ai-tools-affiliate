@@ -42,8 +42,27 @@ export default async function NicheCompareSlugPage({ params }: PageProps) {
   const a = comp.tool_a;
   const b = comp.tool_b;
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
+  const pageUrl = `${siteUrl}/${nicheSlug}/compare/${slug}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: comp.title,
+    description: comp.meta_desc ?? `${a.name} vs ${b.name} comparison.`,
+    url: pageUrl,
+    ...(comp.verdict && { articleBody: comp.verdict }),
+    about: [
+      { "@type": "SoftwareApplication", name: a.name, url: a.website_url ?? undefined },
+      { "@type": "SoftwareApplication", name: b.name, url: b.website_url ?? undefined },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <h1 className="text-3xl font-bold text-text-primary">{comp.title}</h1>
 
       <div className="mt-6 rounded-2xl border border-border bg-card p-6">

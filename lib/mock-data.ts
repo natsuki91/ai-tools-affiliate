@@ -392,6 +392,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 5,
     author: "Editorial Team",
   },
+  {
+    slug: "chatgpt-plus-vs-free-2026",
+    title: "ChatGPT Plus vs Free 2026: Is It Worth $20/Month?",
+    description: "ChatGPT Plus vs Free in 2026: we compare limits, features, and who should pay the $20/mo—and who can stay on free.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 3,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [
