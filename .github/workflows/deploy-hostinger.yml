@@ -1,5 +1,5 @@
-# Build the static site and upload to Hostinger public_html on every push to main.
-# Add FTP credentials as GitHub repo secrets (Settings → Secrets and variables → Actions).
+# Build the static site and upload to Hostinger via SFTP (push to main).
+# Hostinger often allows SFTP only; FTP can timeout. Use SFTP secrets below.
 
 name: Deploy to Hostinger
 
@@ -11,7 +11,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-      # Optional: add these as repo secrets to use your affiliate links in the built site
       AFFILIATE_URL_CHATGPT: ${{ secrets.AFFILIATE_URL_CHATGPT }}
       AFFILIATE_URL_CLAUDE: ${{ secrets.AFFILIATE_URL_CLAUDE }}
       AFFILIATE_URL_JASPER: ${{ secrets.AFFILIATE_URL_JASPER }}
@@ -37,24 +36,21 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Verify build output (assets + fallback CSS)
+      - name: Verify build output
         run: |
           echo "Contents of out/:"
           ls -la out/
-          echo "Root fallback CSS:"
-          ls -la out/styles.css 2>/dev/null || true
-          echo "Contents of out/_next/static:"
-          ls -la out/_next/static/ 2>/dev/null || true
-          echo "CSS files:"
-          find out -name "*.css" 2>/dev/null | head -20
+          test -f out/index.html && echo "index.html OK" || exit 1
+          test -d out/_next && echo "_next OK" || exit 1
+          test -f out/.htaccess && echo ".htaccess OK" || exit 1
 
-      - name: Deploy to Hostinger (FTP)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy to Hostinger (SFTP)
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out/
-          # Upload into web root. Default: public_html/ (Hostinger). Override with repo secret FTP_SERVER_DIR if your path differs.
-          server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/' }}
-          dangerous-clean-slate: true
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22
+          local_path: "out/"
+          remote_path: ${{ secrets.SFTP_REMOTE_PATH || 'public_html/' }}
+          sftp_only: true
