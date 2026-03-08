@@ -50,7 +50,8 @@ jobs:
           server: ${{ secrets.SFTP_SERVER }}
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
-          port: 22
+          # Hostinger shared hosting uses port 65002 for SFTP; VPS uses 22. Set SFTP_PORT secret to override.
+          port: ${{ secrets.SFTP_PORT || '65002' }}
           local_path: "out/"
           remote_path: ${{ secrets.SFTP_REMOTE_PATH || 'public_html/' }}
           sftp_only: true

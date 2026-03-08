@@ -308,10 +308,11 @@ The repo workflow **Deploy to Hostinger** builds the site and uploads via **SFTP
 
 | Secret | Example / notes |
 |--------|------------------|
-| **SFTP_SERVER** | Your Hostinger SFTP host (e.g. from hPanel → FTP accounts or SSH; often same as your server hostname) |
-| **SFTP_USERNAME** | FTP/SFTP username (e.g. from Hostinger FTP account) |
+| **SFTP_SERVER** | Your Hostinger SFTP host (from hPanel → FTP accounts or SSH) |
+| **SFTP_USERNAME** | FTP/SFTP username (from Hostinger FTP account) |
 | **SFTP_PASSWORD** | FTP/SFTP password for that account |
-| **SFTP_REMOTE_PATH** | Optional. Default is `public_html/`. Set if your web root is different (e.g. `domains/toolscout.tools/public_html/`). Must end with `/`. |
+| **SFTP_PORT** | Optional. **Hostinger shared hosting uses 65002** (default in the workflow). For VPS use **22**. |
+| **SFTP_REMOTE_PATH** | Optional. Default is `public_html/`. Set if your web root is different. Must end with `/`. |
 
 After you add these secrets, push to **main** or re-run the **Deploy to Hostinger** workflow. The action uploads the contents of **out/** into the remote path. If the site doesn’t load, check that **index.html** and **_next** are directly inside that folder (e.g. in File Manager under **public_html**).
 
