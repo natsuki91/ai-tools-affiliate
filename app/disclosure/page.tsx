@@ -12,7 +12,7 @@ export default function DisclosurePage() {
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
       <h1 className="text-3xl font-bold text-text-primary">Disclosure</h1>
       <p className="mt-4 text-text-secondary">
-        AI Tools is a comparison and review site. We may earn money when you sign up for or purchase
+        ToolScout is a comparison and review site. We may earn money when you sign up for or purchase
         products through links on our site.
       </p>
       <h2 className="mt-8 text-xl font-semibold text-text-primary">Affiliate links</h2>

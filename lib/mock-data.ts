@@ -444,6 +444,21 @@ export const mockComparisons: Comparison[] = [
     tool_a: mockTools[8],
     tool_b: mockTools[13],
   },
+  {
+    id: "c7",
+    slug: "claude-vs-perplexity",
+    tool_a_id: "2",
+    tool_b_id: "11",
+    title: "Claude vs Perplexity 2026: Which for Research and Writing?",
+    meta_desc: "Compare Claude and Perplexity for research, long-form writing, and cited answers. Pricing and use cases.",
+    verdict: "Perplexity for search-style answers and citations; Claude for long-form writing and analysis.",
+    content: null,
+    views: 0,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    tool_a: mockTools[1],
+    tool_b: mockTools[10],
+  },
 ];
 
 export const mockBlogPosts: BlogPost[] = [
@@ -595,6 +610,15 @@ export const mockBlogPosts: BlogPost[] = [
     slug: "best-ai-tools-small-business-2026",
     title: "Best AI Tools for Small Business in 2026",
     description: "AI tools that help small businesses: marketing, writing, support, and productivity. Compare free and paid options.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 5,
+    author: "Editorial Team",
+  },
+  {
+    slug: "best-ai-tools-content-creators-2026",
+    title: "Best AI Tools for Content Creators in 2026",
+    description: "AI tools for YouTubers, bloggers, and creators: scripts, thumbnails, captions, and SEO. Free and paid picks.",
     content: "",
     date: "2026-03-07",
     readingTime: 5,
