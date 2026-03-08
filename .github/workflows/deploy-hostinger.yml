@@ -72,7 +72,8 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
-          server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/' }}
+          # Use ./ so files land in current dir (your FTP often starts in public_html). Set FTP_SERVER_DIR to public_html/ only if your FTP starts in account root.
+          server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
           dangerous-clean-slate: true
 
       - name: Deploy to Hostinger (SFTP — use when SSH Access is enabled)
