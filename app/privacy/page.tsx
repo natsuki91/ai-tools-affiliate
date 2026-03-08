@@ -32,7 +32,10 @@ export default function PrivacyPage() {
           <h2 className="text-lg font-semibold text-text-primary">Cookies and analytics</h2>
           <p className="mt-2">
             We may use cookies and similar technologies for analytics and basic site functionality.
-            You can control cookies through your browser settings.
+            You can change your preference at any time using the <strong>Cookie settings</strong> link
+            in the site footer; that will reopen the cookie banner so you can accept or reject
+            non-essential cookies (e.g. analytics). You can also control cookies through your browser
+            settings.
           </p>
         </section>
         <section>

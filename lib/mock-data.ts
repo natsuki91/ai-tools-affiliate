@@ -368,6 +368,21 @@ export const mockComparisons: Comparison[] = [
     tool_a: mockTools[1],
     tool_b: mockTools[2],
   },
+  {
+    id: "c5",
+    slug: "chatgpt-vs-perplexity",
+    tool_a_id: "1",
+    tool_b_id: "11",
+    title: "ChatGPT vs Perplexity 2026: Which Is Better for Research?",
+    meta_desc: "Compare ChatGPT and Perplexity for research, answers, and citations. Pricing and use cases.",
+    verdict: "Perplexity for cited, search-style answers; ChatGPT for open-ended chat and tasks.",
+    content: null,
+    views: 0,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    tool_a: mockTools[0],
+    tool_b: mockTools[10],
+  },
 ];
 
 export const mockBlogPosts: BlogPost[] = [
@@ -504,6 +519,15 @@ export const mockBlogPosts: BlogPost[] = [
     content: "",
     date: "2026-03-07",
     readingTime: 4,
+    author: "Editorial Team",
+  },
+  {
+    slug: "how-to-choose-ai-tool-2026",
+    title: "How to Choose the Right AI Tool in 2026",
+    description: "A simple framework to pick the right AI tool: use case, budget, and must-have features. Compare writing, research, coding, and design tools.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 5,
     author: "Editorial Team",
   },
 ];
