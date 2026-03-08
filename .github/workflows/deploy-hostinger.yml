@@ -1,5 +1,5 @@
-# Build the static site and upload to Hostinger via SFTP (push to main).
-# Hostinger often allows SFTP only; FTP can timeout. Use SFTP secrets below.
+# Build the static site and upload to Hostinger via FTP on port 21 (push to main).
+# Secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD. Optional: FTP_SERVER_DIR (default public_html/).
 
 name: Deploy to Hostinger
 
@@ -44,15 +44,12 @@ jobs:
           test -d out/_next && echo "_next OK" || exit 1
           test -f out/.htaccess && echo ".htaccess OK" || exit 1
 
-      - name: Deploy to Hostinger (SFTP)
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Deploy to Hostinger (FTP port 21)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.SFTP_SERVER }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          ssh_private_key: ${{ secrets.SFTP_SSH_PRIVATE_KEY }}
-          # Hostinger shared hosting uses port 65002 for SFTP; VPS uses 22. Set SFTP_PORT secret to override.
-          port: ${{ secrets.SFTP_PORT || '65002' }}
-          local_path: "out/"
-          remote_path: ${{ secrets.SFTP_REMOTE_PATH || 'public_html/' }}
-          sftp_only: true
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/
+          server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/' }}
+          dangerous-clean-slate: true

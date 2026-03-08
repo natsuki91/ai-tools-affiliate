@@ -300,29 +300,20 @@ If something doesn’t match (e.g. no **index.html** in **out**, or domain still
 
 ---
 
-## If you use GitHub Actions to deploy (SFTP)
+## If you use GitHub Actions to deploy (FTP port 21)
 
-The repo workflow **Deploy to Hostinger** builds the site and uploads via **SFTP** (not FTP). Hostinger often allows only SFTP, so FTP would timeout.
+The repo workflow **Deploy to Hostinger** builds the site and uploads via **FTP on port 21**.
 
 **Required repo secrets** (Settings → Secrets and variables → Actions):
 
 | Secret | Example / notes |
 |--------|------------------|
-| **SFTP_SERVER** | Your Hostinger SFTP host (from hPanel → FTP accounts or SSH) |
-| **SFTP_USERNAME** | FTP/SFTP username (from Hostinger FTP account) |
-| **SFTP_PASSWORD** | FTP/SFTP password for that account |
-| **SFTP_PORT** | Optional. **Hostinger shared hosting uses 65002** (default in the workflow). For VPS use **22**. |
-| **SFTP_REMOTE_PATH** | Optional. Default is `public_html/`. Set if your web root is different. Must end with `/`. |
-| **SFTP_SSH_PRIVATE_KEY** | Optional. If you get "Permission denied" with password, use SSH key: add your **private** key here and add the **public** key in hPanel → Advanced → Remote Access → SSH/SFTP Keys. |
+| **FTP_SERVER** | Your Hostinger FTP host (from hPanel → FTP accounts) |
+| **FTP_USERNAME** | FTP username (from Hostinger FTP account) |
+| **FTP_PASSWORD** | FTP password for that account |
+| **FTP_SERVER_DIR** | Optional. Default is `public_html/`. Set if your web root is different (e.g. `domains/toolscout.tools/public_html/`). Must end with `/`. |
 
-After you add these secrets, push to **main** or re-run the **Deploy to Hostinger** workflow.
-
-**"Permission denied, please try again"**
-
-1. **Username** — In hPanel go to **FTP accounts** (or **Advanced → Remote Access**). Use the **exact** username shown there (often like `u123456789` or `yourname@toolscout.tools`). No extra spaces.
-2. **Password** — Use the password for that FTP/SFTP account. If you have a separate FTP user, use that user’s password. Reset it in FTP accounts if needed.
-3. **Remote Access** — In hPanel → **Advanced → Remote Access**, ensure **SFTP/SSH** is turned **ON**.
-4. **SSH key instead of password** — Generate a key: `ssh-keygen -t ed25519 -C "deploy" -f deploy_key -N ""`. Add **deploy_key.pub** contents in hPanel → Advanced → Remote Access → SSH/SFTP Keys. Put the **full contents** of **deploy_key** (including `-----BEGIN ...` and `-----END ...`) in repo secret **SFTP_SSH_PRIVATE_KEY**. You can leave **SFTP_PASSWORD** empty when using a key. The action uploads the contents of **out/** into the remote path. If the site doesn’t load, check that **index.html** and **_next** are directly inside that folder (e.g. in File Manager under **public_html**).
+After you add these secrets, push to **main** or re-run the **Deploy to Hostinger** workflow. The action uploads the contents of **out/** into the remote path. If the site doesn’t load, check that **index.html** and **_next** are directly inside that folder (e.g. in File Manager under **public_html**).
 
 ---
 
