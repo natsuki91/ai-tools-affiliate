@@ -10,8 +10,8 @@ export function Hero() {
           </span>
         </h1>
         <p className="mt-4 text-lg text-text-secondary sm:text-xl">
-          Honest comparisons, real reviews, and clear pricing. Compare ChatGPT, Claude, and 500+ AI
-          tools in one place.
+          Honest comparisons, real reviews, and clear pricing. Compare ChatGPT, Claude, and more—all
+          in one place.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link

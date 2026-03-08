@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/homepage/Hero";
 import { FeaturedTools } from "@/components/homepage/FeaturedTools";
+import { RecentlyAddedTools } from "@/components/homepage/RecentlyAddedTools";
 import { Categories } from "@/components/homepage/Categories";
 import { LatestComparisons } from "@/components/homepage/LatestComparisons";
 import { LatestBlog } from "@/components/homepage/LatestBlog";
+import { NewsletterSignup } from "@/components/homepage/NewsletterSignup";
 import { CTABanner } from "@/components/shared/CTABanner";
 import { StatsBar } from "@/components/homepage/StatsBar";
 import { getNicheBySlug } from "@/lib/niches";
-import { getFeaturedTools, getComparisons } from "@/lib/data";
+import { getFeaturedTools, getRecentlyAddedTools, getComparisons } from "@/lib/data";
 import { mockBlogPosts } from "@/lib/mock-data";
 import { nicheParams } from "@/lib/static-params";
 import Link from "next/link";
@@ -25,8 +27,13 @@ export async function generateMetadata({ params }: NichePageProps): Promise<Meta
   const { niche: slug } = await params;
   const niche = getNicheBySlug(slug);
   if (!niche) return { title: "Not found" };
+  const title = niche.active && slug === "ai-tools"
+    ? "Best AI Tools 2026 | Compare & Review"
+    : niche.active
+      ? `${niche.name} | Compare & Review`
+      : `${niche.name} — Coming soon`;
   return {
-    title: niche.active ? niche.name : `${niche.name} — Coming soon`,
+    title,
     description: niche.tagline,
   };
 }
@@ -56,14 +63,20 @@ export default async function NichePage({ params }: NichePageProps) {
   }
 
   // Active niche: AI Tools — full niche homepage
-  const [tools, comparisons] = await Promise.all([getFeaturedTools(), getComparisons()]);
+  const [tools, recentTools, comparisons] = await Promise.all([
+    getFeaturedTools(),
+    getRecentlyAddedTools(4),
+    getComparisons(),
+  ]);
   return (
     <>
       <Hero />
       <FeaturedTools tools={tools} />
+      <RecentlyAddedTools tools={recentTools} />
       <Categories />
       <LatestComparisons comparisons={comparisons} />
       <LatestBlog posts={mockBlogPosts} />
+      <NewsletterSignup source="homepage_inline" />
       <section className="px-4 py-12 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <CTABanner title="List Your AI Tool" />

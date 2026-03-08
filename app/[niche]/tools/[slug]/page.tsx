@@ -99,6 +99,14 @@ export default async function NicheToolSlugPage({ params }: PageProps) {
             plans.
           </p>
 
+          <p className="mt-6">
+            <Link
+              href={`/${nicheSlug}/alternatives/${slug}`}
+              className="text-sm font-medium text-primary hover:underline"
+            >
+              See best {tool.name} alternatives →
+            </Link>
+          </p>
           <p className="mt-8 text-sm text-text-secondary">
             We may earn a commission when you sign up through our links.{" "}
             <Link href="/disclosure" className="underline hover:text-text-primary">Disclosure</Link>.

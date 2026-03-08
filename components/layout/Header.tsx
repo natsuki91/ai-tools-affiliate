@@ -14,10 +14,12 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="text-xl font-bold tracking-tight text-text-primary transition hover:opacity-90"
+          className="text-xl font-bold tracking-tight text-text-primary transition hover:opacity-90 flex items-center gap-1.5"
+          aria-label="ToolScout — Home"
         >
+          <span aria-hidden>🔍</span>
           <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-            Tool Compare
+            ToolScout
           </span>
         </Link>
         <nav className="flex items-center gap-6" aria-label="Main">

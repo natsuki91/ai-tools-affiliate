@@ -3,7 +3,7 @@
  * AI tools: set AFFILIATE_URL_* in .env.local (optional) or replace defaults below.
  * Partners (Hostinger, Shopify) are in config; use env for AI tools to keep links out of the repo.
  */
-const AI_TOOL_SLUGS = ["chatgpt", "claude", "jasper", "copy.ai", "writesonic", "grammarly", "notion"] as const;
+const AI_TOOL_SLUGS = ["chatgpt", "claude", "jasper", "copy.ai", "writesonic", "grammarly", "notion", "rytr", "midjourney", "github-copilot", "notion-ai"] as const;
 
 const DEFAULT_AFFILIATE_URLS: Record<string, string> = {
   chatgpt: "https://chat.openai.com/",
@@ -13,6 +13,10 @@ const DEFAULT_AFFILIATE_URLS: Record<string, string> = {
   writesonic: "https://writesonic.com/",
   grammarly: "https://www.grammarly.com/",
   notion: "https://www.notion.so/",
+  rytr: "https://rytr.me/",
+  midjourney: "https://midjourney.com/",
+  "github-copilot": "https://github.com/features/copilot",
+  "notion-ai": "https://www.notion.so/product/ai",
   hostinger: "https://www.hostinger.com/?REFERRALCODE=VCTPEZZAARTQ",
   shopify: "https://shopify.pxf.io/n4LZn9",
 };
@@ -35,7 +39,7 @@ function buildAffiliateUrls(): Record<string, string> {
 
 const AFFILIATE_URLS = buildAffiliateUrls();
 
-const SLUG_ALIASES: Record<string, string> = { "copy-ai": "copy.ai", copyai: "copy.ai" };
+const SLUG_ALIASES: Record<string, string> = { "copy-ai": "copy.ai", copyai: "copy.ai", "notion-ai": "notion-ai" };
 
 const UTM_SOURCE = "toolscout";
 const UTM_MEDIUM = "content";

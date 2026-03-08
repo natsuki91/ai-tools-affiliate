@@ -7,7 +7,7 @@ export const NICHES = [
   {
     slug: "ai-tools",
     name: "AI Tools",
-    tagline: "Compare ChatGPT, Claude & 500+ AI writing tools",
+    tagline: "Compare ChatGPT, Claude & more AI writing tools",
     icon: "🤖",
     color: "indigo",
     active: true,

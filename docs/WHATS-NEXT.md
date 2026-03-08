@@ -55,3 +55,16 @@ The hub already has placeholders for Web Hosting, VPN, eCommerce, etc. To activa
 - [ ] Add AI tool affiliate URLs when approved: set as **GitHub repo secrets** (e.g. `AFFILIATE_URL_JASPER`, `AFFILIATE_URL_COPY_AI`) for auto-deploy, or use `.env.local` for local build / Supabase for DB tools — [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md)
 - [ ] Add more blog posts or tools as you go _(10 posts now; e.g. Notion AI Review, Jasper Review 2026)_
 - [ ] (Later) Activate a second niche if you want to expand
+
+---
+
+## Optional improvements (from site audit)
+
+- **Search bar** on homepage — search tools, comparisons, blog (e.g. Algolia or client-side over static data).
+- **“Recently Added” tools** — section on AI Tools homepage showing 3–4 newest tools with a “NEW” badge.
+- **More tools** — expand from 6 to 30+ (writing, image, coding, productivity, video) in mock data or Supabase.
+- **“Alternatives to X” pages** — e.g. `/ai-tools/alternatives/chatgpt` for SEO.
+- **Exit-intent popup** — newsletter signup when user moves to close tab (once per session).
+- **Cookie “Manage preferences”** — optional third button for granular consent.
+- **SEO** — JSON-LD on tool/compare pages, `og:image` per page, ensure sitemap has all URLs.
+- **Newsletter on static host** — `/api/newsletter` doesn’t run on static Hostinger; use a form service (Mailchimp, ConvertKit) or host API elsewhere and point the form there.

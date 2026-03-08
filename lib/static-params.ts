@@ -54,3 +54,10 @@ export function nicheCategorySlugParams() {
   const slugs = categorySlugParams();
   return niches.flatMap((n) => slugs.map((s) => ({ niche: n.niche, slug: s.slug })));
 }
+
+/** For [niche]/alternatives/[toolSlug]: all niche + tool slug pairs */
+export function nicheAlternativeToolSlugParams() {
+  const niches = nicheParams();
+  const slugs = toolSlugParams();
+  return niches.flatMap((n) => slugs.map((s) => ({ niche: n.niche, toolSlug: s.slug })));
+}

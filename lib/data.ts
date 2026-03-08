@@ -90,6 +90,14 @@ export async function getTools(): Promise<Tool[]> {
   return mockTools;
 }
 
+/** Most recently added tools (by created_at desc, limit 4) — for "Recently Added" section */
+export async function getRecentlyAddedTools(limit = 4): Promise<Tool[]> {
+  const all = await getTools();
+  return [...all].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  ).slice(0, limit);
+}
+
 /** Tools with is_featured = true (for homepage) */
 export async function getFeaturedTools(): Promise<Tool[]> {
   try {
