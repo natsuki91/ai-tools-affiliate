@@ -37,12 +37,12 @@ See traffic and behavior.
 
 ---
 
-## 4. Optional: second niche (multi-niche)
+## 4. Second niche (multi-niche) ✓
 
-The hub already has placeholders for Web Hosting, VPN, eCommerce, etc. To activate another niche later:
+**Web Hosting** is live: `/web-hosting`, hosting tools (Hostinger, Bluehost, SiteGround, A2), and comparison (Hostinger vs Bluehost). To add more niches (VPN, eCommerce, etc.) later:
 
 - Set that niche to `active: true` in **`lib/niches.ts`**.
-- Add content (tools, comparisons, blog) for that niche (DB or mock data).
+- Add content (tools, comparisons, blog) for that niche in **`lib/mock-data.ts`** (or DB).
 - Rebuild and re-upload.
 
 ---
@@ -52,9 +52,9 @@ The hub already has placeholders for Web Hosting, VPN, eCommerce, etc. To activa
 - [x] Site live at toolscout.tools (static files in public_html; simple deploy — [SIMPLE-DEPLOY-NO-GIT.md](SIMPLE-DEPLOY-NO-GIT.md))
 - [x] Hostinger + Shopify affiliate links (footer)
 - [x] GA4 set up — [GA4-SETUP.md](GA4-SETUP.md)
-- [ ] Add AI tool affiliate URLs when approved: set as **GitHub repo secrets** (e.g. `AFFILIATE_URL_JASPER`, `AFFILIATE_URL_COPY_AI`) for auto-deploy, or use `.env.local` for local build / Supabase for DB tools — [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md)
+- [ ] Add AI tool affiliate URLs when approved — [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md) (leave until programs accept)
 - [ ] Add more blog posts or tools as you go _(18 posts, 7 comparisons; e.g. Best AI Tools Content Creators 2026, Claude vs Perplexity)_
-- [ ] (Later) Activate a second niche if you want to expand
+- [x] Activate a second niche — Web Hosting live (Hostinger, Bluehost, SiteGround, A2 + comparison)
 
 ---
 
