@@ -28,7 +28,7 @@ export function buildSEOMeta({
       title,
       description,
       url,
-      siteName: "AI Tools",
+      siteName: "ToolScout",
       images: [{ url: ogImage, width: 1200, height: 630 }],
       type: "website",
     },

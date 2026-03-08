@@ -419,6 +419,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 4,
     author: "Editorial Team",
   },
+  {
+    slug: "best-free-ai-tools-no-credit-card-2026",
+    title: "Best Free AI Tools in 2026 (No Credit Card Needed)",
+    description: "Free AI tools you can use in 2026 without a credit card: ChatGPT, Claude, Copy.ai, and more. Compare limits and quality.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 4,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [

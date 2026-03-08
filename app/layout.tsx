@@ -5,6 +5,8 @@ import { Footer } from "@/components/layout/Footer";
 import { CookieConsentBanner } from "@/components/layout/CookieConsentBanner";
 import { ExitIntentPopup } from "@/components/homepage/ExitIntentPopup";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
+
 export const metadata: Metadata = {
   title: {
     default: "ToolScout — Find & Compare the Best Software Tools",
@@ -14,6 +16,10 @@ export const metadata: Metadata = {
     "Find and compare the best software tools. Honest reviews, pricing, and guides for AI tools, writing, coding, and more.",
   openGraph: {
     type: "website",
+  },
+  alternates: {
+    canonical: SITE_URL,
+    languages: { en: SITE_URL, "x-default": SITE_URL },
   },
 };
 
