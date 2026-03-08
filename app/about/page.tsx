@@ -3,7 +3,7 @@ import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import Link from "next/link";
 
 export const metadata: Metadata = buildSEOMeta({
-  title: "About — AI Tools",
+  title: "About ToolScout",
   description: "We compare and review AI software so you can find the right tool. Honest, independent, updated regularly.",
   path: "/about",
 });
@@ -11,7 +11,7 @@ export const metadata: Metadata = buildSEOMeta({
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold text-text-primary">About AI Tools</h1>
+      <h1 className="text-3xl font-bold text-text-primary">About ToolScout</h1>
       <p className="mt-4 text-lg text-text-secondary">
         We compare and review AI software—writing tools, image generators, productivity apps, and
         more—so you can choose with confidence.

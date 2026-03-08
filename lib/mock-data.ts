@@ -429,6 +429,21 @@ export const mockComparisons: Comparison[] = [
     tool_a: mockTools[0],
     tool_b: mockTools[10],
   },
+  {
+    id: "c6",
+    slug: "cursor-vs-github-copilot",
+    tool_a_id: "9",
+    tool_b_id: "14",
+    title: "Cursor vs GitHub Copilot 2026: Which AI Code Editor?",
+    meta_desc: "Compare Cursor and GitHub Copilot for AI-assisted coding. Pricing, features, and best use cases.",
+    verdict: "Cursor for full IDE control and chat; Copilot for lightweight in-editor completion.",
+    content: null,
+    views: 0,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    tool_a: mockTools[8],
+    tool_b: mockTools[13],
+  },
 ];
 
 export const mockBlogPosts: BlogPost[] = [
@@ -571,6 +586,15 @@ export const mockBlogPosts: BlogPost[] = [
     slug: "how-to-choose-ai-tool-2026",
     title: "How to Choose the Right AI Tool in 2026",
     description: "A simple framework to pick the right AI tool: use case, budget, and must-have features. Compare writing, research, coding, and design tools.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 5,
+    author: "Editorial Team",
+  },
+  {
+    slug: "best-ai-tools-small-business-2026",
+    title: "Best AI Tools for Small Business in 2026",
+    description: "AI tools that help small businesses: marketing, writing, support, and productivity. Compare free and paid options.",
     content: "",
     date: "2026-03-07",
     readingTime: 5,

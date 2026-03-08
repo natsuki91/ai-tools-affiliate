@@ -3,7 +3,7 @@ import { buildSEOMeta } from "@/components/shared/SEOMeta";
 
 export const metadata: Metadata = buildSEOMeta({
   title: "Terms of Use",
-  description: "Terms of use for the AI Tools comparison and review website.",
+  description: "Terms of use for the ToolScout comparison and review website.",
   path: "/terms",
 });
 
