@@ -62,9 +62,9 @@ The hub already has placeholders for Web Hosting, VPN, eCommerce, etc. To activa
 
 - **Search bar** on homepage — search tools, comparisons, blog (e.g. Algolia or client-side over static data).
 - **“Recently Added” tools** — section on AI Tools homepage showing 3–4 newest tools with a “NEW” badge.
-- **More tools** — expand from 6 to 30+ (writing, image, coding, productivity, video) in mock data or Supabase.
+- **More tools** — expand from 6 to 30+ (writing, image, coding, productivity, video) in mock data or Supabase. _(13 tools now: e.g. Perplexity, Canva AI, Gamma)_
 - **“Alternatives to X” pages** — e.g. `/ai-tools/alternatives/chatgpt` for SEO.
 - **Exit-intent popup** — newsletter signup when user moves to close tab (once per session).
-- **Cookie “Manage preferences”** — optional third button for granular consent.
+- **Cookie “Manage preferences”** — optional third button for granular consent. ✓ (Analytics On/Off + Save)
 - **SEO** — JSON-LD on tool/compare pages, `og:image` per page, ensure sitemap has all URLs.
 - **Newsletter on static host** — `/api/newsletter` doesn’t run on static Hostinger; use a form service (Mailchimp, ConvertKit) or host API elsewhere and point the form there.
