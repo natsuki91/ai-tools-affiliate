@@ -1,10 +1,8 @@
 # Serve index.html for directories that have it
 DirectoryIndex index.html
 
-# Disable directory listing
-Options -Indexes
+# Avoid Options -Indexes here; some hosts (e.g. Hostinger) return 403 if .htaccess overrides Options
 
-# Allow .htaccess overrides (if permitted by server)
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
