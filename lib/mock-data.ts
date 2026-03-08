@@ -401,6 +401,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 3,
     author: "Editorial Team",
   },
+  {
+    slug: "best-ai-image-generators-2026",
+    title: "Best AI Image Generators in 2026 (Free & Paid)",
+    description: "Top AI image generators in 2026: Midjourney, DALL-E, Stable Diffusion, and more. Compare quality, price, and best use cases.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 4,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [

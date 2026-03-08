@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/homepage/Hero";
 import type { SearchItem } from "@/components/homepage/HeroSearch";
-import { FeaturedTools } from "@/components/homepage/FeaturedTools";
+import { FeaturedToolsWithFilter } from "@/components/homepage/FeaturedToolsWithFilter";
 import { RecentlyAddedTools } from "@/components/homepage/RecentlyAddedTools";
 import { Categories } from "@/components/homepage/Categories";
 import { LatestComparisons } from "@/components/homepage/LatestComparisons";
@@ -78,7 +78,7 @@ export default async function NichePage({ params }: NichePageProps) {
   return (
     <>
       <Hero searchItems={searchItems} />
-      <FeaturedTools tools={tools} />
+      <FeaturedToolsWithFilter tools={allTools} />
       <RecentlyAddedTools tools={recentTools} />
       <Categories />
       <LatestComparisons comparisons={comparisons} />
