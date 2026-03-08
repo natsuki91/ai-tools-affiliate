@@ -428,6 +428,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 4,
     author: "Editorial Team",
   },
+  {
+    slug: "best-ai-tools-for-students-2026",
+    title: "Best AI Tools for Students in 2026",
+    description: "Top AI tools for students in 2026: writing, research, math, and study aids. Free and affordable options compared.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 4,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [

@@ -67,11 +67,13 @@ export function HeroSearch({ searchItems }: HeroSearchProps) {
           aria-autocomplete="list"
           role="combobox"
           aria-expanded={showDropdown}
+          aria-controls="hero-search-listbox"
           className="w-full rounded-full border-2 border-border bg-background py-3 pl-11 pr-4 text-text-primary placeholder:text-text-secondary focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
         />
       </div>
       {showDropdown && (
         <ul
+          id="hero-search-listbox"
           role="listbox"
           className="absolute left-0 right-0 top-full z-50 mt-2 max-h-80 overflow-auto rounded-xl border border-border bg-surface py-2 shadow-lg"
         >
