@@ -8,6 +8,9 @@ import { formatPrice } from "@/lib/utils";
 import { getNicheBySlug } from "@/lib/niches";
 import { NicheComingSoon } from "@/components/niche/NicheComingSoon";
 import { nicheToolSlugParams } from "@/lib/static-params";
+import { HostingerReviewContent } from "@/components/reviews/HostingerReviewContent";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
 
 interface PageProps {
   params: Promise<{ niche: string; slug: string }>;
@@ -23,6 +26,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!niche?.active) return {};
   const tool = await getToolBySlug(slug, nicheSlug);
   if (!tool) return {};
+  if (nicheSlug === "web-hosting" && slug === "hostinger") {
+    return buildSEOMeta({
+      title: "Hostinger Review 2026: We Host Our Site On It — Here's The Truth",
+      description:
+        "We host ToolScout.tools on Hostinger. After real daily use, here's our honest verdict on speed, uptime, support, and value for 2026.",
+      path: `/${nicheSlug}/tools/${slug}`,
+    });
+  }
   return buildSEOMeta({
     title: `${tool.name} Review: Is It Worth It?`,
     description: tool.tagline ?? tool.description ?? `${tool.name} review, pricing, and verdict.`,
@@ -39,8 +50,57 @@ export default async function NicheToolSlugPage({ params }: PageProps) {
   const tool = await getToolBySlug(slug, nicheSlug);
   if (!tool) notFound();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
-  const toolUrl = `${siteUrl}/${nicheSlug}/tools/${slug}`;
+  const toolUrl = `${SITE_URL}/${nicheSlug}/tools/${slug}`;
+
+  if (nicheSlug === "web-hosting" && slug === "hostinger") {
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "Hostinger",
+      description: tool.description ?? tool.tagline ?? undefined,
+      url: tool.website_url ?? toolUrl,
+      applicationCategory: "WebHosting",
+      offers: {
+        "@type": "Offer",
+        price: "2.99",
+        priceCurrency: "USD",
+        priceValidUntil: "2026-12-31",
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "9.1",
+        bestRating: "10",
+        ratingCount: "1",
+      },
+    };
+    return (
+      <div className="min-h-screen">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <nav className="border-b border-border bg-surface/50 px-4 py-3 sm:px-6 lg:px-8" aria-label="Breadcrumb">
+          <ol className="mx-auto flex max-w-4xl flex-wrap items-center gap-2 text-sm text-text-secondary">
+            <li>
+              <Link href="/" className="hover:text-text-primary">Home</Link>
+            </li>
+            <li aria-hidden>/</li>
+            <li>
+              <Link href={`/${nicheSlug}`} className="hover:text-text-primary">{niche.name}</Link>
+            </li>
+            <li aria-hidden>/</li>
+            <li>
+              <Link href={`/${nicheSlug}/tools`} className="hover:text-text-primary">Tools</Link>
+            </li>
+            <li aria-hidden>/</li>
+            <li className="text-text-primary" aria-current="page">{tool.name}</li>
+          </ol>
+        </nav>
+        <HostingerReviewContent tool={tool} nicheSlug={nicheSlug} />
+      </div>
+    );
+  }
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",

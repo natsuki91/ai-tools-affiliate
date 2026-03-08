@@ -3,7 +3,7 @@
  * AI tools: set AFFILIATE_URL_* in .env.local (optional) or replace defaults below.
  * Partners (Hostinger, Shopify) are in config; use env for AI tools to keep links out of the repo.
  */
-const AI_TOOL_SLUGS = ["chatgpt", "claude", "jasper", "copy.ai", "writesonic", "grammarly", "notion", "rytr", "midjourney", "github-copilot", "notion-ai", "perplexity", "canva-ai", "gamma", "cursor", "otter-ai"] as const;
+const AI_TOOL_SLUGS = ["chatgpt", "claude", "jasper", "copy.ai", "writesonic", "grammarly", "notion", "rytr", "midjourney", "github-copilot", "notion-ai", "perplexity", "canva-ai", "gamma", "cursor", "otter-ai", "gemini", "anyword", "wordtune", "adobe-firefly", "ideogram", "tabnine"] as const;
 
 const DEFAULT_AFFILIATE_URLS: Record<string, string> = {
   chatgpt: "https://chat.openai.com/",
@@ -22,6 +22,12 @@ const DEFAULT_AFFILIATE_URLS: Record<string, string> = {
   gamma: "https://gamma.app/",
   cursor: "https://cursor.com/",
   "otter-ai": "https://otter.ai/",
+  gemini: "https://gemini.google.com/",
+  anyword: "https://anyword.com/",
+  wordtune: "https://wordtune.com/",
+  "adobe-firefly": "https://firefly.adobe.com/",
+  ideogram: "https://ideogram.ai/",
+  tabnine: "https://www.tabnine.com/",
   hostinger: "https://www.hostinger.com/?REFERRALCODE=VCTPEZZAARTQ",
   shopify: "https://shopify.pxf.io/n4LZn9",
 };
