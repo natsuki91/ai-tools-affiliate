@@ -3,7 +3,7 @@ import { buildSEOMeta } from "@/components/shared/SEOMeta";
 
 export const metadata: Metadata = buildSEOMeta({
   title: "Privacy Policy",
-  description: "How AI Tools collects, uses, and protects your information.",
+  description: "How ToolScout collects, uses, and protects your information.",
   path: "/privacy",
 });
 

@@ -3,7 +3,7 @@
  * AI tools: set AFFILIATE_URL_* in .env.local (optional) or replace defaults below.
  * Partners (Hostinger, Shopify) are in config; use env for AI tools to keep links out of the repo.
  */
-const AI_TOOL_SLUGS = ["chatgpt", "claude", "jasper", "copy.ai", "writesonic", "grammarly", "notion", "rytr", "midjourney", "github-copilot", "notion-ai", "perplexity", "canva-ai", "gamma"] as const;
+const AI_TOOL_SLUGS = ["chatgpt", "claude", "jasper", "copy.ai", "writesonic", "grammarly", "notion", "rytr", "midjourney", "github-copilot", "notion-ai", "perplexity", "canva-ai", "gamma", "cursor", "otter-ai"] as const;
 
 const DEFAULT_AFFILIATE_URLS: Record<string, string> = {
   chatgpt: "https://chat.openai.com/",
@@ -20,6 +20,8 @@ const DEFAULT_AFFILIATE_URLS: Record<string, string> = {
   perplexity: "https://perplexity.ai/",
   "canva-ai": "https://www.canva.com/",
   gamma: "https://gamma.app/",
+  cursor: "https://cursor.com/",
+  "otter-ai": "https://otter.ai/",
   hostinger: "https://www.hostinger.com/?REFERRALCODE=VCTPEZZAARTQ",
   shopify: "https://shopify.pxf.io/n4LZn9",
 };
