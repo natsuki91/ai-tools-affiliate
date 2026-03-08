@@ -291,6 +291,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 4,
     author: "Editorial Team",
   },
+  {
+    slug: "jasper-review-2026",
+    title: "Jasper Review 2026: Is It Worth It for Marketing?",
+    description: "Jasper in 2026: we review pricing, brand voice, templates, and who it's best for—marketing teams and long-term brand content.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 5,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [
