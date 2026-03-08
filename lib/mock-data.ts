@@ -282,6 +282,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 4,
     author: "Editorial Team",
   },
+  {
+    slug: "notion-ai-review-2026",
+    title: "Notion AI Review 2026: Is It Worth It for Notes and Docs?",
+    description: "Notion AI in 2026: we review pricing, writing and summarization features, and who it's best for—teams and knowledge bases.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 4,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [

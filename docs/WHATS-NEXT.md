@@ -53,5 +53,5 @@ The hub already has placeholders for Web Hosting, VPN, eCommerce, etc. To activa
 - [x] Hostinger + Shopify affiliate links (footer)
 - [x] GA4 set up — [GA4-SETUP.md](GA4-SETUP.md)
 - [ ] Add AI tool affiliate URLs when approved: set as **GitHub repo secrets** (e.g. `AFFILIATE_URL_JASPER`, `AFFILIATE_URL_COPY_AI`) for auto-deploy, or use `.env.local` for local build / Supabase for DB tools — [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md)
-- [ ] Add more blog posts or tools as you go
+- [ ] Add more blog posts or tools as you go _(9 posts now; e.g. Notion AI Review 2026 added)_
 - [ ] (Later) Activate a second niche if you want to expand
