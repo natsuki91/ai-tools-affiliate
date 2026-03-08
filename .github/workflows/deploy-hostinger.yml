@@ -44,6 +44,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./out/
-          # Target folder on server (must end with /). Override with FTP_SERVER_DIR secret if needed.
-          server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/' }}
+          # Upload to FTP current dir (must end with /). On Hostinger, FTP often lands in public_html — so ./ puts files in the right place. If not, set secret FTP_SERVER_DIR to public_html/
+          server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
           dangerous-clean-slate: true

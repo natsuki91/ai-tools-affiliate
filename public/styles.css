@@ -1,0 +1,15 @@
+/* Fallback styles (repo copy). Postbuild overwrites this in out/ with full built CSS. */
+body {
+  background: #0F0F0F;
+  color: #F8FAFC;
+  font-family: system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1; }
+a { color: #06B6D4; }
+a:hover { color: #8B5CF6; }
