@@ -31,8 +31,37 @@ export default async function ToolSlugPage({ params }: PageProps) {
   const tool = await getToolBySlug(slug);
   if (!tool) notFound();
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: tool.name,
+    description: tool.description ?? tool.tagline ?? undefined,
+    url: tool.website_url ?? `${siteUrl}/tools/${slug}`,
+    applicationCategory: "ProductivityApplication",
+    ...(tool.starting_price != null && {
+      offers: {
+        "@type": "Offer",
+        price: tool.starting_price === 0 ? "0" : String(tool.starting_price),
+        priceCurrency: "USD",
+      },
+    }),
+    ...(tool.rating != null && {
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: String(tool.rating),
+        bestRating: "10",
+        ratingCount: "1",
+      },
+    }),
+  };
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
         <div className="flex-1">
           <h1 className="text-3xl font-bold text-text-primary">{tool.name} Review</h1>

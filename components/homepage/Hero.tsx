@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { HeroSearch, type SearchItem } from "./HeroSearch";
 
-export function Hero() {
+interface HeroProps {
+  /** When set, show search bar (e.g. on niche homepage) */
+  searchItems?: SearchItem[];
+}
+
+export function Hero({ searchItems }: HeroProps) {
   return (
     <section className="relative overflow-hidden border-b border-border bg-surface px-4 py-20 sm:py-28 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl text-center">
@@ -13,6 +19,11 @@ export function Hero() {
           Honest comparisons, real reviews, and clear pricing. Compare ChatGPT, Claude, and more—all
           in one place.
         </p>
+        {searchItems && searchItems.length > 0 && (
+          <div className="mt-8">
+            <HeroSearch searchItems={searchItems} />
+          </div>
+        )}
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/compare"

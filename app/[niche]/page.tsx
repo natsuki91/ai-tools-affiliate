@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Hero } from "@/components/homepage/Hero";
+import type { SearchItem } from "@/components/homepage/HeroSearch";
 import { FeaturedTools } from "@/components/homepage/FeaturedTools";
 import { RecentlyAddedTools } from "@/components/homepage/RecentlyAddedTools";
 import { Categories } from "@/components/homepage/Categories";
@@ -10,7 +11,7 @@ import { NewsletterSignup } from "@/components/homepage/NewsletterSignup";
 import { CTABanner } from "@/components/shared/CTABanner";
 import { StatsBar } from "@/components/homepage/StatsBar";
 import { getNicheBySlug } from "@/lib/niches";
-import { getFeaturedTools, getRecentlyAddedTools, getComparisons } from "@/lib/data";
+import { getFeaturedTools, getRecentlyAddedTools, getComparisons, getTools } from "@/lib/data";
 import { mockBlogPosts } from "@/lib/mock-data";
 import { nicheParams } from "@/lib/static-params";
 import Link from "next/link";
@@ -63,14 +64,20 @@ export default async function NichePage({ params }: NichePageProps) {
   }
 
   // Active niche: AI Tools — full niche homepage
-  const [tools, recentTools, comparisons] = await Promise.all([
+  const [tools, recentTools, comparisons, allTools] = await Promise.all([
     getFeaturedTools(),
     getRecentlyAddedTools(4),
     getComparisons(),
+    getTools(),
   ]);
+  const searchItems: SearchItem[] = [
+    ...allTools.map((t) => ({ label: t.name, href: `/${slug}/tools/${t.slug}`, type: "tool" as const })),
+    ...comparisons.map((c) => ({ label: c.title, href: `/${slug}/compare/${c.slug}`, type: "comparison" as const })),
+    ...mockBlogPosts.map((p) => ({ label: p.title, href: `/${slug}/blog/${p.slug}`, type: "blog" as const })),
+  ];
   return (
     <>
-      <Hero />
+      <Hero searchItems={searchItems} />
       <FeaturedTools tools={tools} />
       <RecentlyAddedTools tools={recentTools} />
       <Categories />
