@@ -330,6 +330,17 @@ The repo workflow **Deploy to Hostinger** builds the site and uploads via **FTP 
 
 After you add these secrets, push to **main** or re-run the **Deploy to Hostinger** workflow. The action uploads the contents of **out/** into the remote path. If the site doesn’t load, check that **index.html** and **_next** are directly inside that folder (e.g. in File Manager under **public_html**).
 
+**If you enable SSH Access (SFTP with key)** — Often more reliable than FTP from GitHub:
+
+1. In hPanel go to **Advanced → Remote Access** and turn **SSH/SFTP** **ON**. Note the **port** (Hostinger shared hosting usually uses **65002**).
+2. Generate an SSH key on your PC:  
+   `ssh-keygen -t ed25519 -C "deploy" -f deploy_key -N ""`  
+   This creates **deploy_key** (private) and **deploy_key.pub** (public).
+3. In hPanel → **Advanced → Remote Access** → **SSH/SFTP Keys** → **Add SSH/SFTP Key** → paste the **entire contents** of **deploy_key.pub** → Save.
+4. In the repo: **Settings → Secrets and variables → Actions** → add **SFTP_SERVER** (your Hostinger host or FTP IP), **SFTP_USERNAME** (FTP username), **SFTP_SSH_PRIVATE_KEY** (entire contents of **deploy_key**, including `-----BEGIN ...` and `-----END ...`). Optionally **SFTP_PORT** = `65002`, **SFTP_REMOTE_PATH** = `public_html/`.
+5. **Settings → Secrets and variables → Actions → Variables** → add variable **DEPLOY_METHOD** = **sftp**. (From then on, pushes to main will deploy via SFTP instead of FTP.)
+6. Push to **main** or run the workflow manually: **Actions** → **Deploy to Hostinger** → **Run workflow** → choose **sftp** under “Deploy via FTP or SFTP” → **Run**.
+
 ---
 
 ## If you use Hostinger "Deploy from Git"

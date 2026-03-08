@@ -1,11 +1,21 @@
-# Build the static site and upload to Hostinger via FTP on port 21 (push to main).
-# Secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD. Optional: FTP_SERVER_DIR (default public_html/).
+# Build and deploy to Hostinger. Uses FTP by default; set deploy method to SFTP if you enable SSH Access.
+# FTP secrets: FTP_SERVER, FTP_USERNAME, FTP_PASSWORD. SFTP (when SSH enabled): SFTP_SERVER, SFTP_USERNAME, SFTP_SSH_PRIVATE_KEY.
 
 name: Deploy to Hostinger
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+    inputs:
+      deploy_method:
+        description: "Deploy via FTP or SFTP (use SFTP if you enabled SSH Access in hPanel)"
+        required: false
+        default: "ftp"
+        type: choice
+        options:
+          - ftp
+          - sftp
 
 jobs:
   deploy:
@@ -44,7 +54,18 @@ jobs:
           test -d out/_next && echo "_next OK" || exit 1
           test -f out/.htaccess && echo ".htaccess OK" || exit 1
 
+      - name: Set deploy method
+        id: method
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "method=${{ github.event.inputs.deploy_method }}" >> $GITHUB_OUTPUT
+          else
+            echo "method=${{ vars.DEPLOY_METHOD || 'ftp' }}" >> $GITHUB_OUTPUT
+          fi
+          echo "Deploy method: $(cat $GITHUB_OUTPUT | grep method | cut -d= -f2)"
+
       - name: Deploy to Hostinger (FTP port 21)
+        if: steps.method.outputs.method != 'sftp'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -53,3 +74,16 @@ jobs:
           local-dir: ./out/
           server-dir: ${{ secrets.FTP_SERVER_DIR || 'public_html/' }}
           dangerous-clean-slate: true
+
+      - name: Deploy to Hostinger (SFTP — use when SSH Access is enabled)
+        if: steps.method.outputs.method == 'sftp'
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          ssh_private_key: ${{ secrets.SFTP_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SFTP_PORT || '65002' }}
+          local_path: "out/"
+          remote_path: ${{ secrets.SFTP_REMOTE_PATH || 'public_html/' }}
+          sftp_only: true
