@@ -14,7 +14,7 @@ Turn “Try X Free” buttons into earning links.
 
 - **Option B — Config:**  
   Edit **`lib/affiliate.ts`** → in `AFFILIATE_URLS`, replace placeholder URLs with your real affiliate links (use tool slug as key, e.g. `chatgpt`, `claude`, `jasper`).  
-  Then run `npm run build` and re-upload the **out** folder.
+  Then run `npm run build` and upload the **contents of out** to **public_html** (see [SIMPLE-DEPLOY-NO-GIT.md](SIMPLE-DEPLOY-NO-GIT.md)).
 
 Details and program links: [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md).
 
@@ -49,8 +49,9 @@ The hub already has placeholders for Web Hosting, VPN, eCommerce, etc. To activa
 
 ## Quick checklist
 
+- [x] Site live at toolscout.tools (static files in public_html; simple deploy — [SIMPLE-DEPLOY-NO-GIT.md](SIMPLE-DEPLOY-NO-GIT.md))
 - [x] Hostinger + Shopify affiliate links (footer)
-- [x] GA4 set up (Hostinger env var + redeploy) — [GA4-SETUP.md](GA4-SETUP.md)
-- [ ] Add AI tool affiliate URLs when approved (`.env.local` or Supabase)
+- [x] GA4 set up — [GA4-SETUP.md](GA4-SETUP.md)
+- [ ] Add AI tool affiliate URLs when approved (`.env.local` or Supabase) — [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md)
 - [ ] Add more blog posts or tools as you go
 - [ ] (Later) Activate a second niche if you want to expand

@@ -273,6 +273,15 @@ export const mockBlogPosts: BlogPost[] = [
     readingTime: 5,
     author: "Editorial Team",
   },
+  {
+    slug: "writesonic-review-2026",
+    title: "Writesonic Review 2026: Is It Worth It for SEO and Blogs?",
+    description: "Writesonic in 2026: we review pricing, SEO features, blog workflow, and who it's best for—content teams and WordPress users.",
+    content: "",
+    date: "2026-03-07",
+    readingTime: 4,
+    author: "Editorial Team",
+  },
 ];
 
 export const categories = [
