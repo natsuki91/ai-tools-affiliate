@@ -315,16 +315,18 @@ If something doesn’t match (e.g. no **index.html** in **out**, or domain still
 
 ## If you use GitHub Actions to deploy (FTP port 21)
 
-The repo workflow **Deploy to Hostinger** builds the site and uploads via **FTP on port 21**.
+The repo workflow **Deploy to Hostinger** builds the site and uploads via **FTP on port 21** (plain FTP).
+
+**Where to get FTP details:** In hPanel go to **Websites → Dashboard** → **FTP Accounts** in the sidebar. Use the **FTP IP** as host, **port 21**, and the username/password from that page. See [Hostinger: How to connect using FTP](https://www.hostinger.com/support/4480505-how-to-connect-to-your-hosting-using-ftp-in-hostinger/).
 
 **Required repo secrets** (Settings → Secrets and variables → Actions):
 
 | Secret | Example / notes |
 |--------|------------------|
-| **FTP_SERVER** | Your Hostinger FTP host (from hPanel → FTP accounts) |
-| **FTP_USERNAME** | FTP username (from Hostinger FTP account) |
+| **FTP_SERVER** | The **FTP IP** from FTP Accounts (not the domain). Hostinger uses port 21 for plain FTP. |
+| **FTP_USERNAME** | FTP username from FTP Accounts |
 | **FTP_PASSWORD** | FTP password for that account |
-| **FTP_SERVER_DIR** | Optional. Default is `public_html/`. Set if your web root is different (e.g. `domains/toolscout.tools/public_html/`). Must end with `/`. |
+| **FTP_SERVER_DIR** | Optional. Default is `public_html/`. Set if your web root is different. Must end with `/`. |
 
 After you add these secrets, push to **main** or re-run the **Deploy to Hostinger** workflow. The action uploads the contents of **out/** into the remote path. If the site doesn’t load, check that **index.html** and **_next** are directly inside that folder (e.g. in File Manager under **public_html**).
 
