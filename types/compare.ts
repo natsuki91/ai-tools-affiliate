@@ -14,4 +14,6 @@ export interface Comparison {
   updated_at: string;
   tool_a?: Tool;
   tool_b?: Tool;
+  /** Niche slug (e.g. "web-hosting"). Omit = ai-tools. */
+  niche?: string;
 }

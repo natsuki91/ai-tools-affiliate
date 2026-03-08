@@ -72,8 +72,8 @@ function rowToComparison(
   };
 }
 
-/** All tools (featured first, then by rating) */
-export async function getTools(): Promise<Tool[]> {
+/** All tools (featured first, then by rating). Optional niche slug filters to that niche's tools. */
+export async function getTools(nicheSlug?: string): Promise<Tool[]> {
   try {
     const sb = getSupabase();
     if (sb) {
@@ -82,24 +82,30 @@ export async function getTools(): Promise<Tool[]> {
         .select("*")
         .order("is_featured", { ascending: false })
         .order("rating", { ascending: false, nullsFirst: false });
-      if (!error && data?.length) return data.map(rowToTool);
+      if (!error && data?.length) {
+        const tools = data.map(rowToTool);
+        if (nicheSlug) return tools.filter((t) => !(t as Tool & { niche?: string }).niche || (t as Tool & { niche?: string }).niche === nicheSlug);
+        return tools;
+      }
     }
   } catch {
     // fall through to mock
   }
-  return mockTools;
+  let list = mockTools;
+  if (nicheSlug) list = list.filter((t) => !t.niche || t.niche === nicheSlug);
+  return list;
 }
 
 /** Most recently added tools (by created_at desc, limit 4) — for "Recently Added" section */
-export async function getRecentlyAddedTools(limit = 4): Promise<Tool[]> {
-  const all = await getTools();
+export async function getRecentlyAddedTools(limit = 4, nicheSlug?: string): Promise<Tool[]> {
+  const all = await getTools(nicheSlug);
   return [...all].sort(
     (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
   ).slice(0, limit);
 }
 
-/** Tools with is_featured = true (for homepage) */
-export async function getFeaturedTools(): Promise<Tool[]> {
+/** Tools with is_featured = true (for homepage). Optional niche slug filters. */
+export async function getFeaturedTools(nicheSlug?: string): Promise<Tool[]> {
   try {
     const sb = getSupabase();
     if (sb) {
@@ -108,26 +114,38 @@ export async function getFeaturedTools(): Promise<Tool[]> {
         .select("*")
         .eq("is_featured", true)
         .order("rating", { ascending: false, nullsFirst: false });
-      if (!error && data?.length) return data.map(rowToTool);
+      if (!error && data?.length) {
+        const tools = data.map(rowToTool);
+        if (nicheSlug) return tools.filter((t) => !(t as Tool & { niche?: string }).niche || (t as Tool & { niche?: string }).niche === nicheSlug);
+        return tools;
+      }
     }
   } catch {
     // fall through to mock
   }
-  return mockTools.filter((t) => t.is_featured);
+  let list = mockTools.filter((t) => t.is_featured);
+  if (nicheSlug) list = list.filter((t) => !t.niche || t.niche === nicheSlug);
+  return list;
 }
 
-/** Single tool by slug */
-export async function getToolBySlug(slug: string): Promise<Tool | null> {
+/** Single tool by slug. Optional nicheSlug restricts to that niche's tools. */
+export async function getToolBySlug(slug: string, nicheSlug?: string): Promise<Tool | null> {
   try {
     const sb = getSupabase();
     if (sb) {
       const { data, error } = await sb.from("tools").select("*").eq("slug", slug).maybeSingle();
-      if (!error && data) return rowToTool(data);
+      if (!error && data) {
+        const t = rowToTool(data);
+        if (nicheSlug && (t as Tool & { niche?: string }).niche && (t as Tool & { niche?: string }).niche !== nicheSlug) return null;
+        return t;
+      }
     }
   } catch {
     // fall through to mock
   }
-  return mockTools.find((t) => t.slug === slug) ?? null;
+  let list = mockTools.filter((t) => t.slug === slug);
+  if (nicheSlug) list = list.filter((t) => !t.niche || t.niche === nicheSlug);
+  return list[0] ?? null;
 }
 
 /** Tools by category (slug) */
@@ -150,16 +168,16 @@ export async function getToolsByCategory(categorySlug: string): Promise<Tool[]> 
 
 type ComparisonRow = Database["public"]["Tables"]["comparisons"]["Row"];
 
-/** All comparisons (with tool_a and tool_b populated) */
-export async function getComparisons(): Promise<Comparison[]> {
+/** All comparisons (with tool_a and tool_b populated). Optional niche slug filters. */
+export async function getComparisons(nicheSlug?: string): Promise<Comparison[]> {
   try {
     const sb = getSupabase();
     if (sb) {
       const { data: rows, error } = await sb.from("comparisons").select("*").order("created_at", { ascending: false });
       if (!error && rows && rows.length > 0) {
         const typedRows = rows as ComparisonRow[];
-        const tools = await getTools();
-        return typedRows.map((r) => {
+        const tools = await getTools(nicheSlug);
+        let out = typedRows.map((r) => {
           const tool_a = tools.find((t) => t.id === r.tool_a_id);
           const tool_b = tools.find((t) => t.id === r.tool_b_id);
           return rowToComparison({
@@ -168,16 +186,20 @@ export async function getComparisons(): Promise<Comparison[]> {
             tool_b: tool_b ? (tool_b as Database["public"]["Tables"]["tools"]["Row"]) : undefined,
           });
         });
+        if (nicheSlug) out = out.filter((c) => !(c as Comparison & { niche?: string }).niche || (c as Comparison & { niche?: string }).niche === nicheSlug);
+        return out;
       }
     }
   } catch {
     // fall through to mock
   }
-  return mockComparisons;
+  let list = mockComparisons;
+  if (nicheSlug) list = list.filter((c) => !c.niche || c.niche === nicheSlug);
+  return list;
 }
 
-/** Single comparison by slug with tools */
-export async function getComparisonBySlug(slug: string): Promise<Comparison | null> {
+/** Single comparison by slug with tools. Optional nicheSlug restricts to that niche. */
+export async function getComparisonBySlug(slug: string, nicheSlug?: string): Promise<Comparison | null> {
   try {
     const sb = getSupabase();
     if (sb) {
@@ -188,13 +210,17 @@ export async function getComparisonBySlug(slug: string): Promise<Comparison | nu
         const { data: toolBRow } = await sb.from("tools").select("*").eq("id", row.tool_b_id).maybeSingle();
         const tool_a = toolARow ? rowToTool(toolARow) : undefined;
         const tool_b = toolBRow ? rowToTool(toolBRow) : undefined;
-        return rowToComparison({ ...row, tool_a, tool_b });
+        const c = rowToComparison({ ...row, tool_a, tool_b });
+        if (nicheSlug && (c as Comparison & { niche?: string }).niche && (c as Comparison & { niche?: string }).niche !== nicheSlug) return null;
+        return c;
       }
     }
   } catch {
     // fall through to mock
   }
-  const c = mockComparisons.find((x) => x.slug === slug);
+  let list = mockComparisons.filter((x) => x.slug === slug);
+  if (nicheSlug) list = list.filter((c) => !c.niche || c.niche === nicheSlug);
+  const c = list[0];
   if (!c) return null;
   const toolA = mockTools.find((t) => t.id === c.tool_a_id) ?? c.tool_a;
   const toolB = mockTools.find((t) => t.id === c.tool_b_id) ?? c.tool_b;

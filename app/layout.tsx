@@ -3,7 +3,6 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsentBanner } from "@/components/layout/CookieConsentBanner";
-import { ExitIntentPopup } from "@/components/homepage/ExitIntentPopup";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
 
@@ -49,7 +48,6 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <CookieConsentBanner />
-        <ExitIntentPopup />
       </body>
     </html>
   );

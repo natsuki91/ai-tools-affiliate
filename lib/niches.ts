@@ -18,7 +18,7 @@ export const NICHES = [
     tagline: "Find the best hosting for your site",
     icon: "🌐",
     color: "sky",
-    active: false,
+    active: true,
   },
   {
     slug: "vpn",

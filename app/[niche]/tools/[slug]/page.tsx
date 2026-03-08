@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { niche: nicheSlug, slug } = await params;
   const niche = getNicheBySlug(nicheSlug);
   if (!niche?.active) return {};
-  const tool = await getToolBySlug(slug);
+  const tool = await getToolBySlug(slug, nicheSlug);
   if (!tool) return {};
   return buildSEOMeta({
     title: `${tool.name} Review: Is It Worth It?`,
@@ -36,7 +36,7 @@ export default async function NicheToolSlugPage({ params }: PageProps) {
   if (!niche) notFound();
   if (!niche.active) return <NicheComingSoon niche={niche} />;
 
-  const tool = await getToolBySlug(slug);
+  const tool = await getToolBySlug(slug, nicheSlug);
   if (!tool) notFound();
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";

@@ -21,9 +21,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const niche = getNicheBySlug(slug);
   if (!niche?.active) return { title: niche ? `${niche.name} — Coming soon` : "Not found" };
   return buildSEOMeta({
-    title: "All AI Tools — Directory & Reviews",
+    title: `${niche.name} — Directory & Reviews`,
     description:
-      "Browse AI tools. Filter by category, pricing, and rating. Honest reviews and comparisons.",
+      `Browse ${niche.name.toLowerCase()}. Filter by category, pricing, and rating. Honest reviews and comparisons.`,
     path: `/${slug}/tools`,
   });
 }
@@ -34,12 +34,12 @@ export default async function NicheToolsListPage({ params }: PageProps) {
   if (!niche) notFound();
   if (!niche.active) return <NicheComingSoon niche={niche} />;
 
-  const tools = await getTools();
+  const tools = await getTools(slug);
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-      <h1 className="text-3xl font-bold text-text-primary">AI Tools Directory</h1>
+      <h1 className="text-3xl font-bold text-text-primary">{niche.name} Directory</h1>
       <p className="mt-2 text-text-secondary">
-        Browse and compare AI software. Filter by category and pricing, or sort by rating and price.
+        Browse and compare. Filter by category and pricing, or sort by rating and price.
       </p>
       <Suspense fallback={<div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">Loading…</div>}>
         <ToolsFilterSort tools={tools} nicheSlug={slug} />

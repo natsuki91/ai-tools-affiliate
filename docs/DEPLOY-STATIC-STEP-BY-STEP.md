@@ -181,6 +181,10 @@ If **index.html** is missing or everything is inside an **out** folder, fix it a
 3. **Domain document root**
    - In hPanel → **Domains** or **Websites** → **toolscout.tools** → check **Document root** (or **Website root**). It must be the folder that **contains** **index.html** (e.g. **public_html**). If it points to a Node.js app or another path, change it to **public_html** (or the folder where **index.html** is) and save.
 
+**Files in the wrong place (nested public_html)**
+
+If you see **public_html > public_html** in the path and your site files (_next, ai-tools, index.html, etc.) are inside the **inner** public_html, the domain is serving from the **outer** one and won’t find index.html (403 or “Forbidden”). **Fix:** Open the **inner** public_html (where the site files are). Select **all** files and folders (index.html, .htaccess, _next, ai-tools, blog, etc.). **Cut** (or Move). Go back to the **outer** public_html (the one that contains the inner public_html folder). **Paste**. Then delete the now-empty inner **public_html** folder. After that, index.html and _next should be directly in the outer public_html and the site should load.
+
 **403 Forbidden**
 
 1. **Deploy by hand first** — Use **manual upload** (see top of this doc): `npm run build`, `npm run deploy:zip`, upload **out.zip** to **public_html**, extract so **index.html** and **_next** are directly in **public_html**. This avoids FTP/SFTP issues and confirms the files are correct.

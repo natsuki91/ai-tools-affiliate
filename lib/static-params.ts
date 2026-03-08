@@ -27,18 +27,22 @@ export function categorySlugParams() {
   return CATEGORY_SLUGS.map((slug) => ({ slug }));
 }
 
-/** For [niche]/compare/[slug]: all niche + comparison slug pairs */
+/** For [niche]/compare/[slug]: only niche + comparison slug pairs where comparison belongs to that niche */
 export function nicheCompareSlugParams() {
-  const niches = nicheParams();
-  const slugs = comparisonSlugParams();
-  return niches.flatMap((n) => slugs.map((s) => ({ niche: n.niche, slug: s.slug })));
+  return NICHES.flatMap((n) =>
+    mockComparisons
+      .filter((c) => !c.niche || c.niche === n.slug)
+      .map((c) => ({ niche: n.slug, slug: c.slug }))
+  );
 }
 
-/** For [niche]/tools/[slug]: all niche + tool slug pairs */
+/** For [niche]/tools/[slug]: only niche + tool slug pairs where tool belongs to that niche */
 export function nicheToolSlugParams() {
-  const niches = nicheParams();
-  const slugs = toolSlugParams();
-  return niches.flatMap((n) => slugs.map((s) => ({ niche: n.niche, slug: s.slug })));
+  return NICHES.flatMap((n) =>
+    mockTools
+      .filter((t) => !t.niche || t.niche === n.slug)
+      .map((t) => ({ niche: n.slug, slug: t.slug }))
+  );
 }
 
 /** For [niche]/blog/[slug]: all niche + blog slug pairs */
@@ -55,9 +59,11 @@ export function nicheCategorySlugParams() {
   return niches.flatMap((n) => slugs.map((s) => ({ niche: n.niche, slug: s.slug })));
 }
 
-/** For [niche]/alternatives/[toolSlug]: all niche + tool slug pairs */
+/** For [niche]/alternatives/[toolSlug]: only niche + tool slug pairs where tool belongs to that niche */
 export function nicheAlternativeToolSlugParams() {
-  const niches = nicheParams();
-  const slugs = toolSlugParams();
-  return niches.flatMap((n) => slugs.map((s) => ({ niche: n.niche, toolSlug: s.slug })));
+  return NICHES.flatMap((n) =>
+    mockTools
+      .filter((t) => !t.niche || t.niche === n.slug)
+      .map((t) => ({ niche: n.slug, toolSlug: t.slug }))
+  );
 }

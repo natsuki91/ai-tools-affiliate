@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { niche: nicheSlug, slug } = await params;
   const niche = getNicheBySlug(nicheSlug);
   if (!niche?.active) return {};
-  const comp = await getComparisonBySlug(slug);
+  const comp = await getComparisonBySlug(slug, nicheSlug);
   if (!comp) return {};
   return buildSEOMeta({
     title: comp.title,
@@ -36,7 +36,7 @@ export default async function NicheCompareSlugPage({ params }: PageProps) {
   if (!niche) notFound();
   if (!niche.active) return <NicheComingSoon niche={niche} />;
 
-  const comp = await getComparisonBySlug(slug);
+  const comp = await getComparisonBySlug(slug, nicheSlug);
   if (!comp || !comp.tool_a || !comp.tool_b) notFound();
 
   const a = comp.tool_a;

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { niche: nicheSlug, toolSlug } = await params;
   const niche = getNicheBySlug(nicheSlug);
   if (!niche?.active) return {};
-  const tool = await getToolBySlug(toolSlug);
+  const tool = await getToolBySlug(toolSlug, nicheSlug);
   if (!tool) return {};
   return buildSEOMeta({
     title: `Best ${tool.name} Alternatives 2026`,
@@ -35,7 +35,7 @@ export default async function AlternativesPage({ params }: PageProps) {
   if (!niche) notFound();
   if (!niche.active) return <NicheComingSoon niche={niche} />;
 
-  const [tool, allTools] = await Promise.all([getToolBySlug(toolSlug), getTools()]);
+  const [tool, allTools] = await Promise.all([getToolBySlug(toolSlug, nicheSlug), getTools(nicheSlug)]);
   if (!tool) notFound();
 
   const alternatives = allTools.filter((t) => t.id !== tool.id);

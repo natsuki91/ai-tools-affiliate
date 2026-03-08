@@ -23,4 +23,6 @@ export interface Tool {
   best_for: string[];
   created_at: string;
   updated_at: string;
+  /** Niche slug this tool belongs to (e.g. "ai-tools", "web-hosting"). Omit = ai-tools. */
+  niche?: string;
 }

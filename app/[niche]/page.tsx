@@ -65,10 +65,10 @@ export default async function NichePage({ params }: NichePageProps) {
 
   // Active niche: AI Tools — full niche homepage
   const [tools, recentTools, comparisons, allTools] = await Promise.all([
-    getFeaturedTools(),
-    getRecentlyAddedTools(4),
-    getComparisons(),
-    getTools(),
+    getFeaturedTools(slug),
+    getRecentlyAddedTools(4, slug),
+    getComparisons(slug),
+    getTools(slug),
   ]);
   const searchItems: SearchItem[] = [
     ...allTools.map((t) => ({ label: t.name, href: `/${slug}/tools/${t.slug}`, type: "tool" as const })),
