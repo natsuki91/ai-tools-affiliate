@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "Find and compare the best software tools. Honest reviews, pricing, and guides for AI tools, writing, coding, and more.",
   openGraph: {
     type: "website",
+    images: [{ url: `${SITE_URL}/og-default.png`, width: 1200, height: 630 }],
   },
   alternates: {
     canonical: SITE_URL,

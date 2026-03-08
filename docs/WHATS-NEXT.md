@@ -53,8 +53,8 @@ See traffic and behavior.
 - [x] Hostinger + Shopify affiliate links (footer)
 - [x] GA4 set up — [GA4-SETUP.md](GA4-SETUP.md)
 - [ ] Add AI tool affiliate URLs when approved — [AFFILIATE-LINKS.md](AFFILIATE-LINKS.md) (leave until programs accept)
-- [ ] Add more blog posts or tools as you go _(18 posts, 7 comparisons; e.g. Best AI Tools Content Creators 2026, Claude vs Perplexity)_
-- [x] Activate a second niche — Web Hosting live (Hostinger, Bluehost, SiteGround, A2 + comparison)
+- [x] Add more blog posts or tools — 3 more AI tools (Canva, Descript, Loom), 2 more blog posts; 10 comparisons total
+- [x] Activate a second niche — Web Hosting live (Hostinger, Bluehost, SiteGround, A2 + 3 comparisons)
 
 ---
 
@@ -62,9 +62,9 @@ See traffic and behavior.
 
 - **Search bar** on homepage — search tools, comparisons, blog (e.g. Algolia or client-side over static data).
 - **“Recently Added” tools** — section on AI Tools homepage showing 3–4 newest tools with a “NEW” badge.
-- **More tools** — expand from 6 to 30+ (writing, image, coding, productivity, video) in mock data or Supabase. _(15 tools now: e.g. Cursor, Otter.ai, Perplexity)_
-- **“Alternatives to X” pages** — e.g. `/ai-tools/alternatives/chatgpt` for SEO.
+- **More tools** — expand further in mock data or Supabase. _(18 AI tools + 4 hosting now; e.g. Canva, Descript, Loom)_
+- **“Alternatives to X” pages** — e.g. `/ai-tools/alternatives/chatgpt` for SEO. ✓ (in place)
 - **Exit-intent popup** — newsletter signup when user moves to close tab (once per session).
 - **Cookie “Manage preferences”** — optional third button for granular consent. ✓ (Analytics On/Off + Save)
-- **SEO** — JSON-LD on tool/compare pages, `og:image` per page, ensure sitemap has all URLs. For default social previews, add **public/og-default.png** (1200×630).
-- **Newsletter on static host** — `/api/newsletter` doesn’t run on static Hostinger; use a form service (Mailchimp, ConvertKit) or host API elsewhere and point the form there.
+- **SEO** — JSON-LD on tool/compare pages, `og:image` per page. ✓ Default **public/og-default.png** (1200×630) added; layout and buildSEOMeta use it.
+- **Newsletter on static host** — ✓ Form supports **NEXT_PUBLIC_NEWSLETTER_FORM_ACTION** (Mailchimp/ConvertKit signup URL); when set, form posts there instead of `/api/newsletter`.
