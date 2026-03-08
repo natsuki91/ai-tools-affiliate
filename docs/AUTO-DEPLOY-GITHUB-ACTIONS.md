@@ -11,11 +11,12 @@ When you **push to the `main` branch**, GitHub runs a workflow that builds the s
 1. Log in to **Hostinger** → **hPanel**.
 2. Go to **Files** → **FTP Accounts** (or **Advanced** → **FTP Accounts**).
 3. You’ll see:
-   - **FTP hostname** (e.g. `ftp.toolscout.tools` or `something.hostingersite.com`)
+   - **FTP hostname** or **FTP server** (e.g. `ftp.toolscout.tools` or a Hostinger hostname)
+   - **FTP IP address** (a number like `123.45.67.89`) ← **use this for FTP_SERVER if the hostname fails**
    - **Username** (e.g. `u595380008` or `u595380008@toolscout.tools`)
-   - **Password** (the one you set for this FTP account; if you forgot it, create a new FTP user and use that password)
+   - **Password** (the one you set for this FTP account)
 
-Write these down (or keep the tab open). You’ll add them as **GitHub secrets** in the next step.
+**Important:** If the GitHub Action fails with **“server doesn't seem to exist”** or **ENOTFOUND**, edit your **FTP_SERVER** secret and set it to your **FTP IP address** (the number shown in FTP Accounts). That avoids DNS and works from GitHub’s servers.
 
 ### 2. Add secrets to your GitHub repo
 
@@ -25,7 +26,7 @@ Write these down (or keep the tab open). You’ll add them as **GitHub secrets**
 
 | Name            | Value                          |
 |-----------------|---------------------------------|
-| `FTP_SERVER`    | Your FTP hostname (no ftp://)   |
+| `FTP_SERVER`    | FTP hostname **or** FTP IP address (no ftp://, no spaces) |
 | `FTP_USERNAME`  | Your FTP username               |
 | `FTP_PASSWORD`  | Your FTP password               |
 
@@ -58,6 +59,19 @@ By default the workflow uploads to **/public_html/**. If your site is in a diffe
    - to: `server-dir: ${{ secrets.FTP_SERVER_DIR }}`
 
 Then push. Most Hostinger accounts use **/public_html/** so you usually don’t need this.
+
+---
+
+## "The server doesn't seem to exist" / ENOTFOUND
+
+The workflow can’t resolve your **FTP_SERVER** hostname. Fix it:
+
+1. In **Hostinger** → **Files** → **FTP Accounts**, find the **FTP IP address** (a number like `123.45.67.89`).
+2. In **GitHub** → repo **Settings** → **Secrets and variables** → **Actions**, click **FTP_SERVER** → **Update**.
+3. Set the value to **that IP address** (nothing else, no `ftp://`, no port).
+4. Save, then go to **Actions** → open the failed run → **Re-run all jobs**.
+
+If it still fails, your host may allow only **SFTP** (not FTP). In that case we’d switch the workflow to an SFTP/SSH deploy; say so and we’ll add it.
 
 ---
 
