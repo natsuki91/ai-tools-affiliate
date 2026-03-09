@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { CookieConsentBanner } from "@/components/layout/CookieConsentBanner";
+import { ExitIntentNewsletter } from "@/components/layout/ExitIntentNewsletter";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
 
@@ -42,6 +43,10 @@ export default function RootLayout({
         }} />
         {/* eslint-disable-next-line @next/next/no-css-tags */}
         <link href="/styles.css" rel="stylesheet" />
+        <meta
+          name="impact-site-verification"
+          value="04b0b023-76d6-42de-af69-43f4cfd0aeba"
+        />
         {/* GA4 loads only after cookie consent (see CookieConsentBanner) */}
       </head>
       <body className="min-h-screen flex flex-col bg-background text-text-primary antialiased" style={{ fontFamily: "system-ui, sans-serif" }}>
@@ -49,6 +54,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <CookieConsentBanner />
+        <ExitIntentNewsletter />
       </body>
     </html>
   );
