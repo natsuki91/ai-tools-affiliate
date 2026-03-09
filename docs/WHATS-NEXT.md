@@ -62,9 +62,10 @@ See traffic and behavior.
 
 - **Search bar** on homepage — search tools, comparisons, blog (e.g. Algolia or client-side over static data).
 - **“Recently Added” tools** — section on AI Tools homepage showing 3–4 newest tools with a “NEW” badge.
-- **More tools** — expand further in mock data or Supabase. _(18 AI tools + 4 hosting now; e.g. Canva, Descript, Loom)_
+- **More tools** — expand further in mock data or Supabase. _(24+ AI tools + 6 hosting + VPN tools now; e.g. Canva, Descript, Loom, NordVPN, NordPass)_
 - **“Alternatives to X” pages** — e.g. `/ai-tools/alternatives/chatgpt` for SEO. ✓ (in place)
 - **Exit-intent popup** — newsletter signup when user moves to close tab (once per session).
 - **Cookie “Manage preferences”** — optional third button for granular consent. ✓ (Analytics On/Off + Save)
 - **SEO** — JSON-LD on tool/compare pages, `og:image` per page. ✓ Default **public/og-default.png** (1200×630) added; layout and buildSEOMeta use it.
 - **Newsletter on static host** — ✓ Form supports **NEXT_PUBLIC_NEWSLETTER_FORM_ACTION** (Mailchimp/ConvertKit signup URL); when set, form posts there instead of `/api/newsletter`.
+- **VPN & password manager affiliates** — ✓ NordVPN + NordPass wired via `lib/affiliate.ts`; tools added for future VPN niche.
