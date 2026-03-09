@@ -45,7 +45,7 @@ export default function RootLayout({
         <link href="/styles.css" rel="stylesheet" />
         <meta
           name="impact-site-verification"
-          value="04b0b023-76d6-42de-af69-43f4cfd0aeba"
+          content="04b0b023-76d6-42de-af69-43f4cfd0aeba"
         />
         {/* GA4 loads only after cookie consent (see CookieConsentBanner) */}
       </head>
