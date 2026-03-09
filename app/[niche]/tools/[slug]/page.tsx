@@ -159,9 +159,17 @@ export default async function NicheToolSlugPage({ params }: PageProps) {
               <AffiliateButton toolName={tool.name} affiliateUrl={tool.affiliate_url} />
             </div>
           </div>
-
-          <h2 className="mt-8 text-xl font-semibold text-text-primary">What is {tool.name}?</h2>
-          <p className="mt-2 text-text-secondary">{tool.description ?? tool.tagline ?? "—"}</p>
+          
+          {tool.review_content ? (
+            <section className="mt-8 prose prose-invert max-w-none text-text-secondary">
+              <div dangerouslySetInnerHTML={{ __html: tool.review_content }} />
+            </section>
+          ) : (
+            <>
+              <h2 className="mt-8 text-xl font-semibold text-text-primary">What is {tool.name}?</h2>
+              <p className="mt-2 text-text-secondary">{tool.description ?? tool.tagline ?? "—"}</p>
+            </>
+          )}
 
           <h2 className="mt-8 text-xl font-semibold text-text-primary">Pros & Cons</h2>
           <div className="mt-4 grid gap-6 sm:grid-cols-2">

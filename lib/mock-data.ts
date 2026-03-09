@@ -28,6 +28,31 @@ export const mockTools: Tool[] = [
     best_for: ["General writing", "Research", "Coding help"],
     created_at: "2026-02-15T12:00:00.000Z",
     updated_at: "2026-02-15T12:00:00.000Z",
+    review_content: `<h2>What Is ChatGPT?</h2>
+<p>ChatGPT is OpenAI's flagship conversational AI. It can write, summarize, brainstorm, code, explain concepts, and act as a general-purpose assistant in a chat interface. Millions of people use it every day for everything from emails and homework to prototyping apps.</p>
+<p>On ToolScout we treat ChatGPT as the default reference point for general AI assistants: if you only try one AI tool, it should probably be this one.</p>
+
+<h2>Key Features</h2>
+<ul>
+  <li><strong>Conversational interface</strong> — talk to it like a person and refine answers step by step.</li>
+  <li><strong>Multiple models</strong> — free tier plus paid models with better reasoning and tools.</li>
+  <li><strong>Code assistance</strong> — generate functions, fix bugs, and explain unfamiliar code.</li>
+  <li><strong>File and image handling</strong> — upload files or images and ask questions about them.</li>
+  <li><strong>Plugins / tools</strong> — when enabled, can browse the web, run code, or call external tools.</li>
+</ul>
+
+<h2>ChatGPT Pricing 2026</h2>
+<p>ChatGPT has a generous free tier for casual use, plus a paid plan around $20/month that unlocks better models, higher limits, and advanced features. For heavy daily use, the paid plan is worth it; for light use, the free version is usually enough.</p>
+
+<h2>Our Experience &amp; Who It's Best For</h2>
+<p>We use ChatGPT for quick drafts, research, and coding help. It’s extremely good at "first drafts" of anything, and with a bit of editing you can get production-quality work. It’s less ideal when you need strict factual accuracy without checking sources.</p>
+<p>ChatGPT is best for people who want one AI that can do a bit of everything: writers, students, founders, and developers.</p>
+
+<h2>ChatGPT vs Alternatives</h2>
+<p>Compared to Claude, ChatGPT has a bigger ecosystem and more integrations, while Claude often feels better for long, nuanced writing. Gemini integrates deeply with the Google ecosystem and is strong on web search and live data.</p>
+
+<h2>Our Verdict</h2>
+<p>ChatGPT is still the general-purpose AI assistant to beat. If you’re only going to pay for one AI tool, it’s a safe first choice — but power users should also compare it with Claude and Gemini to see which feels best for their workflow.</p>`,
   },
   {
     id: "2",
@@ -51,6 +76,28 @@ export const mockTools: Tool[] = [
     best_for: ["Long-form content", "Analysis", "Editing"],
     created_at: "2026-02-15T12:00:00.000Z",
     updated_at: "2026-02-15T12:00:00.000Z",
+    review_content: `<h2>What Is Claude?</h2>
+<p>Claude is Anthropic's conversational AI, designed to be helpful, harmless, and honest. It excels at long-form writing, careful reasoning, and handling very large contexts like full documents or long chat histories.</p>
+
+<h2>Key Features</h2>
+<ul>
+  <li><strong>Very long context window</strong> — great for books, reports, and big codebases.</li>
+  <li><strong>Nuanced writing</strong> — strong at thoughtful essays, analyses, and editing.</li>
+  <li><strong>Safety focus</strong> — Anthropic puts a lot of emphasis on responsible behavior.</li>
+  <li><strong>Document uploads</strong> — drop in long PDFs and ask detailed questions.</li>
+</ul>
+
+<h2>Claude Pricing 2026</h2>
+<p>Claude has a free tier for light usage and paid plans for heavier users and API access. Pricing is broadly similar to ChatGPT's paid offerings and competitive given its long-context capabilities.</p>
+
+<h2>Our Experience &amp; Who It's Best For</h2>
+<p>We like Claude for long-form content, deep analysis, and careful editing. If you write articles, reports, or want a "thinking partner" for complex topics, Claude often feels more natural than ChatGPT.</p>
+
+<h2>Claude vs ChatGPT vs Gemini</h2>
+<p>ChatGPT is still the best all-rounder; Claude wins on long, careful writing and analysis; Gemini is strongest when you live inside Google’s ecosystem and care a lot about live, search-like answers.</p>
+
+<h2>Our Verdict</h2>
+<p>If you write a lot of long-form content or want an AI that "thinks slowly and carefully", Claude is an excellent choice and a strong complement to ChatGPT.</p>`,
   },
   {
     id: "3",
@@ -74,6 +121,28 @@ export const mockTools: Tool[] = [
     best_for: ["Marketing teams", "Ads", "Blogs"],
     created_at: "2026-02-15T12:00:00.000Z",
     updated_at: "2026-02-15T12:00:00.000Z",
+    review_content: `<h2>What Is Jasper?</h2>
+<p>Jasper is an AI writing platform built specifically for marketers and content teams. Instead of being a general-purpose chat bot, Jasper focuses on structured workflows for ads, emails, blog posts, and brand content.</p>
+
+<h2>Key Features</h2>
+<ul>
+  <li><strong>Templates for marketing copy</strong> — dozens of flows for ads, product pages, emails, and more.</li>
+  <li><strong>Brand voice</strong> — train Jasper on your brand guidelines so copy stays consistent.</li>
+  <li><strong>Team collaboration</strong> — multi-user workspaces, comments, and approvals.</li>
+  <li><strong>Integrations</strong> — hooks into CMS, social tools, and other marketing platforms.</li>
+</ul>
+
+<h2>Jasper Pricing 2026</h2>
+<p>Jasper is a premium tool: pricing starts higher than generic AI chat apps, but you’re paying for workflows, collaboration, and brand tooling rather than raw tokens.</p>
+
+<h2>Our Experience &amp; Who It's Best For</h2>
+<p>For solo creators, Jasper may feel expensive compared to ChatGPT or Copy.ai. For marketing teams that need consistent, on-brand content at scale, Jasper makes more sense and can replace a lot of manual templating work.</p>
+
+<h2>Jasper vs Copy.ai vs Writesonic</h2>
+<p>Copy.ai is stronger on a generous free tier and quick short-form copy. Writesonic is great for SEO and blog workflows. Jasper is best when you care about brand voice, team features, and managing lots of campaigns.</p>
+
+<h2>Our Verdict</h2>
+<p>Jasper is a strong choice for serious marketing teams, but overkill for casual users. If you run campaigns at scale and want AI tightly aligned with your brand, it’s worth a look.</p>`,
   },
   {
     id: "4",
@@ -97,6 +166,27 @@ export const mockTools: Tool[] = [
     best_for: ["Ads", "Social", "Product copy"],
     created_at: "2026-02-15T12:00:00.000Z",
     updated_at: "2026-02-15T12:00:00.000Z",
+    review_content: `<h2>What Is Copy.ai?</h2>
+<p>Copy.ai is an AI tool focused on fast short-form copy: ads, social captions, product descriptions, and quick ideas. It shines when you need lots of small pieces of text rather than long articles.</p>
+
+<h2>Key Features</h2>
+<ul>
+  <li><strong>Short-form templates</strong> — ad hooks, product descriptions, social posts, and more.</li>
+  <li><strong>Generous free tier</strong> — one of the best free plans among marketing-focused AI tools.</li>
+  <li><strong>Fast generation</strong> — spin up multiple variations quickly to test angles.</li>
+</ul>
+
+<h2>Copy.ai Pricing 2026</h2>
+<p>Copy.ai offers a free tier suitable for light use, with paid plans unlocking higher limits and team features. Pricing is competitive compared to Jasper and Writesonic.</p>
+
+<h2>Our Experience &amp; Who It's Best For</h2>
+<p>If you mostly write ad copy, social posts, or ecommerce snippets, Copy.ai is a great starting point — especially on the free plan. For long-form content, it’s weaker than Jasper or a general assistant like ChatGPT.</p>
+
+<h2>Copy.ai vs Jasper vs Writesonic</h2>
+<p>Copy.ai wins on free tier and speed. Jasper wins on brand voice and team workflows. Writesonic is strong for long-form SEO content and blogs.</p>
+
+<h2>Our Verdict</h2>
+<p>Copy.ai is an excellent "quick copy" tool, particularly if you want to stay on a free or low-cost plan. For full content strategies, you’ll likely pair it with a more flexible assistant.</p>`,
   },
   {
     id: "5",
@@ -120,6 +210,27 @@ export const mockTools: Tool[] = [
     best_for: ["Bloggers", "SEO content", "Landing pages"],
     created_at: "2026-02-15T12:00:00.000Z",
     updated_at: "2026-02-15T12:00:00.000Z",
+    review_content: `<h2>What Is Writesonic?</h2>
+<p>Writesonic is an AI writing platform with a strong focus on SEO content and blogs. It bundles tools for long-form articles, landing pages, and WordPress publishing into one interface.</p>
+
+<h2>Key Features</h2>
+<ul>
+  <li><strong>SEO article workflows</strong> — outlines, drafts, and optimization suggestions.</li>
+  <li><strong>WordPress integration</strong> — publish drafts straight to your blog.</li>
+  <li><strong>Chatsonic</strong> — a chat-style assistant tuned for content tasks.</li>
+</ul>
+
+<h2>Writesonic Pricing 2026</h2>
+<p>Writesonic has a freemium model with limited credits, plus paid tiers for serious blogging teams. Pricing is mid-range among AI writing tools.</p>
+
+<h2>Our Experience &amp; Who It's Best For</h2>
+<p>We see Writesonic as a good fit for bloggers and small content teams that care specifically about SEO and WordPress, rather than general chat use.</p>
+
+<h2>Writesonic vs Jasper vs Copy.ai</h2>
+<p>Writesonic is stronger on long-form SEO posts; Jasper is stronger on brand and multi-channel campaigns; Copy.ai is better for fast short-form copy and free usage.</p>
+
+<h2>Our Verdict</h2>
+<p>If SEO content and blogs are your main focus, Writesonic is worth trying alongside Jasper to see which workflow you prefer.</p>`,
   },
   {
     id: "6",
@@ -143,6 +254,27 @@ export const mockTools: Tool[] = [
     best_for: ["Emails", "Reports", "Clarity"],
     created_at: "2026-02-15T12:00:00.000Z",
     updated_at: "2026-02-15T12:00:00.000Z",
+    review_content: `<h2>What Is Grammarly?</h2>
+<p>Grammarly started as a grammar checker and has evolved into a full writing assistant. It lives in your browser, desktop apps, and mobile keyboard, helping with grammar, tone, clarity, and now AI rewriting.</p>
+
+<h2>Key Features</h2>
+<ul>
+  <li><strong>Real-time grammar and spelling</strong> — catches basic mistakes everywhere you type.</li>
+  <li><strong>Tone and clarity suggestions</strong> — makes writing sound more confident, friendly, or formal.</li>
+  <li><strong>AI rewrite</strong> — suggest alternative phrasings and rewrites for sentences and paragraphs.</li>
+</ul>
+
+<h2>Grammarly Pricing 2026</h2>
+<p>Grammarly has a solid free tier for basic checks. Premium plans unlock advanced style, tone, and AI features, making them more suitable for professionals.</p>
+
+<h2>Our Experience &amp; Who It's Best For</h2>
+<p>We recommend Grammarly for anyone who writes a lot in English: students, professionals, and non-native speakers. It’s less about generating new content and more about polishing what you already wrote.</p>
+
+<h2>Grammarly vs Wordtune vs ChatGPT</h2>
+<p>Grammarly is best as a always-on assistant across apps. Wordtune is very strong for rewriting specific sentences. ChatGPT can help with bigger rewrites but lives in its own interface.</p>
+
+<h2>Our Verdict</h2>
+<p>Grammarly remains the easiest way to immediately improve your day-to-day writing, especially if you don’t want to learn prompts or switch tools.</p>`,
   },
   {
     id: "7",
@@ -327,6 +459,30 @@ export const mockTools: Tool[] = [
     best_for: ["Developers", "Refactoring", "Learning"],
     created_at: "2026-03-06T14:00:00.000Z",
     updated_at: "2026-03-06T14:00:00.000Z",
+    review_content: `<h2>What Is Cursor?</h2>
+<p>Cursor is an AI-first code editor built on top of VS Code. Unlike GitHub Copilot, which runs as a plugin, Cursor is its own editor with AI woven into navigation, editing, and refactoring.</p>
+<p>We use Cursor ourselves to work on ToolScout.tools, so our opinion comes from real daily use rather than a quick demo.</p>
+
+<h2>Key Features</h2>
+<ul>
+  <li><strong>Codebase chat</strong> — ask questions like "How does authentication work?" and Cursor reads your files to answer.</li>
+  <li><strong>Multi-file edits</strong> — describe a change in plain language and let Cursor update multiple files at once.</li>
+  <li><strong>.cursorrules</strong> — define your stack, patterns, and style once; Cursor follows them in every suggestion.</li>
+  <li><strong>VS Code compatible</strong> — reuse your themes, keybindings, and most extensions.</li>
+</ul>
+
+<h2>Cursor Pricing 2026</h2>
+<p>Cursor has a free tier good enough for light use and evaluation. The Pro plan (around $20/month) unlocks higher limits and more powerful models. For active developers, the time saved usually justifies the cost quickly.</p>
+
+<h2>Our Experience &amp; Who It's Best For</h2>
+<p>Composer-style multi-file edits are the standout: building a new page or refactor is noticeably faster when you can describe it in English and let Cursor do the first pass.</p>
+<p>Cursor is best for full-time developers and solo founders with medium to large codebases; for occasional coding, plain GitHub Copilot inside VS Code may be enough.</p>
+
+<h2>Cursor vs GitHub Copilot</h2>
+<p>Copilot is excellent autocomplete inside your existing editor. Cursor goes further by understanding your project structure and managing broader edits. If you want an "AI partner" that can modify whole features, Cursor is the stronger choice.</p>
+
+<h2>Our Verdict</h2>
+<p>Cursor is currently our favorite AI coding environment. If you write a lot of code, it’s worth trying alongside Copilot to see which fits your workflow better.</p>`,
   },
   {
     id: "15",

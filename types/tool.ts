@@ -23,6 +23,8 @@ export interface Tool {
   best_for: string[];
   created_at: string;
   updated_at: string;
+  /** Optional long-form HTML review content for static reviews. */
+  review_content?: string | null;
   /** Niche slug this tool belongs to (e.g. "ai-tools", "web-hosting"). Omit = ai-tools. */
   niche?: string;
 }

@@ -45,6 +45,7 @@ function rowToTool(row: Database["public"]["Tables"]["tools"]["Row"]): Tool {
     best_for: Array.isArray(row.best_for) ? row.best_for : [],
     created_at: row.created_at,
     updated_at: row.updated_at,
+    review_content: (row as unknown as { review_content?: string | null }).review_content ?? null,
   };
 }
 
