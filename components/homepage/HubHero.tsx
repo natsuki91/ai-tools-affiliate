@@ -1,6 +1,12 @@
 import Link from "next/link";
+import { HeroSearch, type SearchItem } from "./HeroSearch";
 
-export function HubHero() {
+interface HubHeroProps {
+  /** Optional search items for the global search bar on the homepage */
+  searchItems?: SearchItem[];
+}
+
+export function HubHero({ searchItems }: HubHeroProps) {
   return (
     <section className="relative overflow-hidden border-b border-border bg-surface px-4 py-20 sm:py-28 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl text-center">
@@ -13,6 +19,11 @@ export function HubHero() {
           Honest comparisons, real reviews, and clear pricing. Pick a category below or dive into AI
           tools.
         </p>
+        {searchItems && searchItems.length > 0 && (
+          <div className="mt-8">
+            <HeroSearch searchItems={searchItems} />
+          </div>
+        )}
         <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
             href="/ai-tools"

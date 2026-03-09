@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { getComparisonBySlug } from "@/lib/data";
+import { getComparisonBySlug, getComparisons } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
 import { formatPrice } from "@/lib/utils";
@@ -57,6 +57,11 @@ export default async function NicheCompareSlugPage({ params }: PageProps) {
     ],
   };
 
+  const allNicheComparisons = await getComparisons(nicheSlug);
+  const related = allNicheComparisons.filter(
+    (c) => c.id !== comp.id && c.tool_a && c.tool_b && (c.tool_a.id === a.id || c.tool_a.id === b.id || c.tool_b.id === a.id || c.tool_b.id === b.id)
+  );
+
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
       <script
@@ -105,6 +110,12 @@ export default async function NicheCompareSlugPage({ params }: PageProps) {
         </table>
       </div>
 
+      {comp.content && (
+        <section className="prose prose-invert mt-10 max-w-none text-text-secondary">
+          <div dangerouslySetInnerHTML={{ __html: comp.content }} />
+        </section>
+      )}
+
       <div className="mt-10 grid gap-6 sm:grid-cols-2">
         <div className="rounded-2xl border border-border bg-card p-6">
           <h2 className="font-semibold text-text-primary">Who should choose {a.name}?</h2>
@@ -121,6 +132,34 @@ export default async function NicheCompareSlugPage({ params }: PageProps) {
           </div>
         </div>
       </div>
+
+      {related.length > 0 && (
+        <section className="mt-12 border-t border-border pt-10">
+          <h2 className="text-2xl font-bold text-text-primary">Related comparisons</h2>
+          <p className="mt-2 text-sm text-text-secondary">
+            More side-by-side breakdowns to help you choose the right tool.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            {related.slice(0, 4).map((rc) => (
+              <Link
+                key={rc.id}
+                href={`/${nicheSlug}/compare/${rc.slug}`}
+                className="group rounded-xl border border-border bg-card px-4 py-3 text-left transition hover:border-primary/40 hover:bg-card/80"
+              >
+                <div className="text-sm font-semibold text-text-primary group-hover:text-primary">
+                  {rc.title}
+                </div>
+                <div className="mt-1 text-xs text-text-secondary">
+                  {rc.meta_desc ??
+                    (rc.tool_a && rc.tool_b
+                      ? `Compare ${rc.tool_a.name} vs ${rc.tool_b.name}.`
+                      : "Side-by-side comparison.")}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <p className="mt-8 text-sm text-text-secondary">
         We may earn a commission when you sign up through our links.{" "}

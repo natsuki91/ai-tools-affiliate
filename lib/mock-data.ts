@@ -910,6 +910,212 @@ export const mockTools: Tool[] = [
     updated_at: "2026-03-07T14:00:00.000Z",
     niche: "web-hosting",
   },
+  // Additional AI tools from expansion prompt (not tied to comparisons yet)
+  {
+    id: "25",
+    name: "Rytr",
+    slug: "rytr",
+    tagline: "Affordable AI writing for everyone",
+    description:
+      "Rytr is one of the most affordable AI writing tools with a generous free plan. Great for short-form content, social media, and quick drafts.",
+    logo_url: null,
+    website_url: "https://rytr.me",
+    affiliate_url: null,
+    category: ["writing", "marketing"],
+    pricing_type: "freemium",
+    starting_price: 9,
+    rating: 8.0,
+    is_featured: false,
+    is_sponsored: false,
+    sponsored_tier: null,
+    features: {},
+    pros: [
+      "Very affordable with free plan",
+      "Dozens of writing templates",
+      "Supports many languages",
+      "Simple and easy to use",
+    ],
+    cons: [
+      "Output quality below ChatGPT and Claude",
+      "Limited customization",
+      "Not ideal for long-form content",
+    ],
+    best_for: ["Budget-conscious writers", "Social media managers", "Students", "Freelancers on a budget"],
+    created_at: "2026-03-09T10:00:00.000Z",
+    updated_at: "2026-03-09T10:00:00.000Z",
+  },
+  {
+    id: "26",
+    name: "Sudowrite",
+    slug: "sudowrite",
+    tagline: "AI writing tool for fiction",
+    description:
+      "Sudowrite is built specifically for fiction writers and novelists. It helps with brainstorming, character development, and expanding scenes.",
+    logo_url: null,
+    website_url: "https://www.sudowrite.com",
+    affiliate_url: null,
+    category: ["writing"],
+    pricing_type: "paid",
+    starting_price: 19,
+    rating: 8.2,
+    is_featured: false,
+    is_sponsored: false,
+    sponsored_tier: null,
+    features: {},
+    pros: ["Purpose-built for fiction", "Great for overcoming writer's block", "Story tools and brainstorming aids"],
+    cons: ["Not useful for business writing", "More expensive than general tools", "Learning curve for new users"],
+    best_for: ["Fiction writers", "Novelists", "Screenwriters", "Creative writing students"],
+    created_at: "2026-03-09T10:00:00.000Z",
+    updated_at: "2026-03-09T10:00:00.000Z",
+  },
+  {
+    id: "27",
+    name: "DALL-E 3",
+    slug: "dalle-3",
+    tagline: "OpenAI's powerful image generator",
+    description:
+      "DALL-E 3 is OpenAI's latest image model, integrated directly into ChatGPT. It follows detailed prompts accurately and is great for illustrations and concept art.",
+    logo_url: null,
+    website_url: "https://openai.com/dall-e-3",
+    affiliate_url: null,
+    category: ["image"],
+    pricing_type: "paid",
+    starting_price: 20,
+    rating: 8.6,
+    is_featured: false,
+    is_sponsored: false,
+    sponsored_tier: null,
+    features: {},
+    pros: ["Excellent prompt following", "Integrated into ChatGPT Plus", "Consistent results"],
+    cons: ["Requires ChatGPT Plus subscription", "Conservative content filters"],
+    best_for: ["Bloggers", "Illustrators", "Business users needing concept visuals"],
+    created_at: "2026-03-09T10:00:00.000Z",
+    updated_at: "2026-03-09T10:00:00.000Z",
+  },
+  {
+    id: "28",
+    name: "Runway",
+    slug: "runway",
+    tagline: "Professional AI video generation and editing",
+    description:
+      "Runway is a leading AI video platform for creators and filmmakers. Generate, edit, and transform video clips from text prompts.",
+    logo_url: null,
+    website_url: "https://runwayml.com",
+    affiliate_url: null,
+    category: ["video"],
+    pricing_type: "freemium",
+    starting_price: 15,
+    rating: 9.0,
+    is_featured: true,
+    is_sponsored: false,
+    sponsored_tier: null,
+    features: {},
+    pros: [
+      "High-quality AI video",
+      "Text-to-video and video-to-video tools",
+      "Popular with professional creators",
+    ],
+    cons: ["Free plan is limited", "Video generation can be slow", "Shorter clips on lower tiers"],
+    best_for: ["Professional video editors", "Content creators", "Marketing teams needing video"],
+    created_at: "2026-03-09T10:00:00.000Z",
+    updated_at: "2026-03-09T10:00:00.000Z",
+  },
+  {
+    id: "29",
+    name: "Synthesia",
+    slug: "synthesia",
+    tagline: "Create AI avatar videos without a camera",
+    description:
+      "Synthesia lets you create talking-head videos using AI avatars. Type a script and generate training, onboarding, or marketing videos in minutes.",
+    logo_url: null,
+    website_url: "https://www.synthesia.io",
+    affiliate_url: null,
+    category: ["video"],
+    pricing_type: "paid",
+    starting_price: 29,
+    rating: 8.8,
+    is_featured: false,
+    is_sponsored: false,
+    sponsored_tier: null,
+    features: {},
+    pros: ["No camera or studio needed", "Many avatars and languages", "Great for training videos"],
+    cons: ["Avatars can look slightly unnatural", "Limited creative flexibility vs real video"],
+    best_for: ["Training teams", "eLearning creators", "HR and onboarding content"],
+    created_at: "2026-03-09T10:00:00.000Z",
+    updated_at: "2026-03-09T10:00:00.000Z",
+  },
+  {
+    id: "30",
+    name: "HeyGen",
+    slug: "heygen",
+    tagline: "AI video with realistic talking avatars",
+    description:
+      "HeyGen generates realistic AI avatar videos with natural lip sync and voice cloning, ideal for marketing, product demos, and multilingual content.",
+    logo_url: null,
+    website_url: "https://www.heygen.com",
+    affiliate_url: null,
+    category: ["video"],
+    pricing_type: "freemium",
+    starting_price: 29,
+    rating: 8.6,
+    is_featured: false,
+    is_sponsored: false,
+    sponsored_tier: null,
+    features: {},
+    pros: ["Realistic avatars and lip sync", "Video translation with lip sync", "Easy to use"],
+    cons: ["Credits system can be confusing", "Expensive for high volume"],
+    best_for: ["Marketing teams", "Creators needing multilingual content", "Product demo videos"],
+    created_at: "2026-03-09T10:00:00.000Z",
+    updated_at: "2026-03-09T10:00:00.000Z",
+  },
+  {
+    id: "31",
+    name: "Replit AI",
+    slug: "replit-ai",
+    tagline: "AI coding in the browser — no setup",
+    description:
+      "Replit is a browser-based coding environment with AI built in. Start coding instantly without installs — great for beginners and quick prototypes.",
+    logo_url: null,
+    website_url: "https://replit.com",
+    affiliate_url: null,
+    category: ["coding", "productivity"],
+    pricing_type: "freemium",
+    starting_price: 7,
+    rating: 8.0,
+    is_featured: false,
+    is_sponsored: false,
+    sponsored_tier: null,
+    features: {},
+    pros: ["Zero setup coding in the browser", "AI that can scaffold whole apps", "Free tier available"],
+    cons: ["Less suited to complex production apps", "Performance limits vs local dev"],
+    best_for: ["Beginners learning to code", "Students", "Quick prototyping and demos"],
+    created_at: "2026-03-09T10:00:00.000Z",
+    updated_at: "2026-03-09T10:00:00.000Z",
+  },
+  {
+    id: "32",
+    name: "Zapier AI",
+    slug: "zapier-ai",
+    tagline: "AI-powered automation for non-developers",
+    description:
+      "Zapier connects thousands of apps and automates workflows without code. Its AI features help you describe automations in plain English.",
+    logo_url: null,
+    website_url: "https://zapier.com",
+    affiliate_url: null,
+    category: ["productivity"],
+    pricing_type: "freemium",
+    starting_price: 20,
+    rating: 8.8,
+    is_featured: false,
+    is_sponsored: false,
+    sponsored_tier: null,
+    features: {},
+    pros: ["Connects thousands of apps", "AI can build workflows from natural language", "No coding required"],
+    cons: ["Can get expensive at scale", "Complex workflows have a learning curve"],
+    best_for: ["Small business owners", "Marketing teams", "Operations and ops-minded founders"],
+    created_at: "2026-03-09T10:00:00.000Z",
+    updated_at: "2026-03-09T10:00:00.000Z",
+  },
 ];
 
 export const mockComparisons: Comparison[] = [
@@ -920,8 +1126,42 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "2",
     title: "ChatGPT vs Claude: Which Is Better in 2026?",
     meta_desc: "Side-by-side comparison of ChatGPT and Claude. Pricing, features, and who each is best for.",
-    verdict: "ChatGPT leads on ecosystem; Claude leads on long-form nuance.",
-    content: null,
+    verdict:
+      "Claude is better for long documents and nuanced writing. ChatGPT is better for general tasks, plugins, and image generation. Both are excellent — your choice depends on your primary use case.",
+    content: `<h2>ChatGPT Overview</h2>
+<p>ChatGPT by OpenAI is the world's most popular AI assistant with millions of users. It excels at general conversation, coding, creative writing, and now includes models with vision and image generation. The plugin and integration ecosystem is larger than any competitor.</p>
+
+<h2>Claude Overview</h2>
+<p>Claude by Anthropic is designed with safety and nuance in mind. It has one of the largest context windows available, making it ideal for analyzing long documents, codebases, and complex research tasks. Many writers prefer Claude's tone and style for long-form content.</p>
+
+<h2>Writing Quality</h2>
+<p>For pure writing quality, Claude often edges ahead. Its outputs feel more natural, less formulaic, and show strong understanding of tone and nuance, especially on longer pieces. ChatGPT is still excellent, particularly for shorter or more structured content.</p>
+<p><strong>Winner: Claude</strong></p>
+
+<h2>Coding Ability</h2>
+<p>Both ChatGPT and Claude are very capable coding assistants. ChatGPT is slightly stronger on algorithmic problems and quick code snippets, while Claude shines when working with large existing codebases thanks to its huge context window.</p>
+<p><strong>Winner: Tie</strong></p>
+
+<h2>Pricing Comparison</h2>
+<p>Both offer free tiers and paid subscriptions around $20/month. The value is similar: you should choose based on which assistant you prefer using rather than price alone.</p>
+<p><strong>Winner: Tie</strong></p>
+
+<h2>Who Should Choose ChatGPT?</h2>
+<ul>
+  <li>Users who need image generation and plugins</li>
+  <li>Developers using the OpenAI API ecosystem</li>
+  <li>People who want the most widely supported AI assistant</li>
+</ul>
+
+<h2>Who Should Choose Claude?</h2>
+<ul>
+  <li>Writers working with long documents</li>
+  <li>Researchers and analysts working with complex materials</li>
+  <li>Users who prioritize safety and nuanced outputs</li>
+</ul>
+
+<h2>Our Final Verdict</h2>
+<p>Both ChatGPT and Claude are top-tier AI assistants. If you need plugins, images, or maximum compatibility, start with ChatGPT. If you care most about long-form writing and deep analysis, Claude is the better fit — and many serious users simply use both.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -935,8 +1175,36 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "3",
     title: "ChatGPT vs Jasper: Which Is Better for Marketing?",
     meta_desc: "Compare ChatGPT and Jasper for marketing copy, ads, and brand content.",
-    verdict: "Jasper for marketing workflows; ChatGPT for versatility.",
-    content: null,
+    verdict:
+      "ChatGPT is the better general-purpose AI. Jasper is the better choice for marketing teams who need brand consistency, templates, and collaboration.",
+    content: `<h2>The Key Difference</h2>
+<p>ChatGPT is a general-purpose AI assistant. Jasper is a purpose-built marketing content platform. That core difference shapes everything — from pricing to features to who each tool is designed for.</p>
+
+<h2>ChatGPT for Marketing</h2>
+<p>ChatGPT can absolutely write strong marketing copy at a much lower price point. At around $20/month, it's significantly cheaper than Jasper and can handle many marketing tasks if you're comfortable building your own prompts and workflows.</p>
+
+<h2>Jasper for Marketing</h2>
+<p>Jasper is built from the ground up for marketing teams. It offers dozens of templates, brand voice training, campaigns for multi-channel content, and collaboration features. It costs more, but you get a full marketing content workflow rather than a generic chat interface.</p>
+
+<h2>Pricing Reality</h2>
+<p>ChatGPT Plus is around $20/month per user. Jasper Creator starts around $49/month, with higher tiers for teams. For a solo marketer, ChatGPT is usually better value. For a team of several marketers, Jasper's collaboration and brand tools start to pay off.</p>
+
+<h2>Who Should Choose ChatGPT?</h2>
+<ul>
+  <li>Solo marketers and freelancers</li>
+  <li>Users who need more than just marketing content</li>
+  <li>Budget-conscious users</li>
+</ul>
+
+<h2>Who Should Choose Jasper?</h2>
+<ul>
+  <li>Marketing teams of 3+ people</li>
+  <li>Brands that need strict, consistent brand voice</li>
+  <li>Agencies managing multiple client brands</li>
+</ul>
+
+<h2>Our Verdict</h2>
+<p>For most users, ChatGPT wins on value and flexibility. Jasper justifies its higher price for teams who live and breathe marketing content and want workflows purpose-built for that job.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -950,8 +1218,33 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "2",
     title: "Best AI Writing Tools for 2026",
     meta_desc: "Top AI writing tools compared: ChatGPT, Claude, Jasper, and more.",
-    verdict: "Depends on use case: writing, marketing, or coding.",
-    content: null,
+    verdict:
+      "There is no single 'best' AI writing tool — ChatGPT, Claude, Grammarly, Jasper, and Writesonic each win for different use cases.",
+    content: `<h2>The Best AI Writing Tools in 2026</h2>
+<p>We tested 15+ AI writing tools to find the best options for bloggers, marketers, and content creators in 2026. Here are our top picks and what each is best at.</p>
+
+<h2>#1 ChatGPT — Best Overall AI Writing Tool</h2>
+<p>Rating: 9.2/10 | Price: Free / $20/mo</p>
+<p>ChatGPT remains the most versatile AI writing tool. It can handle blog posts, emails, social content, and more, making it the default starting point for most people.</p>
+
+<h2>#2 Claude — Best for Long-Form Writing</h2>
+<p>Rating: 9.0/10 | Price: Free / $20/mo</p>
+<p>Claude produces the most natural, nuanced long-form writing in our tests. Its huge context window makes it excellent for reports, books, and complex research.</p>
+
+<h2>#3 Grammarly — Best Writing Assistant</h2>
+<p>Rating: 8.8/10 | Price: Free / $12/mo</p>
+<p>Grammarly is still the best choice when you want to improve writing you already have, rather than generate new content from scratch.</p>
+
+<h2>#4 Jasper — Best for Marketing Teams</h2>
+<p>Rating: 8.5/10 | Price: From $49/mo</p>
+<p>Jasper is ideal for marketing teams that need brand voice, templates, and collaboration features.</p>
+
+<h2>#5 Writesonic — Best for SEO Content</h2>
+<p>Rating: 8.0/10 | Price: Free / $19/mo</p>
+<p>Writesonic shines when you care most about SEO-optimized blog posts and WordPress publishing.</p>
+
+<h2>Our Verdict</h2>
+<p>There is no one-size-fits-all winner. ChatGPT is the best overall starting point; Claude is best for deep long-form work; Grammarly is best for editing; Jasper and Writesonic are best when you have specific marketing or SEO needs.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -965,8 +1258,25 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "3",
     title: "Claude vs Jasper: Which Is Better for Writing in 2026?",
     meta_desc: "Compare Claude and Jasper for long-form writing, marketing copy, and brand content.",
-    verdict: "Claude for nuanced long-form; Jasper for marketing workflows and templates.",
-    content: null,
+    verdict:
+      "Claude wins for general writing quality and flexibility. Jasper wins for structured marketing content and team features.",
+    content: `<h2>Claude vs Jasper: The Big Picture</h2>
+<p>Claude is a general-purpose AI assistant that excels at long-form writing and analysis. Jasper is a specialized marketing platform built around campaigns, templates, and brand voice.</p>
+
+<h2>Writing Quality</h2>
+<p>Claude generally produces more natural, nuanced prose across a wide range of topics. If you want the best raw writing quality, Claude is the stronger option.</p>
+
+<h2>Marketing Workflows</h2>
+<p>Jasper offers a complete marketing content workflow: templates, campaigns, brand voice training, and collaboration. If your primary goal is running content marketing at scale, Jasper is better suited.</p>
+
+<h2>Who Should Choose Claude?</h2>
+<p>Writers, researchers, and anyone who wants a flexible AI writer that can handle many different tasks beyond marketing.</p>
+
+<h2>Who Should Choose Jasper?</h2>
+<p>Marketing teams, agencies, and brands that live inside campaigns, calendars, and style guides.</p>
+
+<h2>Our Verdict</h2>
+<p>Choose Claude if you want the best all-around AI writer. Choose Jasper if you&apos;re a marketing team that needs a content engine rather than just an AI assistant.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -980,8 +1290,32 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "11",
     title: "ChatGPT vs Perplexity 2026: Which Is Better for Research?",
     meta_desc: "Compare ChatGPT and Perplexity for research, answers, and citations. Pricing and use cases.",
-    verdict: "Perplexity for cited, search-style answers; ChatGPT for open-ended chat and tasks.",
-    content: null,
+    verdict:
+      "Perplexity is better for fast, cited answers that feel like supercharged search. ChatGPT is better for open-ended tasks, writing, and projects.",
+    content: `<h2>ChatGPT vs Perplexity: The Core Difference</h2>
+<p>ChatGPT is a conversational AI assistant designed to help with a wide range of tasks: writing, coding, brainstorming, learning, and more. Perplexity is closer to an AI-powered search engine that specializes in fast, cited answers pulled from the web.</p>
+
+<h2>When Perplexity Wins</h2>
+<p>Perplexity shines when you want quick, up-to-date answers with sources. Its interface is built around search-style queries, suggested follow-ups, and inline citations you can click through.</p>
+<ul>
+  <li>Best for: research-style questions and fact-finding</li>
+  <li>Shows sources and links by default</li>
+  <li>Great for scanning multiple perspectives quickly</li>
+</ul>
+
+<h2>When ChatGPT Wins</h2>
+<p>ChatGPT is stronger when you want to go beyond quick facts into creation and collaboration: drafting articles, coding, brainstorming ideas, or step-by-step explanations.</p>
+<ul>
+  <li>Best for: writing, coding, and creative work</li>
+  <li>Feels more like a flexible assistant you can “work with”</li>
+  <li>Better for long, multi-step conversations and projects</li>
+</ul>
+
+<h2>Pricing and Value</h2>
+<p>Both offer free tiers and paid upgrades. Perplexity&apos;s Pro plan unlocks more powerful models and higher limits. ChatGPT Plus gives access to GPT-4-level models and additional features. The value depends on whether you primarily do research or broader work.</p>
+
+<h2>Our Verdict</h2>
+<p>If you want better search and research, start with Perplexity. If you want a general AI assistant to help with many different kinds of work, start with ChatGPT. Many users use both — Perplexity for research, ChatGPT for creation.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -995,8 +1329,30 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "14",
     title: "Cursor vs GitHub Copilot 2026: Which AI Code Editor?",
     meta_desc: "Compare Cursor and GitHub Copilot for AI-assisted coding. Pricing, features, and best use cases.",
-    verdict: "Cursor for full IDE control and chat; Copilot for lightweight in-editor completion.",
-    content: null,
+    verdict:
+      "Cursor is better if you want a full AI-first editor with chat, refactors, and workspace understanding. GitHub Copilot is better if you want lightweight inline completions inside your existing editor.",
+    content: `<h2>Cursor vs GitHub Copilot: What&apos;s the Difference?</h2>
+<p>GitHub Copilot started the AI coding assistant wave with smart inline completions inside your editor. Cursor goes further by building a full code editor around AI, with chat, file awareness, and refactors built in.</p>
+
+<h2>Where Cursor Wins</h2>
+<ul>
+  <li>Full AI chat panel with deep project context</li>
+  <li>Refactor tools that can update multiple files at once</li>
+  <li>Great for greenfield projects and exploring unfamiliar codebases</li>
+</ul>
+
+<h2>Where Copilot Wins</h2>
+<ul>
+  <li>Simple, lightweight inline suggestions inside VS Code, Neovim, and other editors</li>
+  <li>Feels very natural if you just want autocomplete on steroids</li>
+  <li>Backed by GitHub and tightly integrated with their ecosystem</li>
+</ul>
+
+<h2>Pricing and Ecosystem</h2>
+<p>Pricing is similar for individual plans. The deciding factor is workflow, not cost. If you already live inside VS Code and want minimal friction, Copilot is easier. If you&apos;re open to using a dedicated editor to get more out of AI, Cursor is compelling.</p>
+
+<h2>Our Verdict</h2>
+<p>Choose Cursor if you want AI to be central to how you write and refactor code. Choose Copilot if you want an invisible helper that makes your existing editor smarter without changing your habits.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -1010,8 +1366,27 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "11",
     title: "Claude vs Perplexity 2026: Which for Research and Writing?",
     meta_desc: "Compare Claude and Perplexity for research, long-form writing, and cited answers. Pricing and use cases.",
-    verdict: "Perplexity for search-style answers and citations; Claude for long-form writing and analysis.",
-    content: null,
+    verdict:
+      "Perplexity is best as an AI search engine; Claude is best as a long-form writing and analysis assistant.",
+    content: `<h2>Claude vs Perplexity: Two Very Different Tools</h2>
+<p>Claude is a general-purpose AI assistant built for long-form writing, analysis, and nuanced reasoning. Perplexity is an answer engine designed to give you fast, cited responses pulled directly from the live web.</p>
+
+<h2>Claude Strengths</h2>
+<ul>
+  <li>Exceptional at long-form writing and editing</li>
+  <li>Great for reading and summarizing long documents</li>
+  <li>Strong at thoughtful, multi-step reasoning</li>
+</ul>
+
+<h2>Perplexity Strengths</h2>
+<ul>
+  <li>Blazing-fast answers with citations</li>
+  <li>Better for news, trends, and live data</li>
+  <li>Feels like a smarter, more conversational search engine</li>
+</ul>
+
+<h2>Which Should You Choose?</h2>
+<p>If you mainly need research, Perplexity is hard to beat. If you want to draft essays, reports, or detailed analysis, Claude is the better fit. Many people use Perplexity to gather information and Claude to help turn that into polished writing.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -1025,8 +1400,22 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "wh2",
     title: "Hostinger vs Bluehost 2026: Which Web Host Is Better?",
     meta_desc: "Compare Hostinger and Bluehost for price, performance, and WordPress. Best for beginners and small sites.",
-    verdict: "Hostinger for lowest price and solid value; Bluehost for WordPress-first workflows and official recommendation.",
-    content: null,
+    verdict:
+      "Hostinger wins on price and solid performance for beginners. Bluehost is better if you want WordPress-first onboarding and the comfort of an officially recommended host.",
+    content: `<h2>Hostinger vs Bluehost: Quick Summary</h2>
+<p>Both Hostinger and Bluehost are popular shared hosting providers aimed at beginners and small businesses. Hostinger focuses on value and speed at low prices; Bluehost leans into its official WordPress.org recommendation and beginner-friendly setup.</p>
+
+<h2>Pricing</h2>
+<p>Hostinger usually comes out cheaper, especially on introductory offers. Bluehost is slightly more expensive and renewal prices can be higher on both. Always compare the 2–3 year total cost, not just the first month.</p>
+
+<h2>Performance</h2>
+<p>In many independent tests, Hostinger performs very well for the price, with solid uptime and load times. Bluehost is respectable but not usually the speed leader.</p>
+
+<h2>Ease of Use</h2>
+<p>Both offer one-click WordPress installs and simple dashboards. Bluehost uses cPanel; Hostinger uses its own custom hPanel, which many beginners find friendlier.</p>
+
+<h2>Our Verdict</h2>
+<p>If budget and performance matter most, choose Hostinger. If you want the comfort of a WordPress-recommended host and don&apos;t mind paying a bit more, choose Bluehost.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -1041,8 +1430,19 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "wh4",
     title: "SiteGround vs A2 Hosting 2026: Which Is Better?",
     meta_desc: "Compare SiteGround and A2 Hosting for support, speed, and value. Best for agencies vs developers.",
-    verdict: "SiteGround for premium support and staging; A2 for Turbo speed and developer-friendly options.",
-    content: null,
+    verdict:
+      "SiteGround is better for agencies and businesses that value premium support and managed features. A2 Hosting is better for developers who want raw speed and flexibility.",
+    content: `<h2>SiteGround vs A2 Hosting: Different Priorities</h2>
+<p>SiteGround markets itself as a premium managed host with strong support, staging, and security tools. A2 Hosting emphasizes speed and developer features like SSH access and optimized stacks.</p>
+
+<h2>Support and Features</h2>
+<p>SiteGround&apos;s support is consistently rated as one of the best in shared hosting, and its managed features (automatic updates, backups, staging) are great for agencies. A2 offers decent support but is more focused on giving technical users the tools they need.</p>
+
+<h2>Performance</h2>
+<p>Both can be very fast, but A2&apos;s Turbo plans are tuned for performance and are a good fit if you&apos;re comfortable tweaking settings. SiteGround has strong performance too, but at a higher price point.</p>
+
+<h2>Our Verdict</h2>
+<p>Choose SiteGround if you want a more “hands-off” managed experience and top-tier support. Choose A2 Hosting if you&apos;re a developer or power user who wants speed and control.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -1057,8 +1457,27 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "wh3",
     title: "Hostinger vs SiteGround 2026: Budget vs Premium Hosting",
     meta_desc: "Compare Hostinger and SiteGround: price, performance, and support. Best for starters vs growing sites.",
-    verdict: "Hostinger for lowest cost and good value; SiteGround for best support and managed features.",
-    content: null,
+    verdict:
+      "Hostinger is the better budget pick. SiteGround is the better choice if you want premium managed hosting and don&apos;t mind paying more.",
+    content: `<h2>Hostinger vs SiteGround: Budget vs Premium</h2>
+<p>Hostinger targets budget-conscious users who still care about performance. SiteGround positions itself as a premium managed hosting provider with excellent support and features.</p>
+
+<h2>Who Hostinger Is Best For</h2>
+<ul>
+  <li>Beginners launching their first sites</li>
+  <li>Bloggers and small businesses on a budget</li>
+  <li>Users who want good performance at a low price</li>
+</ul>
+
+<h2>Who SiteGround Is Best For</h2>
+<ul>
+  <li>Agencies managing multiple client sites</li>
+  <li>WooCommerce and higher-traffic WordPress sites</li>
+  <li>Users who value top-tier support and staging</li>
+</ul>
+
+<h2>Our Verdict</h2>
+<p>Pick Hostinger if you want the best value for a typical small site. Pick SiteGround if you&apos;re willing to pay more for support, tools, and peace of mind.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -1073,8 +1492,27 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "4",
     title: "Jasper vs Copy.ai 2026: Which Is Better for Marketing?",
     meta_desc: "Compare Jasper and Copy.ai for marketing copy, ads, and brand voice. Pricing and use cases.",
-    verdict: "Jasper for full brand voice and workflows; Copy.ai for speed and value on short-form.",
-    content: null,
+    verdict:
+      "Jasper is better for teams that need brand voice and structured workflows. Copy.ai is better for fast, affordable short-form content.",
+    content: `<h2>Jasper vs Copy.ai: Marketing Focus vs Speed</h2>
+<p>Jasper is a premium marketing content platform with brand voice, campaigns, and team features. Copy.ai is a more lightweight tool focused on generating short-form content quickly at a lower price.</p>
+
+<h2>When Jasper Wins</h2>
+<ul>
+  <li>You have a team that needs to collaborate on content</li>
+  <li>Brand voice consistency across channels is critical</li>
+  <li>You want structured campaigns and workflows</li>
+</ul>
+
+<h2>When Copy.ai Wins</h2>
+<ul>
+  <li>You mostly need ads, headlines, and social posts</li>
+  <li>You want a cheaper option than Jasper</li>
+  <li>You prefer a simple, fast interface</li>
+</ul>
+
+<h2>Our Verdict</h2>
+<p>Choose Jasper if you&apos;re building a serious content operation with multiple people and brands. Choose Copy.ai if you&apos;re a solo creator or small team focused on quick short-form content.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -1088,8 +1526,27 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "24",
     title: "Claude vs Gemini 2026: Which AI Is Better?",
     meta_desc: "Compare Claude and Gemini on writing, coding, reasoning, and pricing. Who should use which in 2026?",
-    verdict: "Claude for long-form writing and nuance; Gemini for Google ecosystem and free tier.",
-    content: null,
+    verdict:
+      "Claude is better for long-form writing and careful analysis. Gemini is better if you live in the Google ecosystem and care most about search and Workspace integration.",
+    content: `<h2>Claude vs Gemini: Two Modern AI Assistants</h2>
+<p>Claude focuses on safety, long context, and high-quality writing. Gemini (from Google) leans into tight integration with Search, Gmail, Docs, and the wider Google ecosystem.</p>
+
+<h2>Claude Strengths</h2>
+<ul>
+  <li>Excellent long-form writing and editing</li>
+  <li>Huge context window for big documents</li>
+  <li>Thoughtful, nuanced responses</li>
+</ul>
+
+<h2>Gemini Strengths</h2>
+<ul>
+  <li>Deep integration with Google Search and Workspace</li>
+  <li>Great for research tasks that blend AI with live web results</li>
+  <li>Attractive free tier for casual users</li>
+</ul>
+
+<h2>Our Verdict</h2>
+<p>Choose Claude if you write and analyze a lot of text. Choose Gemini if you spend most of your day in Google products and want AI woven into that environment.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -1103,8 +1560,27 @@ export const mockComparisons: Comparison[] = [
     tool_b_id: "21",
     title: "Midjourney vs Adobe Firefly 2026: Which AI Image Tool Wins?",
     meta_desc: "Compare Midjourney and Adobe Firefly on image quality, commercial use, and ease of use.",
-    verdict: "Midjourney for best image quality; Firefly for commercial safety and Adobe integration.",
-    content: null,
+    verdict:
+      "Midjourney still wins on raw image quality and artistic control. Adobe Firefly wins on commercially safe outputs and tight Adobe integration.",
+    content: `<h2>Midjourney vs Adobe Firefly: Which Image AI Should You Use?</h2>
+<p>Midjourney built its reputation on stunning, artistic images. Adobe Firefly is trained on licensed content and is designed for commercial use inside Creative Cloud.</p>
+
+<h2>When Midjourney Wins</h2>
+<ul>
+  <li>Best-in-class artistic and stylized images</li>
+  <li>Huge community and prompt inspiration</li>
+  <li>Great for concept art, posters, and creative exploration</li>
+</ul>
+
+<h2>When Firefly Wins</h2>
+<ul>
+  <li>You need commercially safe images with clear licensing</li>
+  <li>You work in Photoshop, Illustrator, or other Adobe apps</li>
+  <li>You want text effects and generative fill built into your existing workflow</li>
+</ul>
+
+<h2>Our Verdict</h2>
+<p>Pick Midjourney if you care most about the absolute best-looking images. Pick Firefly if you&apos;re a designer or marketer who needs safe, on-brand images inside Adobe&apos;s tools.</p>`,
     views: 0,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
