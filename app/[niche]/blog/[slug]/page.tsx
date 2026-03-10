@@ -78,6 +78,9 @@ export default async function NicheBlogSlugPage({ params }: PageProps) {
     body = null;
   }
   const bodySafe = typeof body === "string" ? body : "";
+  const relatedPosts = (Array.isArray(mockBlogPosts) ? mockBlogPosts : [])
+    .filter((p) => p.slug !== slug)
+    .slice(0, 4);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
   const articleUrl = `${siteUrl}/${nicheSlug}/blog/${slug}`;
   const jsonLd = {
@@ -129,6 +132,23 @@ export default async function NicheBlogSlugPage({ params }: PageProps) {
         )}
       </div>
       <footer className="mt-12 border-t border-border pt-8">
+        {relatedPosts.length > 0 && (
+          <section className="mb-10">
+            <h2 className="text-lg font-semibold text-text-primary">Related posts</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {relatedPosts.map((rp) => (
+                <Link
+                  key={rp.slug}
+                  href={`/${nicheSlug}/blog/${rp.slug}`}
+                  className="rounded-xl border border-border bg-card px-4 py-3 transition hover:border-primary/40"
+                >
+                  <div className="text-sm font-semibold text-text-primary">{rp.title}</div>
+                  {rp.description && <div className="mt-1 text-xs text-text-secondary">{rp.description}</div>}
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
         <p className="text-sm text-text-secondary">
           We may earn a commission when you sign up through our links.{" "}
           <Link href="/disclosure" className="underline hover:text-text-primary">Disclosure</Link>.

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { getToolBySlug } from "@/lib/data";
+import { getComparisons, getToolBySlug } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
 import { formatPrice } from "@/lib/utils";
@@ -30,6 +30,10 @@ export default async function ToolSlugPage({ params }: PageProps) {
   const { slug } = await params;
   const tool = await getToolBySlug(slug);
   if (!tool) notFound();
+  const comparisons = await getComparisons();
+  const relatedComparisons = comparisons
+    .filter((c) => c.tool_a_id === tool.id || c.tool_b_id === tool.id)
+    .slice(0, 4);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
   const jsonLd = {
@@ -120,6 +124,31 @@ export default async function ToolSlugPage({ params }: PageProps) {
             Starting at {formatPrice(tool.starting_price)}. Check the official site for current
             plans. [AFFILIATE: {tool.name}]
           </p>
+
+          {relatedComparisons.length > 0 && (
+            <section className="mt-10 border-t border-border pt-8">
+              <h2 className="text-xl font-semibold text-text-primary">
+                Comparisons featuring {tool.name}
+              </h2>
+              <p className="mt-2 text-sm text-text-secondary">
+                Side-by-side breakdowns to help you choose.
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {relatedComparisons.map((c) => (
+                  <Link
+                    key={c.id}
+                    href={`/compare/${c.slug}`}
+                    className="rounded-xl border border-border bg-card px-4 py-3 transition hover:border-primary/40"
+                  >
+                    <div className="text-sm font-semibold text-text-primary">{c.title}</div>
+                    {c.meta_desc && (
+                      <div className="mt-1 text-xs text-text-secondary">{c.meta_desc}</div>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
           <p className="mt-8 text-sm text-text-secondary">
             We may earn a commission when you sign up through our links.{" "}
