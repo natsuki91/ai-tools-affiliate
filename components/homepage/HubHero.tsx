@@ -12,12 +12,12 @@ export function HubHero({ searchItems }: HubHeroProps) {
       <div className="mx-auto max-w-4xl text-center">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
           <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
-            Find & Compare the Best Software Tools
+            Stop Testing Tools Blind. We&apos;ve Done the Homework.
           </span>
         </h1>
         <p className="mt-4 text-lg text-text-secondary sm:text-xl">
-          Honest comparisons, real reviews, and clear pricing. Pick a category below or dive into AI
-          tools.
+          Honest comparisons, real reviews, and clear pricing so you can pick the right AI tools,
+          hosting, and VPNs in minutes.
         </p>
         {searchItems && searchItems.length > 0 && (
           <div className="mt-8">
@@ -29,13 +29,13 @@ export function HubHero({ searchItems }: HubHeroProps) {
             href="/ai-tools"
             className="inline-flex rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-4 text-base font-semibold text-white shadow-lg transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
           >
-            AI Tools
+            See Top AI Tools for 2026
           </Link>
           <Link
             href="/ai-tools/compare"
             className="inline-flex rounded-full border-2 border-border bg-transparent px-8 py-4 text-base font-semibold text-text-primary transition hover:bg-card hover:border-primary/50"
           >
-            Compare Tools
+            Compare ChatGPT, Claude & More
           </Link>
         </div>
       </div>

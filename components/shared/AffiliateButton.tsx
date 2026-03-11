@@ -41,7 +41,7 @@ export function AffiliateButton({
     affiliateUrl && affiliateUrl !== "#"
       ? addUtmParams(affiliateUrl, toolName.toLowerCase().replace(/\s+/g, "-"))
       : getAffiliateUrl(toolName);
-  const text = label ?? `Try ${toolName} Free`;
+  const text = label ?? `Start ${toolName} in 30 Seconds`;
 
   return (
     <span className="inline-block">

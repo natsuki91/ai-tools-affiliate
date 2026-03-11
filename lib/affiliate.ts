@@ -56,6 +56,7 @@ const DEFAULT_AFFILIATE_URLS: Record<string, string> = {
   shopify: "https://shopify.pxf.io/n4LZn9",
   nordvpn: "https://go.nordvpn.net/aff_c?offer_id=15&aff_id=142693&url_id=902",
   nordpass: "https://go.nordpass.io/aff_c?offer_id=488&aff_id=142693&url_id=9356",
+  bluehost: "https://bluehost.sjv.io/c/7061463/1376228/11352",
 };
 
 function getEnvAffiliateUrl(slug: string): string | undefined {
