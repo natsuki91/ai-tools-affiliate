@@ -3,6 +3,7 @@ const nextConfig = {
   output: "export",
   // No assetPrefix: assets at /_next/ so FTP deploy has one less nested folder to upload
   images: {
+    unoptimized: true,
     remotePatterns: [
       { protocol: "https", hostname: "**" },
       { protocol: "http", hostname: "**" },
