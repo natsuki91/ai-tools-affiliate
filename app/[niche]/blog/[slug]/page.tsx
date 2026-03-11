@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import { mockBlogPosts } from "@/lib/mock-data";
+import { mockBlogPosts, mockTools } from "@/lib/mock-data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
+import { AffiliateButton } from "@/components/shared/AffiliateButton";
 import { getNicheBySlug } from "@/lib/niches";
 import { NicheComingSoon } from "@/components/niche/NicheComingSoon";
 import { nicheBlogSlugParams } from "@/lib/static-params";
@@ -93,6 +94,7 @@ export default async function NicheBlogSlugPage({ params }: PageProps) {
     datePublished: post.date,
     author: post.author ? { "@type": "Organization", name: post.author } : undefined,
   };
+  const recommendedTools = (Array.isArray(mockTools) ? mockTools : []).slice(0, 3);
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -138,6 +140,35 @@ export default async function NicheBlogSlugPage({ params }: PageProps) {
           {post.author && <span>{post.author}</span>}
         </div>
       </header>
+      {recommendedTools.length > 0 && (
+        <section className="mt-6 rounded-2xl border border-primary/30 bg-card/80 p-5">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+            Recommended tools for this guide
+          </h2>
+          <div className="mt-3 grid gap-4 sm:grid-cols-3">
+            {recommendedTools.map((tool) => (
+              <div key={tool.id} className="rounded-xl border border-border bg-surface/60 p-3">
+                <div className="text-sm font-semibold text-text-primary line-clamp-1">
+                  {tool.name}
+                </div>
+                {tool.tagline && (
+                  <p className="mt-1 text-xs text-text-secondary line-clamp-2">
+                    {tool.tagline}
+                  </p>
+                )}
+                <div className="mt-2">
+                  <AffiliateButton
+                    toolName={tool.name}
+                    affiliateUrl={tool.affiliate_url}
+                    size="sm"
+                    variant="secondary"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
       <div className="prose prose-invert mt-8 max-w-none prose-headings:text-text-primary prose-p:text-text-secondary prose-a:text-primary prose-li:text-text-secondary">
         {bodySafe ? (
           <ReactMarkdown

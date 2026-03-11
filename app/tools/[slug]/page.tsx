@@ -164,6 +164,18 @@ export default async function ToolSlugPage({ params }: PageProps) {
             plans. [AFFILIATE: {tool.name}]
           </p>
 
+          <section className="mt-8 rounded-2xl border border-primary/40 bg-card/80 p-6">
+            <h2 className="text-lg font-semibold text-text-primary">
+              Ready to try {tool.name}?
+            </h2>
+            <p className="mt-2 text-sm text-text-secondary">
+              Click below to get started with {tool.name} in under a minute using our curated link.
+            </p>
+            <div className="mt-4">
+              <AffiliateButton toolName={tool.name} affiliateUrl={tool.affiliate_url} />
+            </div>
+          </section>
+
           {relatedComparisons.length > 0 && (
             <section className="mt-10 border-t border-border pt-8">
               <h2 className="text-xl font-semibold text-text-primary">

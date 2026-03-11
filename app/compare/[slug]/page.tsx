@@ -35,6 +35,11 @@ export default async function CompareSlugPage({ params }: PageProps) {
   const a = comp.tool_a;
   const b = comp.tool_b;
 
+  const winner =
+    (a.rating ?? 0) >= (b.rating ?? 0)
+      ? a
+      : b;
+
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
   const pageUrl = `${siteUrl}/compare/${slug}`;
   const articleSchema = {
@@ -104,6 +109,20 @@ export default async function CompareSlugPage({ params }: PageProps) {
         <h2 className="text-lg font-semibold text-text-primary">Quick Verdict</h2>
         <p className="mt-2 text-text-secondary">{comp.verdict}</p>
       </div>
+
+      {winner && (
+        <section className="mt-6 rounded-2xl border border-primary/40 bg-card/80 p-6">
+          <h2 className="text-lg font-semibold text-text-primary">
+            Our pick: {winner.name}
+          </h2>
+          <p className="mt-2 text-sm text-text-secondary">
+            For most people, {winner.name} is the safer default choice based on our testing, pricing, and overall value.
+          </p>
+          <div className="mt-4">
+            <AffiliateButton toolName={winner.name} affiliateUrl={winner.affiliate_url} />
+          </div>
+        </section>
+      )}
 
       {/* Side-by-side table */}
       <div className="mt-10 overflow-x-auto">
