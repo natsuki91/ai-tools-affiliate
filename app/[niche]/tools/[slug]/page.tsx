@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getComparisons, getToolBySlug } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
+import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { formatPrice } from "@/lib/utils";
 import { getNicheBySlug } from "@/lib/niches";
 import { NicheComingSoon } from "@/components/niche/NicheComingSoon";
@@ -57,32 +58,45 @@ export default async function NicheToolSlugPage({ params }: PageProps) {
   const toolUrl = `${SITE_URL}/${nicheSlug}/tools/${slug}`;
 
   if (nicheSlug === "web-hosting" && slug === "hostinger") {
-    const jsonLd = {
+    const softwareApp = {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       name: "Hostinger",
       description: tool.description ?? tool.tagline ?? undefined,
       url: tool.website_url ?? toolUrl,
-      applicationCategory: "WebHosting",
+      applicationCategory: "WebApplication",
+      operatingSystem: "Web",
       offers: {
         "@type": "Offer",
         price: "2.99",
         priceCurrency: "USD",
-        priceValidUntil: "2026-12-31",
       },
-      aggregateRating: {
-        "@type": "AggregateRating",
+    };
+    const review = {
+      "@context": "https://schema.org",
+      "@type": "Review",
+      itemReviewed: softwareApp,
+      reviewRating: {
+        "@type": "Rating",
         ratingValue: "9.1",
         bestRating: "10",
-        ratingCount: "1",
       },
+      author: {
+        "@type": "Organization",
+        name: "ToolScout",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "ToolScout",
+        url: SITE_URL,
+      },
+      datePublished: tool.created_at,
+      description:
+        "We host ToolScout.tools on Hostinger. After real daily use, here's our honest verdict on speed, uptime, support, and value for 2026.",
     };
     return (
       <div className="min-h-screen">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <SchemaMarkup schema={[softwareApp, review]} />
         <nav className="border-b border-border bg-surface/50 px-4 py-3 sm:px-6 lg:px-8" aria-label="Breadcrumb">
           <ol className="mx-auto flex max-w-4xl flex-wrap items-center gap-2 text-sm text-text-secondary">
             <li>
@@ -105,13 +119,14 @@ export default async function NicheToolSlugPage({ params }: PageProps) {
     );
   }
 
-  const jsonLd = {
+  const softwareApp = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: tool.name,
     description: tool.description ?? tool.tagline ?? undefined,
     url: tool.website_url ?? toolUrl,
-    applicationCategory: "ProductivityApplication",
+    applicationCategory: "WebApplication",
+    operatingSystem: "Web",
     ...(tool.starting_price != null && {
       offers: {
         "@type": "Offer",
@@ -119,22 +134,64 @@ export default async function NicheToolSlugPage({ params }: PageProps) {
         priceCurrency: "USD",
       },
     }),
+  };
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: softwareApp,
     ...(tool.rating != null && {
-      aggregateRating: {
-        "@type": "AggregateRating",
+      reviewRating: {
+        "@type": "Rating",
         ratingValue: String(tool.rating),
         bestRating: "10",
-        ratingCount: "1",
       },
     }),
+    author: {
+      "@type": "Organization",
+      name: "ToolScout",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ToolScout",
+      url: SITE_URL,
+    },
+    datePublished: tool.created_at,
+    description: tool.tagline ?? tool.description ?? undefined,
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: niche.name,
+        item: `${SITE_URL}/${nicheSlug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Tools",
+        item: `${SITE_URL}/${nicheSlug}/tools`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: tool.name,
+        item: toolUrl,
+      },
+    ],
   };
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <SchemaMarkup schema={[softwareApp, reviewSchema, breadcrumbSchema]} />
       <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
         <div className="flex-1">
           <h1 className="text-3xl font-bold text-text-primary">{tool.name} Review</h1>

@@ -14,7 +14,20 @@ interface ToolCardProps {
   showNewBadge?: boolean;
 }
 
+function getFaviconUrl(websiteUrl: string | null | undefined): string | null {
+  if (!websiteUrl) return null;
+  try {
+    const u = new URL(websiteUrl);
+    const domain = u.hostname;
+    if (!domain) return null;
+    return `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+  } catch {
+    return null;
+  }
+}
+
 export function ToolCard({ tool, showCta = true, nicheSlug = ACTIVE_NICHE_SLUG, showNewBadge }: ToolCardProps) {
+  const faviconUrl = getFaviconUrl(tool.website_url);
   return (
     <article
       className={`rounded-2xl border bg-card p-6 backdrop-blur transition hover:border-primary/30 ${
@@ -23,13 +36,13 @@ export function ToolCard({ tool, showCta = true, nicheSlug = ACTIVE_NICHE_SLUG, 
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 flex-1">
-          {tool.logo_url ? (
+          {tool.logo_url || faviconUrl ? (
             <Image
-              src={tool.logo_url}
-              alt=""
+              src={tool.logo_url || faviconUrl!}
+              alt={`${tool.name} logo`}
               width={48}
               height={48}
-              className="rounded-xl object-contain"
+              className="h-12 w-12 shrink-0 rounded-xl object-contain bg-surface"
             />
           ) : (
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-surface text-xl font-bold text-primary">

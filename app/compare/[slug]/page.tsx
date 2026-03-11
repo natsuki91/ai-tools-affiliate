@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getComparisonBySlug } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
+import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { formatPrice } from "@/lib/utils";
 import { comparisonSlugParams } from "@/lib/static-params";
 import Link from "next/link";
@@ -35,25 +36,67 @@ export default async function CompareSlugPage({ params }: PageProps) {
   const b = comp.tool_b;
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
-  const jsonLd = {
+  const pageUrl = `${siteUrl}/compare/${slug}`;
+  const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: comp.title,
     description: comp.meta_desc ?? `${a.name} vs ${b.name} comparison.`,
-    url: `${siteUrl}/compare/${slug}`,
+    url: pageUrl,
     ...(comp.verdict && { articleBody: comp.verdict }),
     about: [
       { "@type": "SoftwareApplication", name: a.name, url: a.website_url ?? undefined },
       { "@type": "SoftwareApplication", name: b.name, url: b.website_url ?? undefined },
     ],
   };
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: comp.title,
+    description: comp.meta_desc ?? `${a.name} vs ${b.name} comparison.`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: a.name,
+        url: `${siteUrl}/ai-tools/tools/${a.slug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: b.name,
+        url: `${siteUrl}/ai-tools/tools/${b.slug}`,
+      },
+    ],
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Comparisons",
+        item: `${siteUrl}/compare`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: comp.title,
+        item: pageUrl,
+      },
+    ],
+  };
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <SchemaMarkup schema={[articleSchema, itemListSchema, breadcrumbSchema]} />
       <h1 className="text-3xl font-bold text-text-primary">{comp.title}</h1>
 
       {/* Quick Verdict */}

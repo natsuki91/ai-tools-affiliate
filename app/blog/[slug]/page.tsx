@@ -4,6 +4,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import { mockBlogPosts } from "@/lib/mock-data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
+import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { blogSlugParams } from "@/lib/static-params";
 import fs from "fs";
 import path from "path";
@@ -75,22 +76,44 @@ export default async function BlogSlugPage({ params }: PageProps) {
     .filter((p) => p.slug !== slug)
     .slice(0, 4);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
-  const jsonLd = {
+  const articleUrl = `${siteUrl}/blog/${slug}`;
+  const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.description ?? undefined,
-    url: `${siteUrl}/blog/${slug}`,
+    url: articleUrl,
     datePublished: post.date,
     author: post.author ? { "@type": "Organization", name: post.author } : undefined,
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${siteUrl}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: articleUrl,
+      },
+    ],
   };
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <SchemaMarkup schema={[articleSchema, breadcrumbSchema]} />
       <header>
         <h1 className="text-3xl font-bold text-text-primary">{post.title}</h1>
         {post.description && (

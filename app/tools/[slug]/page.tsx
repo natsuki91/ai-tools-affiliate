@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getComparisons, getToolBySlug } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
+import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { formatPrice } from "@/lib/utils";
 import { toolSlugParams } from "@/lib/static-params";
 
@@ -36,13 +37,15 @@ export default async function ToolSlugPage({ params }: PageProps) {
     .slice(0, 4);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
-  const jsonLd = {
+  const toolUrl = `${siteUrl}/tools/${slug}`;
+  const softwareApp = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: tool.name,
     description: tool.description ?? tool.tagline ?? undefined,
-    url: tool.website_url ?? `${siteUrl}/tools/${slug}`,
-    applicationCategory: "ProductivityApplication",
+    url: tool.website_url ?? toolUrl,
+    applicationCategory: "WebApplication",
+    operatingSystem: "Web",
     ...(tool.starting_price != null && {
       offers: {
         "@type": "Offer",
@@ -50,22 +53,58 @@ export default async function ToolSlugPage({ params }: PageProps) {
         priceCurrency: "USD",
       },
     }),
+  };
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: softwareApp,
     ...(tool.rating != null && {
-      aggregateRating: {
-        "@type": "AggregateRating",
+      reviewRating: {
+        "@type": "Rating",
         ratingValue: String(tool.rating),
         bestRating: "10",
-        ratingCount: "1",
       },
     }),
+    author: {
+      "@type": "Organization",
+      name: "ToolScout",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "ToolScout",
+      url: siteUrl,
+    },
+    datePublished: tool.created_at,
+    description: tool.tagline ?? tool.description ?? undefined,
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "AI Tools",
+        item: `${siteUrl}/ai-tools`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: tool.name,
+        item: toolUrl,
+      },
+    ],
   };
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <SchemaMarkup schema={[softwareApp, reviewSchema, breadcrumbSchema]} />
       <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
         <div className="flex-1">
           <h1 className="text-3xl font-bold text-text-primary">{tool.name} Review</h1>

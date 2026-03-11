@@ -3,11 +3,11 @@ export function StatsBar() {
     <section className="border-t border-border bg-surface px-4 py-6 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-wrap items-center justify-center gap-8 text-center text-sm text-text-secondary">
-          <span className="font-medium text-text-primary">25+ Tools Reviewed</span>
+          <span className="font-medium text-text-primary">Updated Weekly</span>
           <span>•</span>
-          <span>10+ Comparisons</span>
+          <span>Independently Reviewed</span>
           <span>•</span>
-          <span>Updated Weekly</span>
+          <span>Affiliate Disclosure</span>
         </div>
       </div>
     </section>

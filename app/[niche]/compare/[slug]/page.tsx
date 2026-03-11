@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getComparisonBySlug, getComparisons } from "@/lib/data";
 import { buildSEOMeta } from "@/components/shared/SEOMeta";
 import { AffiliateButton } from "@/components/shared/AffiliateButton";
+import { SchemaMarkup } from "@/components/shared/SchemaMarkup";
 import { formatPrice } from "@/lib/utils";
 import { getNicheBySlug } from "@/lib/niches";
 import Link from "next/link";
@@ -44,7 +45,7 @@ export default async function NicheCompareSlugPage({ params }: PageProps) {
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://toolscout.tools";
   const pageUrl = `${siteUrl}/${nicheSlug}/compare/${slug}`;
-  const jsonLd = {
+  const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: comp.title,
@@ -56,6 +57,56 @@ export default async function NicheCompareSlugPage({ params }: PageProps) {
       { "@type": "SoftwareApplication", name: b.name, url: b.website_url ?? undefined },
     ],
   };
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: comp.title,
+    description: comp.meta_desc ?? `${a.name} vs ${b.name} comparison.`,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: a.name,
+        url: `${siteUrl}/${nicheSlug}/tools/${a.slug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: b.name,
+        url: `${siteUrl}/${nicheSlug}/tools/${b.slug}`,
+      },
+    ],
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: niche.name,
+        item: `${siteUrl}/${nicheSlug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Comparisons",
+        item: `${siteUrl}/${nicheSlug}/compare`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: comp.title,
+        item: pageUrl,
+      },
+    ],
+  };
 
   const allNicheComparisons = await getComparisons(nicheSlug);
   const related = allNicheComparisons.filter(
@@ -64,10 +115,7 @@ export default async function NicheCompareSlugPage({ params }: PageProps) {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <SchemaMarkup schema={[articleSchema, itemListSchema, breadcrumbSchema]} />
       <h1 className="text-3xl font-bold text-text-primary">{comp.title}</h1>
 
       <div className="mt-6 rounded-2xl border border-border bg-card p-6">

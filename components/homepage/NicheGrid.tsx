@@ -11,39 +11,35 @@ const colorClasses: Record<string, string> = {
 };
 
 export function NicheGrid() {
+  const activeNiches = NICHES.filter((niche) => niche.active);
+
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <h2 className="text-2xl font-bold text-text-primary">Browse by category</h2>
         <p className="mt-1 text-text-secondary">Choose a niche to compare tools and read guides.</p>
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {NICHES.map((niche) => {
+          {activeNiches.map((niche) => {
             const colorClass = colorClasses[niche.color] ?? colorClasses.indigo;
             const content = (
-              <div
-                className={`relative rounded-xl border bg-gradient-to-br p-5 transition ${colorClass} ${niche.active ? "cursor-pointer hover:shadow-lg" : "cursor-default opacity-75"}`}
-              >
+              <div className={`relative rounded-xl border bg-gradient-to-br p-5 transition ${colorClass} cursor-pointer hover:shadow-lg`}>
                 <span className="text-2xl" aria-hidden>
                   {niche.icon}
                 </span>
                 <h3 className="mt-2 font-semibold text-text-primary">{niche.name}</h3>
                 <p className="mt-1 text-sm text-text-secondary">{niche.tagline}</p>
-                {!niche.active && (
-                  <span className="mt-2 inline-block text-xs font-medium text-text-muted">
-                    Coming soon
-                  </span>
-                )}
               </div>
             );
-            return niche.active ? (
+            return (
               <Link key={niche.slug} href={`/${niche.slug}`} className="block">
                 {content}
               </Link>
-            ) : (
-              <div key={niche.slug}>{content}</div>
             );
           })}
         </div>
+        <p className="mt-4 text-center text-xs text-text-muted">
+          More categories coming soon.
+        </p>
       </div>
     </section>
   );
