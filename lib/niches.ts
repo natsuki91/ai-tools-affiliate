@@ -26,7 +26,7 @@ export const NICHES = [
     tagline: "Secure browsing & streaming",
     icon: "🔒",
     color: "emerald",
-    active: false,
+    active: true,
   },
   {
     slug: "ecommerce-tools",

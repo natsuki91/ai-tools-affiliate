@@ -1587,6 +1587,51 @@ export const mockComparisons: Comparison[] = [
     tool_a: mockTools[7],
     tool_b: mockTools[20],
   },
+  {
+    id: "c14",
+    slug: "nordvpn-vs-nordpass",
+    tool_a_id: "vpn1",
+    tool_b_id: "vpn2",
+    title: "NordVPN vs NordPass 2026: VPN vs Password Manager",
+    meta_desc:
+      "NordVPN vs NordPass in 2026: we compare what each tool does, pricing, and who should use which for better online security.",
+    verdict:
+      "NordVPN protects your internet connection and location; NordPass protects your passwords and logins. Most people who care about privacy should use both together.",
+    content: `<h2>NordVPN vs NordPass: Different Jobs, Same Ecosystem</h2>
+<p>NordVPN and NordPass are both built by Nord Security, but they solve different problems. NordVPN encrypts your connection and hides your IP address; NordPass securely stores and autofills your passwords.</p>
+
+<h2>What NordVPN Does</h2>
+<ul>
+  <li>Encrypts your internet connection</li>
+  <li>Lets you appear as if you&apos;re in another country</li>
+  <li>Helps unblock region-locked content</li>
+  <li>Adds a layer of privacy on public Wi‑Fi</li>
+</ul>
+
+<h2>What NordPass Does</h2>
+<ul>
+  <li>Stores and autofills passwords securely</li>
+  <li>Generates strong unique passwords</li>
+  <li>Syncs passwords across devices</li>
+  <li>Helps you avoid reusing weak passwords</li>
+</ul>
+
+<h2>Pricing Overview</h2>
+<p>Pricing changes often, but generally NordVPN costs a few dollars per month on long-term plans, while NordPass is even cheaper. Bundled plans sometimes offer a discount if you take both together.</p>
+
+<h2>Who Should Choose NordVPN?</h2>
+<p>Anyone who wants to protect their connection on public Wi‑Fi, stream from other regions, or make it harder for ISPs and websites to track them.</p>
+
+<h2>Who Should Choose NordPass?</h2>
+<p>Anyone with more than a handful of online accounts (so: basically everyone). Password managers are one of the easiest security upgrades you can make.</p>
+
+<h2>Our Verdict</h2>
+<p>NordVPN and NordPass are not competitors. Together they cover two different but critical parts of your online security: your connection and your logins. If you&apos;re serious about online privacy and safety in 2026, using both makes sense.</p>`,
+    views: 0,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    niche: "vpn",
+  },
 ];
 
 export const mockBlogPosts: BlogPost[] = [
@@ -1813,6 +1858,15 @@ export const mockBlogPosts: BlogPost[] = [
     content: "",
     date: "2026-03-07",
     readingTime: 6,
+    author: "Editorial Team",
+  },
+  {
+    slug: "best-vpn-services-2026",
+    title: "Best VPN Services for 2026 (Fast, Secure, and Streaming-Friendly)",
+    description: "We compare the best VPN services for 2026 — including NordVPN and other top options — with a focus on speed, privacy, and streaming.",
+    content: "",
+    date: "2026-03-09",
+    readingTime: 7,
     author: "Editorial Team",
   },
 ];
