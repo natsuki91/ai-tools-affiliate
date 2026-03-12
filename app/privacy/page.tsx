@@ -189,7 +189,7 @@ export default function PrivacyPage() {
           </ul>
           <p className="mt-3">
             To exercise any of these rights, email us at{" "}
-            <span className="font-mono">privacy@toolscout.tools</span>. We will respond within 30 days.
+            <span className="font-mono">hello@toolscout.tools</span>. We will respond within 30 days.
           </p>
         </section>
 
@@ -215,7 +215,7 @@ export default function PrivacyPage() {
           <h2 className="text-xl font-semibold text-text-primary">10. Contact Us</h2>
           <p className="mt-2">
             For privacy-related questions or to exercise your GDPR rights, contact us at{" "}
-            <span className="font-mono">privacy@toolscout.tools</span>.
+            <span className="font-mono">hello@toolscout.tools</span>.
           </p>
         </section>
       </LegalLayout>

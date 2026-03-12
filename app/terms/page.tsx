@@ -171,7 +171,7 @@ export default function TermsPage() {
           <h2 className="text-xl font-semibold text-text-primary">12. Contact</h2>
           <p className="mt-2">
             For questions about these terms, contact us at{" "}
-            <span className="font-mono">legal@toolscout.tools</span>.
+            <span className="font-mono">hello@toolscout.tools</span>.
           </p>
         </section>
       </LegalLayout>

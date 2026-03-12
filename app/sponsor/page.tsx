@@ -408,10 +408,10 @@ export default function SponsorPage() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-text-secondary">Have questions? Email us directly at</p>
           <a
-            href="mailto:sponsor@toolscout.tools"
+            href="mailto:hello@toolscout.tools"
             className="mt-2 inline-block rounded-lg bg-primary px-6 py-3 font-semibold text-white transition hover:opacity-90"
           >
-            sponsor@toolscout.tools
+            hello@toolscout.tools
           </a>
         </div>
       </section>
