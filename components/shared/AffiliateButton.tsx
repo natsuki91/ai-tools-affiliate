@@ -8,6 +8,8 @@ export interface AffiliateButtonProps {
   toolName: string;
   /** When set (e.g. from Supabase tool.affiliate_url), this is used and UTM is added. */
   affiliateUrl?: string | null;
+  /** Optional direct website URL used as a fallback when no affiliate is set. */
+  websiteUrl?: string | null;
   label?: string;
   variant?: "primary" | "secondary" | "outline";
   size?: "sm" | "md" | "lg";
@@ -17,7 +19,7 @@ export interface AffiliateButtonProps {
 
 const variants = {
   primary:
-    "bg-gradient-to-r from-primary to-secondary text-white hover:opacity-90 shadow-lg",
+    "bg-gradient-to-r from-primary to-secondary text-white hover:text-white hover:opacity-90 shadow-lg",
   secondary: "bg-surface text-text-primary border border-border hover:bg-card",
   outline: "border-2 border-primary text-primary hover:bg-primary/10",
 };
@@ -31,16 +33,22 @@ const sizes = {
 export function AffiliateButton({
   toolName,
   affiliateUrl,
+  websiteUrl,
   label,
   variant = "primary",
   size = "md",
   showDisclosure = false,
   className,
 }: AffiliateButtonProps) {
-  const href =
-    affiliateUrl && affiliateUrl !== "#"
-      ? addUtmParams(affiliateUrl, toolName.toLowerCase().replace(/\s+/g, "-"))
-      : getAffiliateUrl(toolName);
+  const campaignSlug = toolName.toLowerCase().replace(/\s+/g, "-");
+  let href: string;
+  if (affiliateUrl && affiliateUrl !== "#") {
+    href = addUtmParams(affiliateUrl, campaignSlug);
+  } else if (websiteUrl && websiteUrl !== "#") {
+    href = addUtmParams(websiteUrl, campaignSlug);
+  } else {
+    href = getAffiliateUrl(toolName);
+  }
   const text = label ?? `Start ${toolName} in 30 Seconds`;
 
   return (

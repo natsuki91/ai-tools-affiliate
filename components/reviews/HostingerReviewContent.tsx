@@ -73,6 +73,7 @@ export function HostingerReviewContent({
             label="Get Hostinger — From $2.99/mo"
             variant="primary"
             size="lg"
+            websiteUrl={tool.website_url}
           />
         </div>
         <p className="mt-3 text-xs text-text-secondary">
@@ -443,6 +444,7 @@ export function HostingerReviewContent({
             label="Get Hostinger — From $2.99/mo"
             variant="primary"
             size="lg"
+            websiteUrl={tool.website_url}
           />
         </div>
       </section>
@@ -476,6 +478,7 @@ export function HostingerReviewContent({
             label="Get Hostinger — Plans from $2.99/month"
             variant="primary"
             size="lg"
+            websiteUrl={tool.website_url}
           />
         </div>
       </section>

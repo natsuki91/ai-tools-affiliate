@@ -28,9 +28,19 @@ function getFaviconUrl(websiteUrl: string | null | undefined): string | null {
 
 export function ToolCard({ tool, showCta = true, nicheSlug = ACTIVE_NICHE_SLUG, showNewBadge }: ToolCardProps) {
   const faviconUrl = getFaviconUrl(tool.website_url);
+  const primaryCategory = Array.isArray(tool.category) && tool.category.length > 0 ? tool.category[0] : null;
+  const pricingLabel =
+    tool.pricing_type === "freemium"
+      ? "Free + paid"
+      : tool.pricing_type === "free"
+        ? "Free"
+        : tool.pricing_type === "paid"
+          ? "Paid"
+          : null;
+
   return (
     <article
-      className={`rounded-2xl border bg-card p-6 backdrop-blur transition hover:border-primary/30 ${
+      className={`rounded-2xl border bg-card p-6 backdrop-blur transition hover:border-primary/30 hover:bg-card/80 hover:-translate-y-0.5 ${
         tool.is_sponsored ? "border-warning/40" : "border-border"
       }`}
     >
@@ -50,7 +60,16 @@ export function ToolCard({ tool, showCta = true, nicheSlug = ACTIVE_NICHE_SLUG, 
             </div>
           )}
           <div className="ml-4 min-w-0">
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
+              {primaryCategory && <span className="capitalize">{primaryCategory}</span>}
+              {pricingLabel && (
+                <>
+                  {primaryCategory && <span>•</span>}
+                  <span>{pricingLabel}</span>
+                </>
+              )}
+            </div>
+            <div className="mt-1 flex items-center gap-2">
               <Link
                 href={`/${nicheSlug}/tools/${tool.slug}`}
                 className="font-semibold text-text-primary hover:text-primary transition truncate"
@@ -85,7 +104,13 @@ export function ToolCard({ tool, showCta = true, nicheSlug = ACTIVE_NICHE_SLUG, 
           {formatPrice(tool.starting_price)}
         </span>
         {showCta && (
-          <AffiliateButton toolName={tool.name} affiliateUrl={tool.affiliate_url} size="sm" variant="secondary" />
+          <AffiliateButton
+            toolName={tool.name}
+            affiliateUrl={tool.affiliate_url}
+            websiteUrl={tool.website_url}
+            size="sm"
+            variant="secondary"
+          />
         )}
       </div>
     </article>

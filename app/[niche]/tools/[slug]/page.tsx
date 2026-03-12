@@ -217,7 +217,11 @@ export default async function NicheToolSlugPage({ params }: PageProps) {
               Best for: {tool.best_for?.join(", ") ?? "—"}
             </p>
             <div className="mt-4">
-              <AffiliateButton toolName={tool.name} affiliateUrl={tool.affiliate_url} />
+              <AffiliateButton
+                toolName={tool.name}
+                affiliateUrl={tool.affiliate_url}
+                websiteUrl={tool.website_url}
+              />
             </div>
           </div>
           
@@ -266,7 +270,11 @@ export default async function NicheToolSlugPage({ params }: PageProps) {
               Click below to get started with {tool.name} in under a minute using our curated link.
             </p>
             <div className="mt-4">
-              <AffiliateButton toolName={tool.name} affiliateUrl={tool.affiliate_url} />
+            <AffiliateButton
+              toolName={tool.name}
+              affiliateUrl={tool.affiliate_url}
+              websiteUrl={tool.website_url}
+            />
             </div>
           </section>
 

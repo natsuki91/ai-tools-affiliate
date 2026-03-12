@@ -119,7 +119,11 @@ export default async function CompareSlugPage({ params }: PageProps) {
             For most people, {winner.name} is the safer default choice based on our testing, pricing, and overall value.
           </p>
           <div className="mt-4">
-            <AffiliateButton toolName={winner.name} affiliateUrl={winner.affiliate_url} />
+            <AffiliateButton
+              toolName={winner.name}
+              affiliateUrl={winner.affiliate_url}
+              websiteUrl={winner.website_url}
+            />
           </div>
         </section>
       )}
@@ -166,14 +170,22 @@ export default async function CompareSlugPage({ params }: PageProps) {
           <h2 className="font-semibold text-text-primary">Who should choose {a.name}?</h2>
           <p className="mt-2 text-sm text-text-secondary">{a.tagline ?? a.description}</p>
           <div className="mt-4">
-            <AffiliateButton toolName={a.name} affiliateUrl={a.affiliate_url} />
+            <AffiliateButton
+              toolName={a.name}
+              affiliateUrl={a.affiliate_url}
+              websiteUrl={a.website_url}
+            />
           </div>
         </div>
         <div className="rounded-2xl border border-border bg-card p-6">
           <h2 className="font-semibold text-text-primary">Who should choose {b.name}?</h2>
           <p className="mt-2 text-sm text-text-secondary">{b.tagline ?? b.description}</p>
           <div className="mt-4">
-            <AffiliateButton toolName={b.name} affiliateUrl={b.affiliate_url} />
+            <AffiliateButton
+              toolName={b.name}
+              affiliateUrl={b.affiliate_url}
+              websiteUrl={b.website_url}
+            />
           </div>
         </div>
       </div>

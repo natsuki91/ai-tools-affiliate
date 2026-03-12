@@ -128,32 +128,33 @@ export default async function BlogSlugPage({ params }: PageProps) {
         </div>
       </header>
       {recommendedTools.length > 0 && (
-        <section className="mt-6 rounded-2xl border border-primary/30 bg-card/80 p-5">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-primary">
+        <section className="mt-6 rounded-2xl border border-border bg-card/60 p-4">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-text-primary">
             Recommended tools for this guide
           </h2>
-          <div className="mt-3 grid gap-4 sm:grid-cols-3">
+          <ul className="mt-3 space-y-3 text-sm">
             {recommendedTools.map((tool) => (
-              <div key={tool.id} className="rounded-xl border border-border bg-surface/60 p-3">
-                <div className="text-sm font-semibold text-text-primary line-clamp-1">
-                  {tool.name}
-                </div>
-                {tool.tagline && (
-                  <p className="mt-1 text-xs text-text-secondary line-clamp-2">
-                    {tool.tagline}
-                  </p>
-                )}
-                <div className="mt-2">
+              <li key={tool.id} className="flex flex-col gap-1 border-t border-border pt-3 first:border-t-0 first:pt-0">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="font-semibold text-text-primary line-clamp-1">
+                    {tool.name}
+                  </span>
                   <AffiliateButton
                     toolName={tool.name}
                     affiliateUrl={tool.affiliate_url}
+                    websiteUrl={tool.website_url}
                     size="sm"
                     variant="secondary"
                   />
                 </div>
-              </div>
+                {tool.tagline && (
+                  <p className="text-xs text-text-secondary line-clamp-2">
+                    {tool.tagline}
+                  </p>
+                )}
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
       )}
       <div className="prose prose-invert mt-8 max-w-none prose-headings:text-text-primary prose-p:text-text-secondary prose-a:text-primary prose-li:text-text-secondary">
