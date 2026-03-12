@@ -22,12 +22,23 @@ export function NicheGrid() {
           {activeNiches.map((niche) => {
             const colorClass = colorClasses[niche.color] ?? colorClasses.indigo;
             const content = (
-              <div className={`relative rounded-xl border bg-gradient-to-br p-5 transition ${colorClass} cursor-pointer hover:shadow-lg`}>
-                <span className="text-2xl" aria-hidden>
-                  {niche.icon}
-                </span>
+              <div className={`group relative overflow-hidden rounded-xl border bg-gradient-to-br p-5 transition ${colorClass} cursor-pointer hover:shadow-lg`}>
+                <div
+                  className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-2xl bg-gradient-to-br from-white/10 to-white/0 blur-[2px] transition group-hover:scale-105"
+                  aria-hidden
+                />
+                <div className="flex items-start gap-4">
+                  <div
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-surface/60 text-2xl"
+                    aria-hidden
+                  >
+                    {niche.icon}
+                  </div>
+                  <div className="min-w-0">
                 <h3 className="mt-2 font-semibold text-text-primary">{niche.name}</h3>
                 <p className="mt-1 text-sm text-text-secondary">{niche.tagline}</p>
+                  </div>
+                </div>
               </div>
             );
             return (
@@ -37,8 +48,11 @@ export function NicheGrid() {
             );
           })}
         </div>
-        <p className="mt-4 text-center text-xs text-text-muted">
-          More categories coming soon.
+        <p className="mt-5 text-center text-sm text-text-secondary">
+          More categories are on the way.{" "}
+          <Link href="/blog" className="font-medium text-primary hover:underline">
+            Browse the latest guides →
+          </Link>
         </p>
       </div>
     </section>

@@ -11,7 +11,7 @@ export function HubHero({ searchItems }: HubHeroProps) {
     <section className="relative overflow-hidden border-b border-border bg-surface px-4 py-20 sm:py-28 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl text-center">
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-          <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          <span className="text-text-primary sm:bg-gradient-to-r sm:from-primary sm:via-secondary sm:to-accent sm:bg-clip-text sm:text-transparent [text-shadow:0_1px_0_rgba(0,0,0,0.35)] sm:[text-shadow:none]">
             Stop Testing Tools Blind. We&apos;ve Done the Homework.
           </span>
         </h1>
