@@ -45,7 +45,7 @@ export default async function NicheCategoryPage({ params }: PageProps) {
   const name = categoryNames[slug];
   if (!name) notFound();
 
-  const tools = await getToolsByCategory(slug);
+  const tools = await getToolsByCategory(slug, nicheSlug);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">

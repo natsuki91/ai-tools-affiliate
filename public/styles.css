@@ -11,5 +11,6 @@ body {
   flex-direction: column;
 }
 main { flex: 1; }
-a { color: #06B6D4; }
-a:hover { color: #8B5CF6; }
+/* Only style unclassed links so buttons remain readable */
+a:not([class]) { color: #06B6D4; }
+a:not([class]):hover { color: #8B5CF6; }

@@ -21,7 +21,7 @@ Before diving into specific tools, it helps to know what actually matters. In 20
 
 **Workflow fit.** Consider where you write: in a doc, in your CMS, or in a dedicated app. Some tools live inside your browser or Notion; others are full writing suites with templates, SEO, and collaboration. Choose based on how you actually work.
 
-**Pricing and limits.** Many tools offer free tiers or trials. Check word limits, seat limits, and whether premium features (e.g. SEO, plagiarism, brand voice) are included or cost extra. [INTERNAL LINK: /compare/ai-writing-tools]
+**Pricing and limits.** Many tools offer free tiers or trials. Check word limits, seat limits, and whether premium features (e.g. SEO, plagiarism, brand voice) are included or cost extra. See our side-by-side breakdown: [AI writing tools comparison](/compare/best-ai-writing-tools).
 
 **Integrations.** If you use WordPress, Webflow, or a specific CRM, see whether the tool plugs in. Integrations can save hours of copy-pasting and keep your workflow in one place.
 
@@ -106,7 +106,7 @@ Your ideal **AI writing tool for 2026** depends on your main use case:
 - **Brand voice and campaigns:** Jasper or tools that let you train or lock in tone.
 - **Already in Notion or Gmail:** Notion AI or Grammarly to augment what you’re doing.
 
-Don’t overthink it: start with a free tier or trial, use it on real projects, and only then commit to a paid plan. [INTERNAL LINK: /compare/ai-writing-tools]
+Don’t overthink it: start with a free tier or trial, use it on real projects, and only then commit to a paid plan. Here’s our comparison page: [Best AI writing tools](/compare/best-ai-writing-tools).
 
 ---
 
@@ -125,7 +125,7 @@ Many tools (e.g. Jasper, Writesonic) include SEO features like keyword suggestio
 Use tools that support custom instructions, brand voice, or saved style guides (e.g. Jasper, ChatGPT custom instructions). Provide clear examples and tone notes and refine over time.
 
 **Which AI writing tool is best for blogs?**  
-For long-form blogs, Claude and ChatGPT are very capable. For template-driven, SEO-focused blogs, Jasper and Writesonic are strong options. [INTERNAL LINK: /compare/ai-writing-tools]
+For long-form blogs, Claude and ChatGPT are very capable. For template-driven, SEO-focused blogs, Jasper and Writesonic are strong options. See the full breakdown: [Best AI writing tools](/compare/best-ai-writing-tools).
 
 ---
 
@@ -133,4 +133,4 @@ For long-form blogs, Claude and ChatGPT are very capable. For template-driven, S
 
 The **best AI writing tools for 2026** aren’t about one winner—they’re about matching the tool to your workflow and goals. Use ChatGPT or Claude for flexibility and depth, Jasper or Copy.ai for marketing and templates, and Notion AI or Grammarly if you want help inside the tools you already use.
 
-Pick one, try it on a real project, and iterate. When you’re ready to compare features and pricing side by side, use our [AI writing tools comparison](/compare/ai-writing-tools) to narrow it down. [AFFILIATE: ChatGPT] [AFFILIATE: Jasper]
+Pick one, try it on a real project, and iterate. When you’re ready to compare features and pricing side by side, use our [AI writing tools comparison](/compare/best-ai-writing-tools) to narrow it down. [AFFILIATE: ChatGPT] [AFFILIATE: Jasper]

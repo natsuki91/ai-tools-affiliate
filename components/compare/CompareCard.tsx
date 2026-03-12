@@ -11,10 +11,12 @@ interface CompareCardProps {
 export function CompareCard({ comparison, nicheSlug = ACTIVE_NICHE_SLUG }: CompareCardProps) {
   const toolA = comparison.tool_a?.name ?? "Tool A";
   const toolB = comparison.tool_b?.name ?? "Tool B";
+  const nicheSafe = comparison.niche ?? nicheSlug;
+  const href = nicheSafe ? `/${nicheSafe}/compare/${comparison.slug}` : `/compare/${comparison.slug}`;
 
   return (
     <Link
-      href={`/${nicheSlug}/compare/${comparison.slug}`}
+      href={href}
       className="block rounded-2xl border border-border bg-card p-6 backdrop-blur transition hover:border-primary/30"
     >
       <h3 className="font-semibold text-text-primary transition group-hover:text-primary">

@@ -150,7 +150,7 @@ export async function getToolBySlug(slug: string, nicheSlug?: string): Promise<T
 }
 
 /** Tools by category (slug) */
-export async function getToolsByCategory(categorySlug: string): Promise<Tool[]> {
+export async function getToolsByCategory(categorySlug: string, nicheSlug?: string): Promise<Tool[]> {
   try {
     const sb = getSupabase();
     if (sb) {
@@ -159,12 +159,20 @@ export async function getToolsByCategory(categorySlug: string): Promise<Tool[]> 
         .select("*")
         .contains("category", [categorySlug])
         .order("rating", { ascending: false, nullsFirst: false });
-      if (!error && data?.length) return data.map(rowToTool);
+      if (!error && data?.length) {
+        const tools = data.map(rowToTool);
+        if (nicheSlug) {
+          return tools.filter((t) => !(t as Tool & { niche?: string }).niche || (t as Tool & { niche?: string }).niche === nicheSlug);
+        }
+        return tools;
+      }
     }
   } catch {
     // fall through to mock
   }
-  return mockTools.filter((t) => t.category.includes(categorySlug));
+  let list = mockTools.filter((t) => t.category.includes(categorySlug));
+  if (nicheSlug) list = list.filter((t) => !t.niche || t.niche === nicheSlug);
+  return list;
 }
 
 type ComparisonRow = Database["public"]["Tables"]["comparisons"]["Row"];
