@@ -53,6 +53,9 @@ jobs:
           test -f out/index.html && echo "index.html OK" || exit 1
           test -d out/_next && echo "_next OK" || exit 1
           test -f out/.htaccess && echo ".htaccess OK" || exit 1
+          du -sh out out/_next
+          test -f out/robots.txt && echo "robots.txt OK" || exit 1
+          test -f out/sitemap.xml && echo "sitemap.xml OK" || exit 1
 
       - name: Set deploy method
         id: method
@@ -75,6 +78,8 @@ jobs:
           # Use ./ so files land in current dir (your FTP often starts in public_html). Set FTP_SERVER_DIR to public_html/ only if your FTP starts in account root.
           server-dir: ${{ secrets.FTP_SERVER_DIR || './' }}
           dangerous-clean-slate: true
+          # Default 30s is too low for _next/ + hundreds of HTML files; incomplete uploads cause 404 on /_next/* and broken styling.
+          timeout: 900000
 
       - name: Deploy to Hostinger (SFTP — use when SSH Access is enabled)
         if: steps.method.outputs.method == 'sftp'
@@ -88,3 +93,25 @@ jobs:
           local_path: "out/"
           remote_path: ${{ secrets.SFTP_REMOTE_PATH || 'public_html/' }}
           sftp_only: true
+
+      - name: Verify live site (_next, sitemap, clean URLs)
+        if: success()
+        run: |
+          set -e
+          SITE="${VERIFY_LIVE_URL:-https://toolscout.tools}"
+          echo "Waiting 25s for host to serve new files..."
+          sleep 25
+          echo "Checking $SITE ..."
+          for path in robots.txt sitemap.xml styles.css; do
+            code=$(curl -sS -o /dev/null -w "%{http_code}" "$SITE/$path")
+            echo "$path -> HTTP $code"
+            test "$code" = "200" || { echo "FAIL: expected 200 for /$path"; exit 1; }
+          done
+          CSS_PATH=$(grep -oE '_next/static/css/[^"]+' out/index.html | head -1)
+          if [ -z "$CSS_PATH" ]; then echo "FAIL: no _next CSS in index.html"; exit 1; fi
+          code=$(curl -sS -o /dev/null -w "%{http_code}" "$SITE/$CSS_PATH")
+          echo "$CSS_PATH -> HTTP $code"
+          test "$code" = "200" || { echo "FAIL: _next assets missing on server (FTP timeout or wrong directory?)"; exit 1; }
+          code=$(curl -sS -o /dev/null -w "%{http_code}" "$SITE/ai-tools")
+          echo "/ai-tools -> HTTP $code"
+          test "$code" = "200" || { echo "FAIL: clean URL /ai-tools (needs mod_rewrite + .htaccess on Hostinger)"; exit 1; }

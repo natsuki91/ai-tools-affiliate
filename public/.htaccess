@@ -1,2 +1,16 @@
-# Minimal to reduce 403 risk on Hostinger. Only DirectoryIndex.
+# Clean URLs: /ai-tools → ai-tools.html when both exist. If you get 403 Forbidden, switch to public/.htaccess.minimal in Hostinger.
 DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_URI} ^/(.+?)/?$
+RewriteCond %{DOCUMENT_ROOT}/%1.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [L]
+</IfModule>
+ErrorDocument 404 /404.html
