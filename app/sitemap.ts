@@ -22,6 +22,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/ai-tools/compare`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/ai-tools/tools`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
     { url: `${BASE_URL}/ai-tools/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${BASE_URL}/compare`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/tools`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+    { url: `${BASE_URL}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
     { url: `${BASE_URL}/sponsor`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/disclosure`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
@@ -29,38 +32,55 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/terms`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.3 },
   ];
 
-  const blogPosts: MetadataRoute.Sitemap = (Array.isArray(mockBlogPosts) ? mockBlogPosts : []).map((post) => ({
-    url: `${BASE_URL}/ai-tools/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  const blogPosts: MetadataRoute.Sitemap = (Array.isArray(mockBlogPosts) ? mockBlogPosts : []).flatMap((post) => {
+    const lastModified = new Date(post.date);
+    return [
+      {
+        url: `${BASE_URL}/blog/${post.slug}`,
+        lastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      },
+      {
+        url: `${BASE_URL}/ai-tools/blog/${post.slug}`,
+        lastModified,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      },
+    ];
+  });
 
   const toolPages: MetadataRoute.Sitemap = ACTIVE_NICHES.flatMap((niche) =>
-    (mockTools || []).map((t) => ({
-      url: `${BASE_URL}/${niche}/tools/${t.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    }))
+    (mockTools || [])
+      .filter((t) => !t.niche || t.niche === niche)
+      .map((t) => ({
+        url: `${BASE_URL}/${niche}/tools/${t.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.8,
+      }))
   );
 
   const comparePages: MetadataRoute.Sitemap = ACTIVE_NICHES.flatMap((niche) =>
-    (mockComparisons || []).map((c) => ({
-      url: `${BASE_URL}/${niche}/compare/${c.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    }))
+    (mockComparisons || [])
+      .filter((c) => !c.niche || c.niche === niche)
+      .map((c) => ({
+        url: `${BASE_URL}/${niche}/compare/${c.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.8,
+      }))
   );
 
   const alternativesPages: MetadataRoute.Sitemap = ACTIVE_NICHES.flatMap((niche) =>
-    (mockTools || []).map((t) => ({
-      url: `${BASE_URL}/${niche}/alternatives/${t.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    }))
+    (mockTools || [])
+      .filter((t) => !t.niche || t.niche === niche)
+      .map((t) => ({
+        url: `${BASE_URL}/${niche}/alternatives/${t.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      }))
   );
 
   return [...staticPages, ...blogPosts, ...toolPages, ...comparePages, ...alternativesPages];
